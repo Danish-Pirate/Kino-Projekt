@@ -15,7 +15,6 @@ import javax.persistence.Id;
 public class Booking {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-
     private Long id;
     private int seatNumber;
     private String movie;

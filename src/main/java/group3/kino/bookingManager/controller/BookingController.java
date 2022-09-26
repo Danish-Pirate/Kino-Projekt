@@ -43,7 +43,7 @@ public class BookingController {
 
     }
 
-    @PostMapping("/deleteBooking")
+    @DeleteMapping("/deleteBooking")
     public ResponseEntity<Booking> deleteBooking(Long id) {
         Optional<Booking> booking_ = bookingService.findById(id);
         if(booking_.isPresent())  {
