@@ -1,6 +1,6 @@
-package group3.kino.controller;
+package group3.kino.movieSearch.controller;
 
-import group3.kino.model.Movie;
+import group3.kino.movieAdministration.model.Movie;
 import org.springframework.http.ResponseEntity;
 
 import java.util.Set;
