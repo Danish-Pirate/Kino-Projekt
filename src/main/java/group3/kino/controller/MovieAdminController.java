@@ -2,6 +2,7 @@ package group3.kino.controller;
 
 import group3.kino.model.Movie;
 import group3.kino.service.MovieAdminService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -10,16 +11,17 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 import java.util.Set;
 
-@Controller
+@RestController
 public class MovieAdminController {
 
+    @Autowired
     private MovieAdminService movieAdminService;
 
     public MovieAdminController(MovieAdminService movieAdminService) {
         this.movieAdminService = movieAdminService;
     }
 
-    @PostMapping("/addMovie")
+   /* @PostMapping("/addMovie")
     public ResponseEntity<Movie> addMovie(@RequestBody Movie movie) {
         movieAdminService.save(movie);
         return new ResponseEntity<>(movie, HttpStatus.OK);
@@ -50,5 +52,8 @@ public class MovieAdminController {
             return new ResponseEntity<>(movie_, HttpStatus.OK);
         }
         return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+
     }
+
+    */
 }

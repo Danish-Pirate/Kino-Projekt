@@ -12,15 +12,10 @@ public class Movie {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long movieId;
-    @Column(name = "movieName", nullable = false)
-    private String movieName;
-    @Column
+    private String name;
     private double movieLength;
-    @Column
     private String movieGenre;
-    @Column
     private int movieAgeRestriction;
-    @Column
     private double moviePrice;
 
 }
