@@ -1,7 +1,9 @@
 package group3.kino.bookingManager.controller;
 
 import group3.kino.bookingManager.model.Booking;
+import group3.kino.bookingManager.model.Seat;
 import group3.kino.bookingManager.service.BookingService;
+import group3.kino.bookingManager.service.SeatService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -13,15 +15,23 @@ import java.util.Set;
 public class BookingController {
 
     private BookingService bookingService;
+    private SeatService seatService;
 
-    public BookingController(BookingService bookingService) {
+    public BookingController(BookingService bookingService, SeatService seatService) {
         this.bookingService = bookingService;
+        this.seatService = seatService;
     }
 
     @PostMapping ("/createBooking")
-    public ResponseEntity<Booking> createBooking(@RequestBody Booking booking)  {
+    public ResponseEntity<String> createBooking(@RequestBody Booking booking)  {
         bookingService.save(booking);
-        return new ResponseEntity<>(booking, HttpStatus.OK);
+        String msg="";
+        if(bookingService.save(booking)!=null)  {
+            msg="Oprettet booking: " + booking.getMovieName();
+        }else {
+            msg="fejl i oprettelsen af " + booking.getMovieName();
+        }
+        return new ResponseEntity<>(msg, HttpStatus.OK);
     }
 
     @GetMapping ("/getAll")
@@ -51,6 +61,13 @@ public class BookingController {
             return new ResponseEntity<>(booking, HttpStatus.OK);
         }
         return new ResponseEntity<>(null, HttpStatus.NOT_FOUND);
+    }
+
+    @GetMapping("/showAvailableSeats")
+    public ResponseEntity<Set<Seat>> showAvailable()  {
+        return new ResponseEntity<>(seatService.findAllAvailable(), HttpStatus.OK);
+
+
     }
 
 }
