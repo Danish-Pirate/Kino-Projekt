@@ -17,6 +17,13 @@ public class SeatService implements ISeatService{
         this.seatRepository = seatRepository;
     }
 
+    public Set<Seat> findAllAvailable()  {
+        Set<Seat> set = new HashSet<>();
+        seatRepository.findSeatsByReservedFalse().forEach(set::add);
+
+        return set;
+    }
+
     @Override
     public Set<Seat> findAll() {
         Set<Seat> set = new HashSet<>();

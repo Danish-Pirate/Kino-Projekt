@@ -21,7 +21,7 @@ public class CinemaHall {
     private int numberOfSeats;
 
     @OneToMany(mappedBy = "cinemaHall")
-    private Set<Showing>shows=new HashSet<>();
+    private Set<cinemaShow>shows=new HashSet<>();
 
 
 }

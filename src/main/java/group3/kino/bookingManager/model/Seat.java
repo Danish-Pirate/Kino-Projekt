@@ -16,8 +16,9 @@ public class Seat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    //private int rowNumber;
-    private int seatNumber;
+    private String seatNumber;
+    private boolean reserved;
+
 
     @ManyToOne
     @JsonBackReference("seat_booking")
@@ -26,7 +27,7 @@ public class Seat {
 
     @ManyToMany (mappedBy = "bookedSeats")
     @JsonBackReference("bookedSeats")
-    private Set<Showing> showings=new HashSet<>();
+    private Set<cinemaShow> showings=new HashSet<>();
 
 
 }
