@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+<title>BookingSide</title>
+
+<link rel="stylesheet" href="BookingStyle.css">
+
+<!-- bootstrap -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+<!-- Jquery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<!-- BookingJs local-->
+<script type="text/javascript" src="BookingJS.js" ></script>
+
+<script type="text/javascript" src="Infobox.js" ></script>
+
+</head>
+<body onload="seatNumbering(), addData()">
+    
+<div class="main_container">
+
+    <div class="left_side_container" >
+        <div class="cinema_one_grid" id="cinema_one_grid_id"> <!-- Insert cinema seats here--> </div>
+    </div>
+
+    <div class="right_side_container">
+
+        <div class="booking_infobox" id="booking_infobox_id">
+
+            <div class="infobox_grid_square" id="cinema_name_infobox_id"></div>
+            <div class="infobox_grid_square" id="movie_name_infobox_id"></div>
+            <div class="infobox_grid_square" id="date_infobox_id"></div>
+            <div class="infobox_grid_square" id="start_time_infobox_id"></div>
+            <div class="infobox_grid_square" id="age_infobox_id"></div>
+            <div class="infobox_grid_square" id="price_infobox_id"></div>
+    
+        </div>
+
+        <section class="registrationBox">
+            <div class="formStyling">
+                <form>
+                    <ul class="flex-outer">
+                      <li>
+                        <label for="first-name">Fornavn</label>
+                        <input type="text" id="first-name" placeholder="Kundens fornavn">
+                      </li>
+                      <li>
+                        <label for="last-name">Efternavn</label>
+                        <input type="text" id="last-name" placeholder="Kundens efternavn">
+                      </li>
+                      <li>
+                        <label for="phone">Tlf.</label>
+                        <input type="tel" id="phone" placeholder="Kundens tlf. nummer">
+                      </li>
+                      <!--
+                      <li>
+                        <label for="normal-ticket">Normal-billet</label>
+                        <input type="number" id="normal-ticket-count" placeholder="Antal af billetter">
+                      </li>
+                      <li>
+                        <label for="pensioner-ticket">Pentionister</label>
+                        <input type="number" id="pensioner-ticket-count" placeholder="Antal af billetter">
+                      </li>
+                      <li>
+                        <label for="under10-ticket">Børn under 10</label>
+                        <input type="number" id="under10-ticket-count" placeholder="Mængde af billetter">
+                      </li>
+                      <li>
+                        <label for="10to16-ticket">Børn mellem 10-16</label>
+                        <input type="number" id="10to16-ticket-count" placeholder="Mængde af billetter">
+                      </li>
+                      -->
+                      <li>
+                        <button type="submit">Accepter!</button>
+                      </li>
+                    </ul>
+                  </form>
+            </div>
+            </section>
+    </div>
+   
+
+</div>
+
+</body>
+</html>   

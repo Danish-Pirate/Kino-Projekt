@@ -1,0 +1,103 @@
+.cinema_one_grid{
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto;
+    background-color: aliceblue;
+    gap: 5px;
+    padding : 20px;
+    margin: 5px;
+}
+
+.cinema_one_seat_class{
+    
+    padding: 5px;
+    background-color: orange;
+    text-align: center;
+    border: 1px solid black;
+    
+}
+
+.booking_accept{
+    display: flex;
+    justify-content: center;
+}
+
+.bookedColor{
+    background-color: yellow;
+}
+
+.booking_infobox{
+    width: 150px;
+    height: auto;
+    display: grid;
+    grid-template-columns: auto;
+    gap: 5px;    
+    background-color: aliceblue;
+    border: 1px solid black;
+    margin : 5px;
+}
+
+.infobox_grid_square{
+    width: 140px;
+    height: auto;
+    background-color: rgb(78, 223, 121);
+    border: 1px solid black;
+    margin: 5px;
+}
+
+.main_container{
+    display: flex;    
+    justify-content: space-between;
+}
+
+.right_side_container{
+    width: 350px;
+    display: grid;
+    grid-template-columns: auto;
+    
+}
+
+.left_side_container{
+    width: 1800px;
+
+}
+
+.registrationBox{
+    float: right;
+    border-color: black;
+    border-width: 1px;
+    border-style: solid;
+    padding: 5px;
+    height: 300px;
+    width: 36%;
+    }
+    
+    .flex-outer li,
+    .flex-inner {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+    
+    .flex-outer > li > label,
+    .flex-outer li p {
+      flex: 1 0 120px;
+      max-width: 220px;
+    }
+    
+    .flex-outer > li > label + *,
+    .flex-inner {
+      flex: 1 0 220px;
+      margin: 5px;
+      line-height: 35px;
+    }
+    
+    .flex-outer li button {
+        margin-left: auto;
+        padding: 8px 16px;
+        border: none;
+        background: #333;
+        color: #f2f2f2;
+        text-transform: uppercase;
+        letter-spacing: .09em;
+        border-radius: 2px;
+      }
