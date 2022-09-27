@@ -33,8 +33,7 @@ public class BookingController {
     public ResponseEntity<Booking> editBooking(@RequestBody Booking newBooking, @RequestParam Long bookingId)  {
         Optional<Booking> oldBooking_ = bookingService.findById(bookingId);
         if(oldBooking_.isPresent()) {
-
-            //Booking booking = oldBooking_.get();
+            newBooking.setId(bookingId);
             bookingService.save(newBooking);
             return new ResponseEntity<>(newBooking, HttpStatus.OK);
         }else{

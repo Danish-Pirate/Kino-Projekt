@@ -1,6 +1,5 @@
 package group3.kino.bookingManager.model;
 
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
@@ -10,24 +9,24 @@ import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 
-
 @Getter
 @Setter
 @Entity
-public class Booking {
+public class Seat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
+    //private int rowNumber;
+    private int seatNumber;
 
     @ManyToOne
-    @JsonBackReference("booking")
+    @JsonBackReference("seat_booking")
     @EqualsAndHashCode.Exclude
-    private Showing showing;
+    private Booking booking;
 
-
-    @OneToMany(mappedBy = "booking")
-    private Set<Seat> bookedSeats=new HashSet<>();
+    @ManyToMany (mappedBy = "bookedSeats")
+    @JsonBackReference("bookedSeats")
+    private Set<Showing> showings=new HashSet<>();
 
 
 }
