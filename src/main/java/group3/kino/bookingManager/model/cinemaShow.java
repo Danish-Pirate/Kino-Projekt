@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.Set;
@@ -19,7 +20,8 @@ public class cinemaShow {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Timestamp dateAndTime;
+    private Date date;
+    private Timestamp time;
 
     @ManyToOne
     private Movie movie;
