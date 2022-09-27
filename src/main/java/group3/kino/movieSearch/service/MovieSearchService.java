@@ -14,7 +14,7 @@ public class MovieSearchService implements iMovieService {
     private MovieRepo movieRepo;
     @Override
     public Set<Movie> findByName(String name) {
-        return movieRepo.findByName(name);
+        return movieRepo.findByNameContains(name);
     }
 
     @Override
