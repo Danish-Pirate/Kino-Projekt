@@ -17,6 +17,8 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.PUT,"/editBooking").permitAll()
                 .antMatchers(HttpMethod.DELETE,"/deleteBooking").permitAll()
                 .antMatchers(HttpMethod.GET,"/getAll").permitAll()
+                .antMatchers(HttpMethod.POST,"/addMovie").permitAll()
+
                 .anyRequest().authenticated();
     }
 }
