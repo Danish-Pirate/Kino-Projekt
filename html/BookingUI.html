@@ -16,6 +16,8 @@
 
 <script type="text/javascript" src="..\js\Infobox.js" ></script>
 
+<script type="text/javascript" src="..\js\Ticket.js" ></script>
+
 </head>
 <body onload="seatNumbering(), addData()">
     
@@ -39,7 +41,7 @@
         </div>
 
         <section class="registrationBox">
-            <div class="formStyling">
+            <div>
                 <form>
                     <ul class="flex-outer">
                       <li>
@@ -54,24 +56,9 @@
                         <label for="phone">Tlf.</label>
                         <input type="tel" id="phone" placeholder="Kundens tlf. nummer">
                       </li>
-                      <!--
-                      <li>
-                        <label for="normal-ticket">Normal-billet</label>
-                        <input type="number" id="normal-ticket-count" placeholder="Antal af billetter">
-                      </li>
-                      <li>
-                        <label for="pensioner-ticket">Pentionister</label>
-                        <input type="number" id="pensioner-ticket-count" placeholder="Antal af billetter">
-                      </li>
-                      <li>
-                        <label for="under10-ticket">Børn under 10</label>
-                        <input type="number" id="under10-ticket-count" placeholder="Mængde af billetter">
-                      </li>
-                      <li>
-                        <label for="10to16-ticket">Børn mellem 10-16</label>
-                        <input type="number" id="10to16-ticket-count" placeholder="Mængde af billetter">
-                      </li>
-                      -->
+                      <div class="ticket" id="ticket_id"><!--kode tilhørende billter-->
+
+                      </div>
                       <li>
                         <button type="submit">Accepter!</button>
                       </li>

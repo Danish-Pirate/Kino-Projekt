@@ -25,6 +25,10 @@
     background-color: yellow;
 }
 
+.bookedColor2{
+    background-color: red;
+}
+
 .booking_infobox{
     width: 350px;
     height: auto;
