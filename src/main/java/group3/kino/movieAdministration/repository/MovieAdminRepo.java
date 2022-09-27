@@ -1,8 +1,7 @@
-package group3.kino.repository;
+package group3.kino.movieAdministration.repository;
 
-import group3.kino.model.Movie;
+import group3.kino.movieAdministration.model.Movie;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
 import java.util.List;
 

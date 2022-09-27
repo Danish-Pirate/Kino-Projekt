@@ -1,6 +1,5 @@
-package group3.kino.repository;
+package group3.kino.movieAdministration.repository;
 
-import group3.kino.model.Movie;
 import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;

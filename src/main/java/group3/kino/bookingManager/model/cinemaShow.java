@@ -1,6 +1,7 @@
 package group3.kino.bookingManager.model;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import group3.kino.movieAdministration.model.Movie;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,7 +21,8 @@ public class cinemaShow {
 
     private Timestamp dateAndTime;
 
-    private String movie;
+    @ManyToOne
+    private Movie movie;
 
     @ManyToOne
     @JsonBackReference("cinemaHall")

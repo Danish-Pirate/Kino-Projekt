@@ -1,7 +1,7 @@
-package group3.kino.service;
+package group3.kino.movieAdministration.service;
 
-import group3.kino.model.Movie;
-import group3.kino.repository.MovieAdminRepo;
+import group3.kino.movieAdministration.model.Movie;
+import group3.kino.movieAdministration.repository.MovieAdminRepo;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -17,6 +17,10 @@ public class MovieAdminService implements IMovieAdminService {
         this.movieAdminRepo = movieAdminRepo;
     }
 
+    public MovieAdminService() {
+
+    }
+
     @Override
     public Set<Movie> findAll() {
         Set<Movie> set = new HashSet<>();
@@ -26,7 +30,7 @@ public class MovieAdminService implements IMovieAdminService {
 
     @Override
     public Movie save(Movie object) {
-        return null;
+        return movieAdminRepo.save(object);
     }
 
     @Override
