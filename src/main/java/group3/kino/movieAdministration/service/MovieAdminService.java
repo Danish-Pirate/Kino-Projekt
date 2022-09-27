@@ -2,6 +2,7 @@ package group3.kino.movieAdministration.service;
 
 import group3.kino.movieAdministration.model.Movie;
 import group3.kino.movieAdministration.repository.MovieAdminRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -13,6 +14,7 @@ public class MovieAdminService implements IMovieAdminService {
 
     private MovieAdminRepo movieAdminRepo;
 
+    @Autowired
     public MovieAdminService(MovieAdminRepo movieAdminRepo) {
         this.movieAdminRepo = movieAdminRepo;
     }
