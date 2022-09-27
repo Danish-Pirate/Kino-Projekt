@@ -56,17 +56,21 @@ function seatColorChange(){
 const message = ['hej']
 let message_count = 0;
 function tickets(){
+    var ticket= "";
     if(message_count < message.length + 1){
         message_count += 1;
+        this.classList.remove(message[ticket = '']);
     }
     else{
         message_count = 0;
+        this.classList.remove(message[ticket = '<p> ' +message+ '</p>']);
     }
-    var ticket= "";
     
     
-    this.classList.add(message[2]);
-    this.classList.remove(message[ticket = '<p> ' +message+ '</p>']);
+    
+    
+    
+    
 
 
     document.getElementById('ticket_id').innerHTML = ticket;
