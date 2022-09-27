@@ -2,10 +2,10 @@ package group3.kino.service;
 
 import group3.kino.model.Movie;
 
-import java.util.Optional;
+import java.util.Set;
 
 public interface IMovieService {
-    public Optional<Movie> findByTitle(String title);
-    public Optional<Movie> findByGenre(String genre);
-    public Optional<Movie> findByDate(String date);
+    public Set<Movie> findByTitle(String title);
+    public Set<Movie> findByGenre(String genre);
+    public Set<Movie> findByDate(String date);
 }
