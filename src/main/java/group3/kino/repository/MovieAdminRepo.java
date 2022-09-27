@@ -2,8 +2,10 @@ package group3.kino.repository;
 
 import group3.kino.model.Movie;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
+
 
 public interface MovieAdminRepo extends JpaRepository<Movie, Long> {
 
