@@ -12,7 +12,7 @@ for(let i = 0; i < 240; i++){
     
     seatID.push("seat_id_" + i);
     
-    seats = seats + '<div class="cinema_one_seat_class" id="seat_id_' + i +'"  onclick="seatColorChange();tickets();">' + seatNum + '-' + rowNum + '</div>';
+    seats = seats + '<seats class="cinema_one_seat_class" id="seat_id_' + i +'"  onclick="seatColorChange();tickets();">' + seatNum + '-' + rowNum + '</seats>';
     
     if(seatNum == 12){
         seatNum = 0;
@@ -31,16 +31,23 @@ Array.from(divs).forEach(div => {
 });
 
 const div = document.querySelectorAll('.cinema_one_seat_class');
-Array.from(divs).forEach(div => {
+Array.from(div).forEach(div => {
     div.addEventListener('click', seatColorChange);
 });
+
+const seatIDs = document.querySelectorAll('.cinema_one_seat_class');
+Array.from(seatIDs).forEach(seatIDs => {
+    seatIDs.addEventListener('click', getSeatIDFromClick);
+});
+
+
 const seatColors = ['bookedColor'];
 
 let enumerator = 0;
 
 function seatColorChange(){
 
-    if(enumerator < seatColors.length +1){
+    if(enumerator < seatColors.length){
         enumerator += 1;
     }
     else{
@@ -55,9 +62,10 @@ function seatColorChange(){
 
 const message = ['hej']
 let message_count = 0;
+
 function tickets(){
     var ticket= "";
-    if(message_count < message.length + 1){
+    if(message_count < message.length){
         message_count += 1;
         this.classList.remove(message[ticket = '']);
     }
@@ -66,13 +74,33 @@ function tickets(){
         this.classList.remove(message[ticket = '<p> ' +message+ '</p>']);
     }
     
-    
-    
-    
-    
-    
-
 
     document.getElementById('ticket_id').innerHTML = ticket;
 }
+
+function getSeatIDFromClick(){
+
+    const buttons = document.getElementsByTagName("seats");
+var result = document.getElementById("price_infobox_id");
+
+ const buttonPressed = e => { 
+  result.innerHTML = `ID of <em>${e.target.innerHTML}</em> is <strong>${e.target.id}</strong>`;
+}
+
+for (let button of buttons) {
+  button.addEventListener("click", buttonPressed);
+}
+    
+    
+
+
+
+
+}
+
+
+
+
+
+
 }

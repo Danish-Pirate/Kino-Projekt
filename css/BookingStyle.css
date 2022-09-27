@@ -31,7 +31,7 @@
 
 .booking_infobox{
     width: 350px;
-    height: auto;
+    height: 200px;
     display: grid;
     grid-template-columns: auto auto;
     gap: 5px;    
@@ -50,28 +50,29 @@
 
 .main_container{
     display: flex;    
-    justify-content: space-between;
+    flex-direction: row;
+    justify-content: ;
 }
 
 .right_side_container{
-    width: 350px;
+    width: 19%;
     display: grid;
     grid-template-columns: auto;
     
 }
 
 .left_side_container{
-    width: 1800px;
-
+    width: 80%;
+    
 }
 
 .registrationBox{
-    float: right;
+    
     border-color: black;
     border-width: 1px;
     border-style: solid;
     padding: 5px;
-    height: 300px;
+    height: 640px;
     width: 350px;
     margin : 5px;
     }
@@ -97,6 +98,10 @@
     }
     
     .flex-outer li button {
+        position : absolute;
+        bottom: 80px;
+        right:35px;
+        margin : 5px;
         margin-left: auto;
         padding: 8px 16px;
         border: none;
