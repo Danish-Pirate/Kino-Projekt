@@ -1,0 +1,7 @@
+[
+{"id": 1, "title": "Apocalypse Now", "price": 90, "ageLimit": 15, "description": "It is a long established fact that a reader will b…etimes on purpose (injected humour and the like)."},
+
+{"id": 2, "title": "James Bond", "price": 110, "ageLimit": 15, "description": "It is a long established fact that a reader will b…etimes on purpose (injected humour and the like)."},
+
+{"id": 3, "title": "Scooby-doo", "price": 90, "ageLimit": 3, "description": "It is a long established fact that a reader will b…etimes on purpose (injected humour and the like)."}
+]
