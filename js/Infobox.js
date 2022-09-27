@@ -1,6 +1,29 @@
 function addData(){
 
-    
+    class movieShow{
+
+        endPointUrl = "http://";
+
+        constructor(data){
+            this.data = data;
+        }
+
+        async fetchData() {
+
+            let response = await fetch(this.endPointUrl);
+
+            if(response.status == 200){
+                this.data = await response.json();
+                
+
+            }
+            
+        }
+
+
+
+
+    }
 
 
 var cinemaName = "Biograf: "+ "Bio1";

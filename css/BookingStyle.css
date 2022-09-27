@@ -38,7 +38,7 @@
 
 .infobox_grid_square{
     width: 140px;
-    height: auto;
+    height: 50px;
     background-color: rgb(78, 223, 121);
     border: 1px solid black;
     margin: 5px;
