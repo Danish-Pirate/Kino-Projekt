@@ -1,6 +1,6 @@
-package group3.kino.service;
+package group3.kino.movieAdministration.service;
 
-import group3.kino.model.Movie;
+import group3.kino.movieAdministration.model.Movie;
 
 import java.util.Optional;
 import java.util.Set;
