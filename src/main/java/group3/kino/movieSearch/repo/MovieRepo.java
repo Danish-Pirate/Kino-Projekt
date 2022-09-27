@@ -3,10 +3,10 @@ package group3.kino.movieSearch.repo;
 import group3.kino.movieAdministration.model.Movie;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import java.util.Optional;
+import java.util.Set;
 
 public interface MovieRepo extends JpaRepository<Movie, Long> {
-    Optional<Movie> findByTitle(String title);
-    Optional<Movie> findByGenre(String genre);
-    Optional<Movie> findByDate(String date);
+    Set<Movie> findByName(String name);
+    Set<Movie> findByMovieGenre(String movieGenre);
+    Set<Movie> findByDate(String date);
 }

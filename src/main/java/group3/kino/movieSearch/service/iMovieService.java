@@ -4,8 +4,8 @@ import group3.kino.movieAdministration.model.Movie;
 
 import java.util.Set;
 
-public interface IMovieService {
-    public Set<Movie> findByTitle(String title);
-    public Set<Movie> findByGenre(String genre);
+public interface iMovieService {
+    public Set<Movie> findByName(String name);
+    public Set<Movie> findByMovieGenre(String genre);
     public Set<Movie> findByDate(String date);
 }
