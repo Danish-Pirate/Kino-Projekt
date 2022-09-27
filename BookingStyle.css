@@ -26,10 +26,10 @@
 }
 
 .booking_infobox{
-    width: 150px;
+    width: 350px;
     height: auto;
     display: grid;
-    grid-template-columns: auto;
+    grid-template-columns: auto auto;
     gap: 5px;    
     background-color: aliceblue;
     border: 1px solid black;
@@ -69,6 +69,7 @@
     padding: 5px;
     height: 300px;
     width: 36%;
+    margin : 5px;
     }
     
     .flex-outer li,
