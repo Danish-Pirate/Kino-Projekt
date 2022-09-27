@@ -13,7 +13,6 @@ import java.util.Set;
 public class MovieAdminService implements IMovieAdminService {
 
     private MovieAdminRepo movieAdminRepo;
-
     @Autowired
     public MovieAdminService(MovieAdminRepo movieAdminRepo) {
         this.movieAdminRepo = movieAdminRepo;
