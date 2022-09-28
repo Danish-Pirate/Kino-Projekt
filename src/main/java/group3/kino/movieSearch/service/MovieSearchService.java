@@ -14,12 +14,12 @@ public class MovieSearchService implements iMovieService {
     private MovieRepo movieRepo;
     @Override
     public Set<Movie> findByName(String name) {
-        return movieRepo.findByName(name);
+        return movieRepo.findByNameContainsOrderByDate(name);
     }
 
     @Override
     public Set<Movie> findByMovieGenre(String movieGenre) {
-        return movieRepo.findByMovieGenre(movieGenre);
+        return movieRepo.findByMovieGenreOrderByDate(movieGenre);
     }
 
     @Override
