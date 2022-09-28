@@ -24,8 +24,7 @@ public class MovieAdminService implements IMovieAdminService {
 
     @Override
     public Set<Movie> findAll() {
-        Set<Movie> set = new HashSet<>();
-        movieAdminRepo.findAll();
+        Set<Movie> set = new HashSet<>(movieAdminRepo.findAll());
         return set;
     }
 
