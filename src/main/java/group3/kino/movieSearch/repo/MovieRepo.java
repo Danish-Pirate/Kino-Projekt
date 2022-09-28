@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Set;
 
 public interface MovieRepo extends JpaRepository<Movie, Long> {
-    Set<Movie> findByName(String name);
-    Set<Movie> findByMovieGenre(String movieGenre);
+    Set<Movie> findByNameContainsOrderByDate(String name);
+    Set<Movie> findByMovieGenreOrderByDate(String movieGenre);
     Set<Movie> findByDate(String date);
 }

@@ -14,13 +14,14 @@ import java.util.Set;
 
 @RestController
 public class MovieSearchController implements iMovieController{
-    @Autowired
     private iMovieService iMovieService;
 
-
+    public MovieSearchController(iMovieService iMovieService) {
+        this.iMovieService = iMovieService;
+    }
     @Override
-    @GetMapping("/title")
-    public ResponseEntity<Set<Movie>> findByTitle(@RequestBody String name) {
+    @GetMapping("/name")
+    public ResponseEntity<Set<Movie>> findByName(@RequestBody String name) {
         return new ResponseEntity<>(iMovieService.findByName(name), HttpStatus.OK);
     }
 
