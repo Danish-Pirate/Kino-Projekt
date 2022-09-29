@@ -72,34 +72,21 @@ $(document).ready(function() {
 
     });
 
-    function getSeatIDFromClick(){
+   
 
+    
+    //javascript for dynamic Grid cells
+    const calendarDays = document.querySelectorAll("td"); // selects all your td's
 
+function retrieveData(e) { // your function to retrieve your data or whatever
+  const target = e.target;
+  const id = target.id; 
 
-        const buttons = document.getElementsByTagName("seats");
-    
-    var result = document.getElementById("price_infobox_id");
-    
-    
-    
-     const buttonPressed = e => {
-    
-      result.innerHTML = `ID of <em>${e.target.innerHTML}</em> is <strong>${e.target.id}</strong>`;
-    
-    }
-    
-    
-    
-    for (let button of buttons) {
-    
-      button.addEventListener("click", buttonPressed);
-    
-    }
-    
-    
-    
-    }
+  return console.log(id);
+}
 
-    $('td', container).click
+calendarDays.forEach((el) => {
+  el.addEventListener("click", retrieveData); // adding the function to each element
+});
     
   });
