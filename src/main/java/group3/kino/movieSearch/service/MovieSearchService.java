@@ -3,7 +3,7 @@ package group3.kino.movieSearch.service;
 import group3.kino.movieAdministration.model.Movie;
 import group3.kino.movieSearch.repo.MovieRepo;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
+
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
