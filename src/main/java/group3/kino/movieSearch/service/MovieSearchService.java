@@ -23,6 +23,6 @@ public class MovieSearchService implements iMovieService {
 
     @Override
     public Set<Movie> findByDate(String date) {
-        return movieRepo.findByDate(date);
+        return movieRepo.findMovieByDate(date);
     }
 }
