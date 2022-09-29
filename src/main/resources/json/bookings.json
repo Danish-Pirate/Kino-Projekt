@@ -1,0 +1,23 @@
+[
+    {
+        "id":1,
+        "customerName":"Johanne Jensen",
+        "phoneNumber": "22334455",
+        "date":"2022-29-09",
+        "timeSlot":"22.05",
+        "cinemaName": "Kino",
+        "movie":"Scooby Doo",
+        "totalPrice":190
+
+    },
+    {
+        "id":2,
+        "customerName":"Nanna Søs",
+        "phoneNumber": "55443322",
+        "date":"2022-29-09",
+        "timeSlot":"22.05",
+        "cinemaName": "Kino",
+        "movie":"Scooby Doo",
+        "totalPrice":190
+    }
+]

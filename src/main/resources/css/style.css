@@ -37,3 +37,26 @@ th, td {
     border-bottom: 1px solid black;
     padding: 10px;
   }
+
+  .booking-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  }
+
+  .card {
+    border: 1px solid black;
+    background-color: white;
+    padding:  .5rem;
+  }
+
+  .card > .header{
+    margin-bottom: .25rem;
+  }
+
+  .card > .body {
+    font-size: .8rem;
+  }
+
+  .hide {
+    display: none;
+  }
