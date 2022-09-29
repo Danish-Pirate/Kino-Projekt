@@ -4,6 +4,7 @@ import group3.kino.bookingManager.model.Booking;
 import group3.kino.bookingManager.service.BookingSearchService;
 import group3.kino.bookingManager.service.IBookingSearchService;
 import group3.kino.movieAdministration.model.Movie;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,10 +28,18 @@ public class BookingSearchController {
     }
     @GetMapping("/booking-search/movies_by_date")
     public ResponseEntity<Set<Movie>> getMoviesByDate (@RequestParam String date) {
-        return new ResponseEntity<>(service.findMovieByDate(date), HttpStatus.OK);
+        HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.set("Access-Control-Allow-Origin", "*");
+        return ResponseEntity.ok()
+                .headers(responseHeaders)
+                .body(service.findMovieByDate(date));
     }
     @GetMapping("/booking-search/bookings_by_movie_name_and_date")
     public ResponseEntity<List<Booking>> getBookingsByDateAndMovieName(@RequestParam String date, @RequestParam String name) {
-        return new ResponseEntity<>(service.findByDateAndName(date, name), HttpStatus.OK);
+        HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.set("Access-Control-Allow-Origin", "*");
+        return ResponseEntity.ok()
+                .headers(responseHeaders)
+                .body(service.findByDateAndName(date, name));
     }
 }
