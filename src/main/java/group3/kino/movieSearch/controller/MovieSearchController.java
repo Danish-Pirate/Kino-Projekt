@@ -5,10 +5,7 @@ import group3.kino.movieSearch.service.iMovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Set;
 
@@ -20,20 +17,20 @@ public class MovieSearchController implements iMovieController{
         this.iMovieService = iMovieService;
     }
     @Override
-    @GetMapping("/name")
-    public ResponseEntity<Set<Movie>> findByName(@RequestBody String name) {
+    @GetMapping("/search-movie/name")
+    public ResponseEntity<Set<Movie>> findByName(@RequestParam String name) {
         return new ResponseEntity<>(iMovieService.findByName(name), HttpStatus.OK);
     }
 
     @Override
-    @GetMapping("/genre")
-    public ResponseEntity<Set<Movie>> findByGenre(@RequestBody String movieGenre) {
+    @GetMapping("/search-movie/genre")
+    public ResponseEntity<Set<Movie>> findByGenre(@RequestParam String movieGenre) {
         return new ResponseEntity<>(iMovieService.findByMovieGenre(movieGenre), HttpStatus.OK);
     }
 
     @Override
-    @GetMapping("/date")
-    public ResponseEntity<Set<Movie>> findByDate(@RequestBody String date) {
+    @GetMapping("/search-movie/date")
+    public ResponseEntity<Set<Movie>> findByDate(@RequestParam String date) {
         return new ResponseEntity<>(iMovieService.findByDate(date), HttpStatus.OK);
     }
 }
