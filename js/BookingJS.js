@@ -3,6 +3,7 @@ const seatID = [];
 function seatNumbering(){
     
     var seats = "";
+    var row = "";
     var seatNum = 1;
     var rowNum = 1;
     const seatNumberIDs = [];
@@ -14,7 +15,7 @@ for(let i = 0; i < 260; i++){
     
     
     if (gridcount == 1){
-        seats = seats + '<seats class="row_class">' + "row: " + rowNum + '</seats>';
+        seats = seats + '<row class="row_class">' + "row: " + rowNum + '</row>';
     }else{
         seat_id++;
         seats = seats + '<seats class="cinema_one_seat_class" id="seat_id_' + seat_id +'"  onclick="seatColorChange();tickets();">' +"sæde: " + seatNum+ '</seats>';

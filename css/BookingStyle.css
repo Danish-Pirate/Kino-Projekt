@@ -5,13 +5,12 @@
     gap: 5px;
     padding : 20px;
     margin: 5px;
-    align-self: end;
     
 }
 
 .row_class{
     padding: 5px;
-    background-color: orange;
+    background-color: white;
     text-align: center;
     border: 1px solid black;
 }
