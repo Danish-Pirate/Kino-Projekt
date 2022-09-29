@@ -16,14 +16,16 @@ public class Movie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long movieId;
     private String name;
+    private String date;
     private double movieLength;
     private String movieGenre;
     private int movieAgeRestriction;
     private double moviePrice;
 
-    public Movie(Long movieId, String name, double movieLength, String movieGenre, int movieAgeRestriction, double moviePrice) {
+    public Movie(Long movieId, String name, String date, double movieLength, String movieGenre, int movieAgeRestriction, double moviePrice) {
         this.movieId = movieId;
         this.name = name;
+        this.date = date;
         this.movieLength = movieLength;
         this.movieGenre = movieGenre;
         this.movieAgeRestriction = movieAgeRestriction;

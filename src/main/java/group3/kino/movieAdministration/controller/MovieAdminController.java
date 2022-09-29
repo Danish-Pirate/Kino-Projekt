@@ -13,9 +13,8 @@ import java.util.Set;
 @RestController
 public class MovieAdminController {
 
-    @Autowired
     private MovieAdminService movieAdminService;
-
+@Autowired
     public MovieAdminController(MovieAdminService movieAdminService) {
         this.movieAdminService = movieAdminService;
     }

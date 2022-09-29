@@ -8,7 +8,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @Configuration
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-    @Override
+   @Override
     public void configure(HttpSecurity http) throws Exception {
         http.csrf().disable().authorizeRequests()
                 .antMatchers("/").permitAll()
@@ -18,7 +18,12 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers(HttpMethod.DELETE,"/deleteBooking").permitAll()
                 .antMatchers(HttpMethod.GET,"/getAll").permitAll()
                 .antMatchers(HttpMethod.POST,"/addMovie").permitAll()
-
+                .antMatchers(HttpMethod.GET,"/getAllMovie").permitAll()
+                .antMatchers(HttpMethod.PUT,"/editMovie").permitAll()
+                .antMatchers(HttpMethod.POST,"deleteMovie").permitAll()
+                .antMatchers(HttpMethod.GET,"/search-movie/name").permitAll()
+                .antMatchers(HttpMethod.GET,"/search-movie/genre").permitAll()
+                .antMatchers(HttpMethod.GET,"/search-movie/date").permitAll()
                 .anyRequest().authenticated();
     }
 }
