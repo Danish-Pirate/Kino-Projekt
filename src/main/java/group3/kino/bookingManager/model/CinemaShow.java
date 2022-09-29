@@ -21,7 +21,7 @@ public class CinemaShow {
     private Long id;
 
     private Date date;
-    private Timestamp time;
+    private String time;
 
     @ManyToOne
     @JsonBackReference("cinemaHall")
