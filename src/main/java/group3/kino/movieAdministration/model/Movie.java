@@ -1,20 +1,16 @@
 package group3.kino.movieAdministration.model;
 
-import group3.kino.bookingManager.model.cinemaShow;
+import group3.kino.bookingManager.model.CinemaShow;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Getter
 @Setter
 public class Movie {
-
-    @OneToMany
-    List<cinemaShow> showList = new ArrayList<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,4 +35,5 @@ public class Movie {
     public Movie() {
 
     }
+
 }

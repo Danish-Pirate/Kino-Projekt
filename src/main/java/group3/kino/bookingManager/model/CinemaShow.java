@@ -15,7 +15,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-public class cinemaShow {
+public class CinemaShow {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -24,24 +24,17 @@ public class cinemaShow {
     private Timestamp time;
 
     @ManyToOne
-    private Movie movie;
-
-    @ManyToOne
     @JsonBackReference("cinemaHall")
     @EqualsAndHashCode.Exclude
-    private CinemaHall cinemaHall;
+    private Cinema cinemaHall;
 
     @OneToMany(mappedBy = "showing")
     private Set<Booking> bookings=new HashSet<>();
 
+    @ManyToOne
+    @JsonBackReference("movies")
+    @EqualsAndHashCode.Exclude
+    private Movie movie;
 
-    @ManyToMany
-    @JoinTable(
-            name = "seat_showing",
-            joinColumns = @JoinColumn(name = "showing_id"),
-            inverseJoinColumns = @JoinColumn(name = "seat_id")
-    )
-    @JsonBackReference("seats")
-    private Set<Seat>bookedSeats=new HashSet<>();
 
 }
