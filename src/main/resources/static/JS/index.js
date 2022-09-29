@@ -17,7 +17,7 @@ function showAccordion() {
 }
 
 class FilmRenderer {
-  endpointUrlFilms = "/json/films.json";
+  endpointUrlFilms = "../json/films.json";
 
   constructor() {
     this.dataFilm = null;
