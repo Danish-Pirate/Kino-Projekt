@@ -2,14 +2,12 @@ package group3.kino.bookingManager.model;
 
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.security.PrivateKey;
-import java.util.HashSet;
-import java.util.Set;
 
 
 @Getter
@@ -21,7 +19,10 @@ public class Booking {
     private Long id;
     private String customerName;
     private String phoneNumber;
+
+    @JsonFormat(pattern = "dd-MM-yyyy")
     private String date;
+
     private String timeSlot;
     private String cinemaName;
     private String movieName;
@@ -31,11 +32,8 @@ public class Booking {
     @ManyToOne
     @JsonBackReference("booking")
     @EqualsAndHashCode.Exclude
-    private cinemaShow showing;
-
-
-    @OneToMany(mappedBy = "booking")
-    private Set<Seat> seats=new HashSet<>();
+    private CinemaShow showing;
+    ;
 
 
 }
