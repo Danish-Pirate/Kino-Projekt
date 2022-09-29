@@ -9,11 +9,11 @@ $(document).ready(function() {
         center: 'title',
         right: 'month,basicWeek,basicDay'
       },
-      defaultDate: '2016-12-12',
+      defaultDate: '2022-10-12',
       navLinks: true, // can click day/week names to navigate views
       editable: true,
       eventLimit: true, // allow "more" link when too many events
-      events: [
+      /*events: [
         {
           title: 'All Day Event',
           start: '2016-12-01'
@@ -68,7 +68,38 @@ $(document).ready(function() {
           url: 'https://google.com/',
           start: '2016-12-28'
         }
-      ]
+      ]*/
+
     });
+
+    function getSeatIDFromClick(){
+
+
+
+        const buttons = document.getElementsByTagName("seats");
+    
+    var result = document.getElementById("price_infobox_id");
+    
+    
+    
+     const buttonPressed = e => {
+    
+      result.innerHTML = `ID of <em>${e.target.innerHTML}</em> is <strong>${e.target.id}</strong>`;
+    
+    }
+    
+    
+    
+    for (let button of buttons) {
+    
+      button.addEventListener("click", buttonPressed);
+    
+    }
+    
+    
+    
+    }
+
+    $('td', container).click
     
   });
