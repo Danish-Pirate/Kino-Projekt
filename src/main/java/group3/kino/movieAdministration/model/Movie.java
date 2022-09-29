@@ -34,6 +34,4 @@ public class Movie {
 
     }
 
-    @OneToMany
-    private Set<CinemaShow> cinemaShow;
 }
