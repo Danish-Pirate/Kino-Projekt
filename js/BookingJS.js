@@ -37,7 +37,7 @@ Array.from(div).forEach(div => {
 
 const seatIDs = document.querySelectorAll('.cinema_one_seat_class');
 Array.from(seatIDs).forEach(seatIDs => {
-    seatIDs.addEventListener('click', getSeatIDFromClick);
+    seatIDs.addEventListener('click', getSeatIDFromClick,);
 });
 
 
@@ -60,22 +60,27 @@ function seatColorChange(){
     
 }
 
-const message = ['hej']
 let message_count = 0;
 
 function tickets(){
-    var ticket= "";
-    if(message_count < message.length){
+
+    const buttons = document.getElementsByTagName("seats");
+    var result1 = document.getElementById('ticket_id');
+
+const buttonPressed1 = message => {
+    result1.innerHTML = `<strong>${message.target.id}</strong>`;
+}
+
+    if(message_count < 1){
         message_count += 1;
-        this.classList.remove(message[ticket = '']);
+        for (let button of buttons) {
+            button.addEventListener("click", buttonPressed1);
+        }
     }
     else{
         message_count = 0;
-        this.classList.remove(message[ticket = '<p> ' +message+ '</p>']);
+        button.removeEventListener("click", buttonPressed1)
     }
-    
-
-    document.getElementById('ticket_id').innerHTML = ticket;
 }
 
 function getSeatIDFromClick(){
@@ -90,11 +95,6 @@ var result = document.getElementById("price_infobox_id");
 for (let button of buttons) {
   button.addEventListener("click", buttonPressed);
 }
-    
-    
-
-
-
 
 }
 
