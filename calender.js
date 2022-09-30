@@ -3,8 +3,11 @@
 document.addEventListener('DOMContentLoaded', function() {
     var calendarEl = document.getElementById('calendar');
     var calendar = new FullCalendar.Calendar(calendarEl, {
+
         initialView: 'dayGridMonth',
         initialDate: '2022-10-01',
+        weekNumberCalculation:"ISO",
+        weekNumbers: true,
         headerToolbar: {
             left: 'prev,next today',
             center: 'title',
@@ -47,6 +50,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // https://fullcalendar.io/docs/eventClick
         eventClick: function(info) {
             alert('Event: ' + info.event.title);
+
             //alert('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY);
             //alert('View: ' + info.view.type);
 
@@ -57,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Indsæt linjeskift mellem event title og event description
         // https://fullcalendar.io/docs/content-injection
         eventContent: function(arg) {
-            return { html: '<b>' + arg.event.title + '<<br>Antal solgte billetter: ' + arg.event.extendedProps.ticketsSold };
+            return { html: '<b>' + arg.event.title + '<br>Antal solgte billetter: ' + arg.event.extendedProps.ticketsSold };
         },
 
     });
