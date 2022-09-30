@@ -1,8 +1,7 @@
 const seatID = [];
-const seatColors = ['bookedColor'];
-var seatClickedID;
-var ticketList = "";
 
+
+// Laver gridden til sæderne.
 function seatNumbering(){
     
     var seats = "";
@@ -18,10 +17,10 @@ for(let i = 0; i < 260; i++){
     
     
     if (gridcount == 1){
-        seats = seats + '<row class="row_class">' + "række: " + rowNum + '</row>';
+        seats = seats + '<row class="row_class">' + "row: " + rowNum + '</row>';
     }else{
         seat_id++;
-        seats = seats + '<seats class="cinema_one_seat_class" id="seat_id_' + seat_id +'"  onclick="getSeatIDFromClick(this.id);seatColorChange();handleTicket()">' +"sæde: " + seatNum+ '</seats>';
+        seats = seats + '<seats class="cinema_one_seat_class" id="seat_id_' + seat_id +'"  onclick="seatColorChange();tickets();">' +"sæde: " + seatNum+ '</seats>';
         seatID.push("seat_id_" + seat_id);
         if(seatNum==12){
             seatNum = 1;
@@ -37,55 +36,8 @@ for(let i = 0; i < 260; i++){
 }
 
 document.getElementById('cinema_one_grid_id').innerHTML = seats;
-}
-
-function handleTicket(){
-   
-    if($("#" + seatClickedID).css("background-color") != "rgb(230, 230, 250)"){
-    ticket = '<ticket added_ticket_id="ticket' + seatClickedID +'">' + seatClickedID + '</ticket><br>';
-
-    this.ticketList = this.ticketList + ticket;    
-    
-    }
-   
-    if($("#" + seatClickedID).css("background-color") != "rgb(255, 0, 0)"){
-
-        removeTicket = "" + '<ticket added_ticket_id="ticket' + seatClickedID +'">' + seatClickedID + '</ticket><br>';
-       
-        this.ticketList = this.ticketList.replace(removeTicket, "");
-
-    }
-
-    document.getElementById('ticket_id').innerHTML = this.ticketList;
-    
-}
 
 
-
-function seatColorChange(){    
-            
-        if($("#" + seatClickedID).css("background-color") != "rgb(255, 0, 0)"){
-
-            $("#" + seatClickedID).css("background-color", "red");
-            
-        }
-        else {
-            $("#" + seatClickedID).css("background-color", "lavender");
-
-        }
-        
-}
-
-function getSeatIDFromClick(clicked_id){
-
-    seatClickedID = clicked_id;
-}
-
-
-
-
-
-/*
 // Føjer 'tickets' funktionen til '.cinema_one_seat_class' når man klikker på sæderne.
 const divs = document.querySelectorAll('.cinema_one_seat_class');
 Array.from(divs).forEach(div => {
@@ -99,11 +51,12 @@ Array.from(div).forEach(div => {
 });
 
 // Føjer 'getSeatIDFromClick' funktionen til '.cinema_one_seat_class' når man klikker på sæderne.
+/*
 const seatIDs = document.querySelectorAll('.cinema_one_seat_class');
 Array.from(seatIDs).forEach(seatIDs => {
     seatIDs.addEventListener('click', getSeatIDFromClick);
 });
-
+*/
 
 
 // seatColors og enumerator brugt til seatColorChange(). 'bookedColor' og 'bookedColor2' er CSS-klasser.
@@ -131,36 +84,37 @@ function seatColorChange(){
 }
 
 
-// message_count brugt i tickets funktionen.
-let message_count = 0;
 
+
+// Gør et forsøg på at få et sæde's ID onclick til at poppe op i registrationBox.
+// Skal kunne vælge flere sæder på én gang.
+// Skal senere også kunne gemme disse ID'er som nogle endpoints.
+let clickCiunt = 1;
 function tickets(){
-    let clickCiunt = 0;
+   
+    const buttonGroup = document.getElementById("button-group");
+const result = document.getElementById("ticket_id");
 
-    const buttons = document.getElementsByTagName("seats");
-    var result1 = document.getElementById('ticket_id');
-
-const buttonPressed1 = message => {
-    result1.innerHTML = `<em>Seat ID:</em> <strong>${message.target.id}</strong>`;
-}
-    if(message_count < 1) {
-        for (let button of buttons) {
-            button.addEventListener('click', buttonPressed1);
-         }
-
-
+const buttonGroupPressed = e => { 
   
+  const isButton = e.target.nodeName === 'SEATS';
+  
+  if(!isButton) {
+    return
+  }
+  if(clickCiunt <=1){
+    result.innerHTML = `ID of <em>${e.target.innerHTML}</em> is <strong>${e.target.id}</strong>`;
+    clickCiunt=2;
+  }else{
+    result.innerHTML = "";
+    clickCiunt = 0;
+  } 
+}
+    buttonGroup.addEventListener("click", buttonGroupPressed);
     
-        message_count += 1;
-    } else {
-        for (let button of buttons) {
-            button.removeEventListener('click', buttonPressed1);
-        }
-
-       
-    }
 }
 
+// Fetcher et sæde's ID når man klikker på det.
 function getSeatIDFromClick(){
 
     const buttons = document.getElementsByTagName("seats");
@@ -175,5 +129,5 @@ for (let button of buttons) {
 }
 
 }
-*/
+}
 
