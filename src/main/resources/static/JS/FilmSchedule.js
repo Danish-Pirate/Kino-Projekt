@@ -23,6 +23,7 @@ $(document).ready( function() {
 
         //Removes the old film cards
         $('#film-schedule-cards-hall1').html('');
+        $('#film-schedule-cards-hall2').html('');
 
         //Updates UI with new film cards
         filmsScheduleRenderer.updateUI();
@@ -53,21 +54,24 @@ class FilmsScheduleRenderer {
     updateUI() {
 
         //sets standard date to todays date
-
         let filmsScheduleDate = searchDate;
 
 
         //Loops over all Film entries
         for (let dataScheduleFilmIndex in this.dataScheduleFilm) {
 
+            //Checker to see if a hall have any film entries
+            let filmEntriesChecker = false;
+
             //Resets card to append
-            let cards = "";
+            let cardsHall1 = "";
 
 
             let entryFilmSchedule = this.dataScheduleFilm[dataScheduleFilmIndex];
 
             //sets target for JS
-            var target = $("#film-schedule-cards-hall1");
+            var targetOne = $("#film-schedule-cards-hall1");
+            var targetTwo = $("#film-schedule-cards-hall2");
 
 
             //Boolean for checking if film is already on the list
@@ -85,11 +89,16 @@ class FilmsScheduleRenderer {
                     isAlreadyOnTheList == 0
                 ){
 
+
+
+                    //Checker to see if a hall have any film entries
+                    filmEntriesChecker = true;
+
                     //Sets checker to 1 to indicate that the film is already on the list
                     isAlreadyOnTheList += 1;
 
                     //Building the start of the film cards
-                    cards +=
+                    cardsHall1 +=
                         `<div class="row bg-light border border-solid p-5 m-2">
                     <div class="col-6">
                         <h4>${entryFilmSchedule.name}</h4>
@@ -106,19 +115,87 @@ class FilmsScheduleRenderer {
                 }
 
                 if(entryFilmSchedule.showList[i].cinemaHall.name == "Sal 1" && entryFilmSchedule.showList[i].date == filmsScheduleDate){
-                    cards +=
+
+                    cardsHall1 +=
                         `<button class="mb-2 mx-1">${entryFilmSchedule.showList[i].time}</button>`;
                 }
 
             }
-            //closing tags
-            cards += `
-                     </div>
-                </div>               
+            //Closes the tags IF there have been added film cards
+            if(filmEntriesChecker == true){
+                //closing tags
+                cardsHall1 += `
             </div>
-        </div>`;
-            //Adds cards to html
-            target.append(cards);
+            </div>               
+            </div>
+            </div>`;
+
+                //Adds cards to html
+                targetOne.append(cardsHall1);
+            }
+
+            //Checker to see if a hall have any film entries
+            filmEntriesChecker = false;
+
+            let cardsHall2 = "";
+
+            for (let i = 0; i < entryFilmSchedule.showList.length; i++) {
+
+
+
+                //confirms that the film has a show that is in hall 1 with the selected date
+                if(
+                    entryFilmSchedule.showList[i].cinemaHall.name == "Sal 2"
+                    &&
+                    entryFilmSchedule.showList[i].date == filmsScheduleDate
+                    &&
+                    isAlreadyOnTheList == 0
+                ){
+
+
+
+                    //Checker to see if a hall have any film entries
+                    filmEntriesChecker = true;
+
+                    //Sets checker to 1 to indicate that the film is already on the list
+                    isAlreadyOnTheList += 1;
+
+                    //Building the start of the film cards
+                    cardsHall2 +=
+                        `<div class="row bg-light border border-solid p-5 m-2">
+                  <div class="col-6">
+                      <h4>${entryFilmSchedule.name}</h4>
+                      <img src="/images/Scooby.jpg" alt="Scooby-doo">
+                  </div>
+                  <div class="col-6">
+
+                      <div>
+                          <h4>Pris: </h4>
+                          <p>${entryFilmSchedule.moviePrice} kr.</p>         
+                          <h4>Aldersgrænse: </h4>
+                          <p>${entryFilmSchedule.movieAgeRestriction} år</p>
+                          <div class="py-5">`;
+                }
+
+                if(entryFilmSchedule.showList[i].cinemaHall.name == "Sal 2" && entryFilmSchedule.showList[i].date == filmsScheduleDate){
+
+                    cardsHall2 +=
+                        `<button class="mb-2 mx-1">${entryFilmSchedule.showList[i].time}</button>`;
+                }
+
+            }
+            if(filmEntriesChecker == true){
+                //closing tags
+                cardsHall2 += `
+          </div>
+          </div>               
+          </div>
+          </div>`;
+                //Adds cards to html
+                targetTwo.append(cardsHall2);
+            }
+
+
         }
     }
 }
