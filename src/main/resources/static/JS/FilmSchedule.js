@@ -102,7 +102,7 @@ class FilmsScheduleRenderer {
                         `<div class="row bg-light border border-solid p-5 m-2">
                     <div class="col-6">
                         <h4>${entryFilmSchedule.name}</h4>
-                        <img src="/images/Scooby.jpg" alt="Scooby-doo">
+                        <img src="${entryFilmSchedule.posterLink}" alt="Scooby-doo"  class="film-poster-img">
                     </div>
                     <div class="col-6">
 
@@ -165,7 +165,7 @@ class FilmsScheduleRenderer {
                         `<div class="row bg-light border border-solid p-5 m-2">
                   <div class="col-6">
                       <h4>${entryFilmSchedule.name}</h4>
-                      <img src="/images/Scooby.jpg" alt="Scooby-doo">
+                       <img src="${entryFilmSchedule.posterLink}" alt="Scooby-doo"  class="film-poster-img">
                   </div>
                   <div class="col-6">
 
