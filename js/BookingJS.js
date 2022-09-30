@@ -1,7 +1,6 @@
 const seatID = [];
 const seatColors = ['bookedColor'];
 
-// Laver gridden til sæderne.
 function seatNumbering(){
     
     var seats = "";
@@ -56,6 +55,8 @@ Array.from(seatIDs).forEach(seatIDs => {
     seatIDs.addEventListener('click', getSeatIDFromClick);
 });
 
+
+
 // seatColors og enumerator brugt til seatColorChange(). 'bookedColor' og 'bookedColor2' er CSS-klasser.
 const seatColors = ['bookedColor', 'bookedColor2'];
 
@@ -80,12 +81,10 @@ function seatColorChange(){
 
 }
 
+
 // message_count brugt i tickets funktionen.
 let message_count = 0;
 
-// Gør et forsøg på at få et sæde's ID onclick til at poppe op i registrationBox.
-// Skal kunne vælge flere sæder på én gang.
-// Skal senere også kunne gemme disse ID'er som nogle endpoints.
 function tickets(){
     let clickCiunt = 0;
 
@@ -100,17 +99,19 @@ const buttonPressed1 = message => {
             button.addEventListener('click', buttonPressed1);
          }
 
+
+  
+    
         message_count += 1;
     } else {
         for (let button of buttons) {
             button.removeEventListener('click', buttonPressed1);
         }
 
-        message_count = 0;
+       
     }
 }
 
-// Fetcher et sæde's ID når man klikker på det.
 function getSeatIDFromClick(){
 
     const buttons = document.getElementsByTagName("seats");
@@ -126,3 +127,4 @@ for (let button of buttons) {
 
 }
 }
+
