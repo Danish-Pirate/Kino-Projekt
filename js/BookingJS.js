@@ -20,7 +20,7 @@ for(let i = 0; i < 260; i++){
         seats = seats + '<seats class="cinema_one_seat_class" id="seat_id_' + seat_id +'"  onclick="seatColorChange();tickets();">' +"sæde: " + seatNum+ '</seats>';
         seatID.push("seat_id_" + seat_id);
         if(seatNum==12){
-            seatNum = 1
+            seatNum = 1;
         }else{
             seatNum++;
         }
@@ -35,42 +35,49 @@ for(let i = 0; i < 260; i++){
 document.getElementById('cinema_one_grid_id').innerHTML = seats;
 
 
-
+// Føjer 'tickets' funktionen til '.cinema_one_seat_class' når man klikker på sæderne.
 const divs = document.querySelectorAll('.cinema_one_seat_class');
 Array.from(divs).forEach(div => {
     div.addEventListener('click', tickets);
 });
 
+// Føjer 'seatColorChange' funktionen til '.cinema_one_seat_class' når man klikker på sæderne.
 const div = document.querySelectorAll('.cinema_one_seat_class');
 Array.from(div).forEach(div => {
     div.addEventListener('click', seatColorChange);
 });
 
+// Føjer 'getSeatIDFromClick' funktionen til '.cinema_one_seat_class' når man klikker på sæderne.
 const seatIDs = document.querySelectorAll('.cinema_one_seat_class');
 Array.from(seatIDs).forEach(seatIDs => {
-    seatIDs.addEventListener('click', getSeatIDFromClick,);
+    seatIDs.addEventListener('click', getSeatIDFromClick);
 });
 
-
-const seatColors = ['bookedColor'];
+// seatColors og enumerator brugt til seatColorChange(). 'bookedColor' og 'bookedColor2' er CSS-klasser.
+const seatColors = ['bookedColor', 'bookedColor2'];
 
 let enumerator = 0;
 
+// Bestemmer farven på sæderne i vores grid onclick. Virker ikke perfekt hvis man prøver at ændre
+// flere sæder's farve på én gang.
 function seatColorChange(){
+   
+    if(this.enumerator < seatColors.length){
+        this.enumerator += 2;
 
-    if(enumerator < seatColors.length){
-        enumerator += 1;
+        this.classList.add(seatColors[this.enumerator-1]);
+        this.classList.remove(seatColors[this.enumerator-2]);
     }
     else{
-        enumerator = 0;
+        this.enumerator = 0;
+
+        this.classList.add(seatColors[this.enumerator]);
+        this.classList.remove(seatColors[this.enumerator+1]);
     }
 
-    this.classList.add(seatColors[enumerator]);
-    this.classList.remove(seatColors[enumerator-1]);
-
-    
 }
 
+// message_count brugt i tickets funktionen.
 let message_count = 0;
 
 function tickets(){
@@ -79,18 +86,20 @@ function tickets(){
     var result1 = document.getElementById('ticket_id');
 
 const buttonPressed1 = message => {
-    result1.innerHTML = `<strong>${message.target.id}</strong>`;
+    result1.innerHTML = `<em>Seat ID:</em> <strong>${message.target.id}</strong>`;
 }
-
-    if(message_count < 1){
-        message_count += 1;
+    if(message_count < 1) {
         for (let button of buttons) {
-            button.addEventListener("click", buttonPressed1);
+            button.addEventListener('click', buttonPressed1);
+         }
+
+        message_count += 1;
+    } else {
+        for (let button of buttons) {
+            button.removeEventListener('click', buttonPressed1);
         }
-    }
-    else{
+
         message_count = 0;
-        button.removeEventListener("click", buttonPressed1)
     }
 }
 
