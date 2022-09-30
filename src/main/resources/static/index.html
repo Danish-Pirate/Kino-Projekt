@@ -62,19 +62,20 @@
 
     <!-- Main content -->
 
-    <nav class="navbar navbar-expand-sm
-        bg-dark navbar-dark">
+    <div class="navbar navbar-dark">
 
-        <h5 class="navbar-brand">Film Liste</h5>
+        <h1>Liste af Film</h1>
 
+        <form action="index.html">
         <ul class="navbar nav ml-auto">
+           <button class="btn bg-white" style="border: solid"> Search </button>
             <!-- Dropdown list -->
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle"
                    data-toggle="dropdown" href="#"
                    role="button" aria-haspopup="true"
                    aria-expanded="false"
-                   style="color:white;">
+                   style="color:black;">
                     Genre
                 </a>
 
@@ -84,7 +85,7 @@
                     </a>
 
                     <a class="dropdown-item"
-                       href="#">Horror
+                       href="#">Gyser
                     </a>
 
                     <a class="dropdown-item"
@@ -102,10 +103,11 @@
             </li>
             <li>
                 <!-- Search Box -->
-                <input type="text" placeholder="Search..">
+                <input type="text" placeholder="Search.." class="w-100 p-1">
             </li>
         </ul>
-    </nav>
+        </form>
+    </div>
 
    <!-- <div class="container my-5">
         <div class="row">
