@@ -50,6 +50,7 @@ function showAccordion() {
     }
 }
 
+
 class FilmRenderer {
 
     endpointUrlFilms = "/json/films.json";
@@ -147,6 +148,7 @@ class FilmRenderer {
                         timeArray.push(show.time);
                     }
                 });
+
                 timeArray = timeArray.sort();
 
 
