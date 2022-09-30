@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS only Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Custom JS -->
+    <script type="text/javascript" src="/JS/index.js"></script>
+
+
+    <title>Skema</title>
+</head>
+<body>
+
+<!-- navbar -->
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <div class="container-fluid">
+        <img src="/images/kino-ikon.png" alt="logo" class="nav-logo">
+        <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/filmSkema.html">Film skema</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/index.html">Film liste</a>
+            </li>
+        </ul>
+        <form class="d-flex">
+            <button class="btn btn-primary" type="button">Log ud</button>
+        </form>
+    </div>
+</nav>
+<!-- navbar end -->
+
+
+<!-- Main content -->
+
+<div class="container">
+    <div class="row">
+
+        <div class="d-flex justify-content-center mt-5"><button>Slet</button></div>
+    </div>
+</div>
+
+<div class="container p-5">
+    <div class="row justify-content-center">
+        <div class="col-sm-8 col-md-10 col-lg-4 item img-cards" data-bs-toggle="modal" data-bs-target="#modal-1">
+            <div class="d-flex justify-content-center mt-5"><button  onclick="gallModal(this)">Rediger</button></div>
+        </div>
+    </div>
+</div>
+
+<div class="modal bg-dark bg-opacity-75 fade" tabindex="-1" role="dialog" id="modal-1">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+
+                <form id="modal-bookning" action="/film" method="POST">
+                    <div id="title-group" class="form-group">
+                        <label for="title">Title</label>
+                        <input
+                                type="text"
+                                class="form-control"
+                                id="title"
+                                name="title"
+                                placeholder="Film title"
+                        />
+                    </div>
+
+                    <div id="price-group" class="form-group">
+                        <label for="price">Price</label>
+                        <input
+                                type="number"
+                                class="form-control"
+                                id="price"
+                                name="price"
+                                placeholder="price"
+                        />
+                    </div>
+
+                    <button type="submit" class="btn btn-success mt-2" onclick="">
+                        Submit
+                    </button>
+                </form>
+
+            </div>
+            <div class="modal-footer justify-content-center">
+                <button type="button" class="btn btn-secondary modal-btn" data-bs-dismiss="modal">Luk</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<!-- Main content end -->
+
+</body>
+</html>
