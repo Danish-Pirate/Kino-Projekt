@@ -10,7 +10,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-public class CinemaHall {
+public class Cinema {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,7 +21,7 @@ public class CinemaHall {
     private int numberOfSeats;
 
     @OneToMany(mappedBy = "cinemaHall")
-    private Set<cinemaShow>shows=new HashSet<>();
+    private Set<CinemaShow>shows=new HashSet<>();
 
 
 }
