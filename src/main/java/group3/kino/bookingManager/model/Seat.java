@@ -19,15 +19,7 @@ public class Seat {
     private String seatNumber;
     private boolean reserved;
 
-
     @ManyToOne
-    @JsonBackReference("seat_booking")
-    @EqualsAndHashCode.Exclude
-    private Booking booking;
-
-    @ManyToMany (mappedBy = "bookedSeats")
-    @JsonBackReference("bookedSeats")
-    private Set<cinemaShow> showings=new HashSet<>();
-
+    private Cinema cinema;
 
 }

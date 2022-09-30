@@ -1,8 +1,7 @@
 package group3.kino.bookingManager.service;
 
-import group3.kino.bookingManager.model.Booking;
-import group3.kino.bookingManager.model.CinemaHall;
-import group3.kino.bookingManager.repository.CinemaHallRepository;
+import group3.kino.bookingManager.model.Cinema;
+import group3.kino.bookingManager.repository.CinemaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
@@ -10,28 +9,28 @@ import java.util.Optional;
 import java.util.Set;
 
 @Service
-public class CinemaHallService implements ICinemaHallService{
+public class CinemaService implements ICinemaService {
 
-    private CinemaHallRepository cinemaHallRepository;
+    private CinemaRepository cinemaHallRepository;
 
-    public CinemaHallService(CinemaHallRepository cinemaHallRepository) {
+    public CinemaService(CinemaRepository cinemaHallRepository) {
         this.cinemaHallRepository = cinemaHallRepository;
     }
 
     @Override
-    public Set<CinemaHall> findAll() {
-        Set<CinemaHall> set = new HashSet<>();
+    public Set<Cinema> findAll() {
+        Set<Cinema> set = new HashSet<>();
         cinemaHallRepository.findAll().forEach(set::add);
         return set;
     }
 
     @Override
-    public CinemaHall save(CinemaHall cinemaHall) {
+    public Cinema save(Cinema cinemaHall) {
         return cinemaHallRepository.save(cinemaHall);
     }
 
     @Override
-    public void delete(CinemaHall cinemaHall) {
+    public void delete(Cinema cinemaHall) {
         cinemaHallRepository.delete(cinemaHall);
 
     }
@@ -43,7 +42,7 @@ public class CinemaHallService implements ICinemaHallService{
     }
 
     @Override
-    public Optional<CinemaHall> findById(Long aLong) {
+    public Optional<Cinema> findById(Long aLong) {
         return cinemaHallRepository.findById(aLong);
     }
 }

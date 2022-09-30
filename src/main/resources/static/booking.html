@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- CSS only Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-u1OknCvxWvY5kfmNBILK2hRnQC3Pr17a+RTT6rIHI7NnikvbZlHgTPOOmMi466C8" crossorigin="anonymous"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- Custom JS -->
+    <script type="text/javascript" src="/JS/index.js"></script>
+
+    <!-- Endpoint -->
+    <script>
+      async function findBooking(event){
+
+
+          let res = await fetch ("http://localhost:8080/booking-search?phoneNumber=22334455");
+          let data = res.json();
+          console.log(data);
+          let list = document.getElementById('number').innerHTML = data ;
+
+           
+            
+          }
+            
+      
+      </script>
+
+    <title>Booking</title>
+  </head>
+  <body>
+    <!-- navbar -->
+    <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <div class="container-fluid">
+            <img src="/images/kino-ikon.png" alt="logo" class="nav-logo">
+            <ul class="navbar-nav me-auto">
+              <li class="nav-item">
+                <a class="nav-link" href="/filmSkema.html">Film skema</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/index.html">Film liste</a>
+              </li>
+            </ul>
+            <form class="d-flex">
+              <button class="btn btn-primary" type="button">Log ud</button>
+            </form>
+        </div>
+      </nav>
+	<!-- navbar end -->
+
+
+    <!-- Main content -->
+
+
+  </script>
+    <div class="container">
+
+        <div class="my-5 d-flex flex-row justify-content-center">
+            <label class="me-2">
+              <input type="search" name="Booking" />
+            </label>
+            <p><button type="button" onclick="findBooking(event)" value="Dislay">Søg</button></p>
+            <p id="number"></p>
+        </div>
+
+
+          
+
+
+    
+</body>
+</html>

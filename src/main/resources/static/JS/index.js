@@ -97,7 +97,7 @@ class FilmRenderer {
             var cards = `<div class="container my-3">
                 <div class="row border border-solid bg-light">
                     <div class="col-3 p-0">
-                        <img src="/images/Scooby.jpg" alt="Film poster" class="film-poster-img">
+                        <img src="${entryFilm.posterLink}" alt="Film poster" class="film-poster-img">
                     </div>
                     <div class="col-9 p-5">
                         <div class="row d-flex justify-content-space">

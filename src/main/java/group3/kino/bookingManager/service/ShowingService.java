@@ -1,6 +1,6 @@
 package group3.kino.bookingManager.service;
 
-import group3.kino.bookingManager.model.cinemaShow;
+import group3.kino.bookingManager.model.CinemaShow;
 import group3.kino.bookingManager.repository.ShowRepository;
 import org.springframework.stereotype.Service;
 
@@ -18,19 +18,19 @@ public class ShowingService implements IShowingService {
     }
 
     @Override
-    public Set<cinemaShow> findAll() {
-        Set<cinemaShow> set = new HashSet<>();
+    public Set<CinemaShow> findAll() {
+        Set<CinemaShow> set = new HashSet<>();
         showRepository.findAll().forEach(set::add);
         return set;
     }
 
     @Override
-    public cinemaShow save(cinemaShow show) {
+    public CinemaShow save(CinemaShow show) {
         return showRepository.save(show);
     }
 
     @Override
-    public void delete(cinemaShow show) {
+    public void delete(CinemaShow show) {
         showRepository.delete(show);
 
     }
@@ -42,7 +42,7 @@ public class ShowingService implements IShowingService {
     }
 
     @Override
-    public Optional<cinemaShow> findById(Long aLong) {
+    public Optional<CinemaShow> findById(Long aLong) {
         return showRepository.findById(aLong);
     }
 }

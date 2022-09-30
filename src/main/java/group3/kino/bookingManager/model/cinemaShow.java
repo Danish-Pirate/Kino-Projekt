@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.Set;
@@ -14,32 +15,26 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-public class cinemaShow {
+public class CinemaShow {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private Timestamp dateAndTime;
-
-    @ManyToOne
-    private Movie movie;
+    private Date date;
+    private String time;
 
     @ManyToOne
     @JsonBackReference("cinemaHall")
     @EqualsAndHashCode.Exclude
-    private CinemaHall cinemaHall;
+    private Cinema cinemaHall;
 
     @OneToMany(mappedBy = "showing")
     private Set<Booking> bookings=new HashSet<>();
 
+    @ManyToOne
+    @JsonBackReference("movies")
+    @EqualsAndHashCode.Exclude
+    private Movie movie;
 
-    @ManyToMany
-    @JoinTable(
-            name = "seat_showing",
-            joinColumns = @JoinColumn(name = "showing_id"),
-            inverseJoinColumns = @JoinColumn(name = "seat_id")
-    )
-    @JsonBackReference("seats")
-    private Set<Seat>bookedSeats=new HashSet<>();
 
 }
