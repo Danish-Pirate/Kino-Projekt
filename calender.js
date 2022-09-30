@@ -1,92 +1,66 @@
 'use strict'
 
+document.addEventListener('DOMContentLoaded', function() {
+    var calendarEl = document.getElementById('calendar');
+    var calendar = new FullCalendar.Calendar(calendarEl, {
+        initialView: 'dayGridMonth',
+        initialDate: '2022-10-01',
+        headerToolbar: {
+            left: 'prev,next today',
+            center: 'title',
+            right: 'dayGridMonth,timeGridWeek,timeGridDay'
+        },
 
-$(document).ready(function() {
-    
-    $('#calendar').fullCalendar({
-      header: {
-        left: 'prev,next today',
-        center: 'title',
-        right: 'month,basicWeek,basicDay'
-      },
-      defaultDate: '2022-10-12',
-      navLinks: true, // can click day/week names to navigate views
-      editable: true,
-      eventLimit: true, // allow "more" link when too many events
-      /*events: [
-        {
-          title: 'All Day Event',
-          start: '2016-12-01'
+        // Mulighed 1: event-data direkte i JS
+        events: [
+            {
+                title: 'Jaws',
+                start: '2022-10-01T10:30:00',
+                end: '2022-10-01T22:30:00',
+                // Vores "egne" felter
+                extendedProps: {
+                    ticketsSold: 42,
+                },
+            },
+        ],
+
+        // Mulighed 2: event-data fra url der producerer json med events i (dokumentation: https://fullcalendar.io/docs/events-json-feed)
+        //events: '/myfeed.php',
+        // Events skal sendes i følgende format (samme format som i mulighed 1)
+        // [
+        //   {
+        //     title: 'All Day Event',
+        //     start: '2022-10-01T10:30:00',
+        //     end: '2022-10-01T22:30:00',
+        //     backgroundColor: 'red'
+        //     extendedProps: {
+        //       ticketsSold: 42,
+        //     },
+        //   },
+        // ],
+
+        // Sætter baggrundsfarve på alle events
+        eventDisplay: 'block',
+        eventBackgroundColor: 'blue',
+
+        // Handling når der klikkes på en event
+        // https://fullcalendar.io/docs/eventClick
+        eventClick: function(info) {
+            alert('Event: ' + info.event.title);
+            //alert('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY);
+            //alert('View: ' + info.view.type);
+
+            // change the border color just for fun
+            info.el.style.borderColor = 'red';
         },
-        {
-          title: 'Long Event',
-          start: '2016-12-07',
-          end: '2016-12-10'
+
+        // Indsæt linjeskift mellem event title og event description
+        // https://fullcalendar.io/docs/content-injection
+        eventContent: function(arg) {
+            return { html: '<b>' + arg.event.title + '<<br>Antal solgte billetter: ' + arg.event.extendedProps.ticketsSold };
         },
-        {
-          id: 999,
-          title: 'Repeating Event',
-          start: '2016-12-09T16:00:00'
-        },
-        {
-          id: 999,
-          title: 'Repeating Event',
-          start: '2016-12-16T16:00:00'
-        },
-        {
-          title: 'Conference',
-          start: '2016-12-11',
-          end: '2016-12-13'
-        },
-        {
-          title: 'Meeting',
-          start: '2016-12-12T10:30:00',
-          end: '2016-12-12T12:30:00'
-        },
-        {
-          title: 'Lunch',
-          start: '2016-12-12T12:00:00'
-        },
-        {
-          title: 'Meeting',
-          start: '2016-12-12T14:30:00'
-        },
-        {
-          title: 'Happy Hour',
-          start: '2016-12-12T17:30:00'
-        },
-        {
-          title: 'Dinner',
-          start: '2016-12-12T20:00:00'
-        },
-        {
-          title: 'Birthday Party',
-          start: '2016-12-13T07:00:00'
-        },
-        {
-          title: 'Click for Google',
-          url: 'https://google.com/',
-          start: '2016-12-28'
-        }
-      ]*/
 
     });
 
-   
-
-    
-    //javascript for dynamic Grid cells
-    const calendarDays = document.querySelectorAll("td"); // selects all your td's
-
-function retrieveData(e) { // your function to retrieve your data or whatever
-  const target = e.target;
-  const id = target.id; 
-
-  return console.log(id);
-}
-
-calendarDays.forEach((el) => {
-  el.addEventListener("click", retrieveData); // adding the function to each element
+    calendar.render();
 });
-    
-  });
