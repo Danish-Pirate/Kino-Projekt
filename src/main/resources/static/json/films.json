@@ -42,7 +42,8 @@
     "movieLength": 140,
     "movieGenre": "Action",
     "movieAgeRestriction": 7,
-    "moviePrice": 110
+    "moviePrice": 110,
+    "posterLink": "https://static.posters.cz/image/750/plakater/james-bond-no-time-to-die-azure-teaser-i109817.jpg"
   },
   {
     "id": 2,
@@ -73,7 +74,8 @@
     "movieLength": 140,
     "movieGenre": "Family",
     "movieAgeRestriction": 3,
-    "moviePrice": 90
+    "moviePrice": 90,
+    "posterLink": "https://i-viaplay-com.akamaized.net/viaplay-prod/825/364/1563263968-d6bd5ff172050fcaeb9a33c8fc189a9b3e3db74e.jpg?width=400&height=600"
   },
   {
     "id": 3,
@@ -104,6 +106,7 @@
     "movieLength": 210,
     "movieGenre": "War",
     "movieAgeRestriction": 15,
-    "moviePrice": 130
+    "moviePrice": 130,
+    "posterLink": "https://image.posterlounge.dk/images/big/1876078.jpg"
   }
 ]
