@@ -81,6 +81,9 @@ function seatColorChange(){
 // message_count brugt i tickets funktionen.
 let message_count = 0;
 
+// Gør et forsøg på at få et sæde's ID onclick til at poppe op i registrationBox.
+// Skal kunne vælge flere sæder på én gang.
+// Skal senere også kunne gemme disse ID'er som nogle endpoints.
 function tickets(){
 
     const buttons = document.getElementsByTagName("seats");
@@ -104,6 +107,7 @@ const buttonPressed1 = message => {
     }
 }
 
+// Fetcher et sæde's ID når man klikker på det.
 function getSeatIDFromClick(){
 
     const buttons = document.getElementsByTagName("seats");
