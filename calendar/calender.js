@@ -1,13 +1,26 @@
 'use strict'
 
 document.addEventListener('DOMContentLoaded', function() {
+    var initialLocaleCode = 'da';
+    var localeSelectorEl = document.getElementById('locale-selector');
     var calendarEl = document.getElementById('calendar');
+
+
     var calendar = new FullCalendar.Calendar(calendarEl, {
 
         initialView: 'dayGridMonth',
-        initialDate: '2022-10-01',
         weekNumberCalculation:"ISO",
         weekNumbers: true,
+        locale: 'da',
+        navLinks:true,
+        allDaySlot: false,
+        buttonText: {
+            today:    'idag',
+            month:    'måned',
+            week:     'uge',
+            day:      'dag',
+        },
+        weekText:"uge ",
         headerToolbar: {
             left: 'prev,next today',
             center: 'title',
@@ -51,11 +64,6 @@ document.addEventListener('DOMContentLoaded', function() {
         eventClick: function(info) {
             alert('Event: ' + info.event.title);
 
-            //alert('Coordinates: ' + info.jsEvent.pageX + ',' + info.jsEvent.pageY);
-            //alert('View: ' + info.view.type);
-
-            // change the border color just for fun
-            info.el.style.borderColor = 'red';
         },
 
         // Indsæt linjeskift mellem event title og event description
@@ -64,7 +72,11 @@ document.addEventListener('DOMContentLoaded', function() {
             return { html: '<b>' + arg.event.title + '<br>Antal solgte billetter: ' + arg.event.extendedProps.ticketsSold };
         },
 
+
     });
 
+
     calendar.render();
+
 });
+
