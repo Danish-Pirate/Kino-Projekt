@@ -1,5 +1,7 @@
 const seatID = [];
 const seatColors = ['bookedColor'];
+var seatClickedID;
+var ticketList = "";
 
 function seatNumbering(){
     
@@ -16,10 +18,10 @@ for(let i = 0; i < 260; i++){
     
     
     if (gridcount == 1){
-        seats = seats + '<row class="row_class">' + "row: " + rowNum + '</row>';
+        seats = seats + '<row class="row_class">' + "række: " + rowNum + '</row>';
     }else{
         seat_id++;
-        seats = seats + '<seats class="cinema_one_seat_class" id="seat_id_' + seat_id +'"  onclick="seatColorChange();tickets();">' +"sæde: " + seatNum+ '</seats>';
+        seats = seats + '<seats class="cinema_one_seat_class" id="seat_id_' + seat_id +'"  onclick="getSeatIDFromClick(this.id);seatColorChange();handleTicket()">' +"sæde: " + seatNum+ '</seats>';
         seatID.push("seat_id_" + seat_id);
         if(seatNum==12){
             seatNum = 1;
@@ -35,8 +37,55 @@ for(let i = 0; i < 260; i++){
 }
 
 document.getElementById('cinema_one_grid_id').innerHTML = seats;
+}
+
+function handleTicket(){
+   
+    if($("#" + seatClickedID).css("background-color") != "rgb(230, 230, 250)"){
+    ticket = '<ticket added_ticket_id="ticket' + seatClickedID +'">' + seatClickedID + '</ticket><br>';
+
+    this.ticketList = this.ticketList + ticket;    
+    
+    }
+   
+    if($("#" + seatClickedID).css("background-color") != "rgb(255, 0, 0)"){
+
+        removeTicket = "" + '<ticket added_ticket_id="ticket' + seatClickedID +'">' + seatClickedID + '</ticket><br>';
+       
+        this.ticketList = this.ticketList.replace(removeTicket, "");
+
+    }
+
+    document.getElementById('ticket_id').innerHTML = this.ticketList;
+    
+}
 
 
+
+function seatColorChange(){    
+            
+        if($("#" + seatClickedID).css("background-color") != "rgb(255, 0, 0)"){
+
+            $("#" + seatClickedID).css("background-color", "red");
+            
+        }
+        else {
+            $("#" + seatClickedID).css("background-color", "lavender");
+
+        }
+        
+}
+
+function getSeatIDFromClick(clicked_id){
+
+    seatClickedID = clicked_id;
+}
+
+
+
+
+
+/*
 // Føjer 'tickets' funktionen til '.cinema_one_seat_class' når man klikker på sæderne.
 const divs = document.querySelectorAll('.cinema_one_seat_class');
 Array.from(divs).forEach(div => {
@@ -126,5 +175,5 @@ for (let button of buttons) {
 }
 
 }
-}
+*/
 
