@@ -1,5 +1,7 @@
 var price2 = {
-    pri: "100"
+    adult: 100 * 1,
+    child: 100 * 0.5,
+    pensioner: 100 * 0.7
 };
 
 function addData(){

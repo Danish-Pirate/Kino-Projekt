@@ -50,7 +50,7 @@ function handleTicket(){
     if($("#" + seatClickedID).css("background-color") != "rgb(230, 230, 250)"){
         ticket = '<ticket added_ticket_id="ticket' + seatClickedID +'">' + " r: " + rowClicked +" s: " +seatClickedName +
         '<input class="customer_type" list="customer_type' + seatClickedID + '" name="customer_type' + seatClickedID + '"><datalist id="customer_type' + seatClickedID +
-        '"><option value="Voksen"><option value="Barn"><option value="Pensionist"></ticket>'+" Pris: "+ (price2.pri)+ " dkk"+'<br>';
+        '"><option value="Voksen"><option value="Barn"><option value="Pensionist"></ticket>'+" Pris: "+ (price2.child)+ " dkk"+'<br>';
 
 
         this.ticketList = this.ticketList + ticket;
@@ -61,7 +61,7 @@ function handleTicket(){
 
         removeTicket = '<ticket added_ticket_id="ticket' + seatClickedID +'">' + " r: " + rowClicked +" s: " +seatClickedName +
         '<input class="customer_type" list="customer_type' + seatClickedID + '" name="customer_type' + seatClickedID + '"><datalist id="customer_type' + seatClickedID +
-        '"><option value="Voksen"><option value="Barn"><option value="Pensionist"></ticket>'+" Pris: "+ (price2.pri)+ " dkk"+'<br>';
+        '"><option value="Voksen"><option value="Barn"><option value="Pensionist"></ticket>'+" Pris: "+ (price2.child)+ " dkk"+'<br>';
 
         this.ticketList = this.ticketList.replace(removeTicket, "");
 
@@ -108,102 +108,4 @@ function getDataFromClick(clicked_id, clicked_name, clicked_row){
 
     rowClicked = clicked_row;
 }
-
-
-
-
-
-/*
-// Føjer 'tickets' funktionen til '.cinema_one_seat_class' når man klikker på sæderne.
-const divs = document.querySelectorAll('.cinema_one_seat_class');
-Array.from(divs).forEach(div => {
-    div.addEventListener('click', tickets);
-});
-
-// Føjer 'seatColorChange' funktionen til '.cinema_one_seat_class' når man klikker på sæderne.
-const div = document.querySelectorAll('.cinema_one_seat_class');
-Array.from(div).forEach(div => {
-    div.addEventListener('click', seatColorChange);
-});
-
-// Føjer 'getSeatIDFromClick' funktionen til '.cinema_one_seat_class' når man klikker på sæderne.
-/*
-const seatIDs = document.querySelectorAll('.cinema_one_seat_class');
-Array.from(seatIDs).forEach(seatIDs => {
-    seatIDs.addEventListener('click', getSeatIDFromClick);
-});
-*/
-
-/*
-// seatColors og enumerator brugt til seatColorChange(). 'bookedColor' og 'bookedColor2' er CSS-klasser.
-const seatColors = ['bookedColor', 'bookedColor2'];
-
-let enumerator = 0;
-
-// Bestemmer farven på sæderne i vores grid onclick. Virker ikke perfekt hvis man prøver at ændre
-// flere sæder's farve på én gang.
-function seatColorChange(){
-
-    if(this.enumerator < seatColors.length){
-        this.enumerator += 2;
-
-        this.classList.add(seatColors[this.enumerator-1]);
-        this.classList.remove(seatColors[this.enumerator-2]);
-    }
-    else{
-        this.enumerator = 0;
-
-        this.classList.add(seatColors[this.enumerator]);
-        this.classList.remove(seatColors[this.enumerator+1]);
-    }
-
-}
-
-
-
-
-// Gør et forsøg på at få et sæde's ID onclick til at poppe op i registrationBox.
-// Skal kunne vælge flere sæder på én gang.
-// Skal senere også kunne gemme disse ID'er som nogle endpoints.
-let clickCiunt = 1;
-function tickets(){
-
-    const buttonGroup = document.getElementById("button-group");
-const result = document.getElementById("ticket_id");
-
-const buttonGroupPressed = e => {
-
-  const isButton = e.target.nodeName === 'SEATS';
-
-  if(!isButton) {
-    return
-  }
-  if(clickCiunt <=1){
-    result.innerHTML = `ID of <em>${e.target.innerHTML}</em> is <strong>${e.target.id}</strong>`;
-    clickCiunt=2;
-  }else{
-    result.innerHTML = "";
-    clickCiunt = 0;
-  }
-}
-    buttonGroup.addEventListener("click", buttonGroupPressed);
-
-}
-
-// Fetcher et sæde's ID når man klikker på det.
-function getSeatIDFromClick(){
-
-    const buttons = document.getElementsByTagName("seats");
-var result = document.getElementById("price_infobox_id");
-
- const buttonPressed = e => {
-  result.innerHTML = `ID of <em>${e.target.innerHTML}</em> is <strong>${e.target.id}</strong>`;
-}
-
-for (let button of buttons) {
-  button.addEventListener("click", buttonPressed);
-}
-
-}
-*/
 
