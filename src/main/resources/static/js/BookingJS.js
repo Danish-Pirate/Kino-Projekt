@@ -126,7 +126,7 @@ if($("#" + seatClickedID).css("background-color") != "rgb(255, 0, 0)"){
     this.currentTotalPrice = this.currentTotalPrice - currentMovieShow.price;
 
 }
-    $("#total_ticket_price").text(this.currentTotalPrice);
+    $("#total_ticket_price").text(this.currentTotalPrice + " dkk");
 
     console.log(this.currentTotalPrice);
 
