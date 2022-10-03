@@ -6,8 +6,8 @@ import group3.kino.movieAdministration.model.Movie;
 import java.util.List;
 import java.util.Set;
 
-public interface IBookingSearchService {
+public interface ICalendarService {
         List<Booking> findByPhoneNumber(String phoneNumber);
-        List<Booking> findByDateAndName(String date, String name);
-        Set<Movie> findMovieByDate(String date);
+        List<Booking> findBookingByShowingDateAndMovieName(String date, String name);
+        Set<Movie> findMovieByShowingDate(String showingDate);
 }

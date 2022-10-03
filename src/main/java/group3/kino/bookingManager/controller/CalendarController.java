@@ -1,8 +1,8 @@
 package group3.kino.bookingManager.controller;
 
 import group3.kino.bookingManager.model.Booking;
-import group3.kino.bookingManager.service.BookingSearchService;
-import group3.kino.bookingManager.service.IBookingSearchService;
+import group3.kino.bookingManager.service.CalendarService;
+import group3.kino.bookingManager.service.ICalendarService;
 import group3.kino.movieAdministration.model.Movie;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -15,31 +15,31 @@ import java.util.List;
 import java.util.Set;
 
 @RestController
-public class BookingSearchController {
-    private IBookingSearchService service;
+public class CalendarController {
+    private ICalendarService calendarService;
 
-    public BookingSearchController(BookingSearchService service) {
-        this.service = service;
+    public CalendarController(CalendarService service) {
+        this.calendarService = service;
     }
 
-    @GetMapping("/booking-search")
+    @GetMapping("/booking-search/phone_number")
     public ResponseEntity<List<Booking>> getBookingsByPhoneNumber(@RequestParam String phoneNumber) {
-        return new ResponseEntity<>(service.findByPhoneNumber(phoneNumber), HttpStatus.OK);
+        return new ResponseEntity<>(calendarService.findByPhoneNumber(phoneNumber), HttpStatus.OK);
     }
-    @GetMapping("/booking-search/movies_by_date")
-    public ResponseEntity<Set<Movie>> getMoviesByDate (@RequestParam String date) {
+    @GetMapping("/booking-search/showing_date")
+    public ResponseEntity<Set<Movie>> getMoviesByDate (@RequestParam String showingDate) {
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.set("Access-Control-Allow-Origin", "*");
         return ResponseEntity.ok()
                 .headers(responseHeaders)
-                .body(service.findMovieByDate(date));
+                .body(calendarService.findMovieByShowingDate(showingDate));
     }
-    @GetMapping("/booking-search/bookings_by_movie_name_and_date")
+    @GetMapping("/booking-search/showing_date/movie_name")
     public ResponseEntity<List<Booking>> getBookingsByDateAndMovieName(@RequestParam String date, @RequestParam String name) {
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.set("Access-Control-Allow-Origin", "*");
         return ResponseEntity.ok()
                 .headers(responseHeaders)
-                .body(service.findByDateAndName(date, name));
+                .body(calendarService.findBookingByShowingDateAndMovieName(date, name));
     }
 }
