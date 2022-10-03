@@ -110,7 +110,7 @@
     .flex-outer li button {
         position: absolute;
         bottom: 80px;
-        left: 1233px;
+        right: 50px;
         margin : 5px;
         margin-left: auto;
         padding: 8px 16px;
@@ -121,3 +121,10 @@
         letter-spacing: .09em;
         border-radius: 2px;
       }
+
+      #total_ticket_price{
+        text-align: end;
+
+      }
+
+      
