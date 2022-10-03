@@ -10,7 +10,7 @@
 
 .row_class{
     padding: 5px;
-    background-color: white;
+    background-color: rgb(204, 8, 129);
     text-align: center;
     border: 1px solid black;
 }
@@ -54,8 +54,8 @@
 .infobox_grid_square{
     width: 140px;
     height: 50px;
-    background-color: rgb(78, 223, 199);
-    border: 1px solid black;
+    background-color: rgb(38, 128, 231);
+    border: 1px solid rgb(0, 0, 0);
     margin: 5px;
 }
 
