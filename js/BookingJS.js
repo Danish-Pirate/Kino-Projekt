@@ -6,24 +6,35 @@ function seatNumbering(){
     var seatNum = 1;
     var rowNum = 1;
     const seatNumberIDs = [];
+    var gridcount = 1;
+    var seat_id = 0;
 
 
-for(let i = 0; i < 240; i++){
+for(let i = 0; i < 260; i++){
     
-    seatID.push("seat_id_" + i);
     
-    seats = seats + '<seats class="cinema_one_seat_class" id="seat_id_' + i +'"  onclick="seatColorChange();tickets();">' + seatNum + '-' + rowNum + '</seats>';
-    
-    if(seatNum == 12){
-        seatNum = 0;
-        rowNum++;
+    if (gridcount == 1){
+        seats = seats + '<seats class="row_class">' + "row: " + rowNum + '</seats>';
+    }else{
+        seat_id++;
+        seats = seats + '<seats class="cinema_one_seat_class" id="seat_id_' + seat_id +'"  onclick="seatColorChange();tickets();">' +"sæde: " + seatNum+ '</seats>';
+        seatID.push("seat_id_" + seat_id);
+        if(seatNum==12){
+            seatNum = 1
+        }else{
+            seatNum++;
+        }
     }
-
-    seatNum++;
-    
+    gridcount++;
+    if(gridcount == 13){
+        rowNum++;
+        gridcount = 0;
+    }
 }
 
 document.getElementById('cinema_one_grid_id').innerHTML = seats;
+
+
 
 const divs = document.querySelectorAll('.cinema_one_seat_class');
 Array.from(divs).forEach(div => {
@@ -97,10 +108,4 @@ for (let button of buttons) {
 }
 
 }
-
-
-
-
-
-
 }

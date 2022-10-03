@@ -1,16 +1,25 @@
 .cinema_one_grid{
     display: grid;
-    grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto;
+    grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto;
     background-color: aliceblue;
     gap: 5px;
     padding : 20px;
     margin: 5px;
+    align-self: end;
+    
+}
+
+.row_class{
+    padding: 5px;
+    background-color: orange;
+    text-align: center;
+    border: 1px solid black;
 }
 
 .cinema_one_seat_class{
     
     padding: 5px;
-    background-color: orange;
+    background-color: lavender;
     text-align: center;
     border: 1px solid black;
     
@@ -22,7 +31,7 @@
 }
 
 .bookedColor{
-    background-color: yellow;
+    background-color: red;
 }
 
 .bookedColor2{
