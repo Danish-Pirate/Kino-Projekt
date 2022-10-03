@@ -133,4 +133,14 @@
         position: absolute;
         right: 10px;
       }
+
+      .cinema_screen{
+        width: 60%;
+        height: 80px;
+        background-color: black;
+        margin: 10px;
+        margin-left: 250px;
+        margin-right: 30px;
+        
+      }
       
