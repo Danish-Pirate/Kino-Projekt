@@ -51,4 +51,15 @@ public class MovieAdminController {
         }
         return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
     }
+
+    @DeleteMapping("/deleteMovie")
+    public ResponseEntity<Movie> deleteFilmByID(@RequestParam Long filmId){
+        Optional<Movie> movie = movieAdminService.findById(filmId);
+        if (movie.isPresent()){
+            Movie movie_ = movie.get();
+            movieAdminService.delete(movie);
+            return new ResponseEntity<>(movie_, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+    }
 }

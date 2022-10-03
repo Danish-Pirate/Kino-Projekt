@@ -111,19 +111,104 @@
         </form>
     </div>
 
-   <!-- <div class="container my-5">
-        <div class="row">
-            <form class="d-flex">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-dark" type="submit">Search</button>
-            </form>
+    <!-- Container TEST-->
+    <div class="container p-5">
+        <div class="row justify-content-center">
+            <div class="col-sm-8 col-md-10 col-lg-4 item img-cards" data-bs-toggle="modal" data-bs-target="#modal-1">
+                <div class="d-flex justify-content-center mt-5"><button onclick="gallModal(this)" class="btn btn-primary">Tilføj film</button></div>
+            </div>
         </div>
-    </div> -->
+    </div>
 
-        <!-- Container TEST-->
+    <div class="modal bg-dark bg-opacity-75 fade" tabindex="-1" role="dialog" id="modal-1">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
 
-        <div id="film-cards"></div>
-        
+                    <form id="modal-film" action="/addMovie" method="POST">
+                        <div id="title-group" class="form-group">
+                            <label for="name">Name</label>
+                            <input
+                                    type="text"
+                                    class="form-control"
+                                    id="name"
+                                    name="name"
+                                    placeholder="Film name"
+                            />
+                        </div>
+
+                        <div id="price-group" class="form-group">
+                            <label for="moviePrice">Price</label>
+                            <input
+                                    type="number"
+                                    class="form-control"
+                                    id="moviePrice"
+                                    name="moviePrice"
+                                    placeholder="price"
+                            />
+                        </div>
+
+                        <div id="length-group" class="form-group">
+                            <label for="movieLength">Length</label>
+                            <input
+                                    type="number"
+                                    class="form-control"
+                                    id="movieLength"
+                                    name="movieLength"
+                                    placeholder="Film length"
+                            />
+                        </div>
+
+                        <div id="genre-group" class="form-group">
+                            <label for="movieGenre">Genre</label>
+                            <input
+                                    type="text"
+                                    class="form-control"
+                                    id="movieGenre"
+                                    name="movieGenre"
+                                    placeholder="genre"
+                            />
+                        </div>
+
+                        <div id="movieAgeRestriction-group" class="form-group">
+                            <label for="movieAgeRestriction">Age Restriction</label>
+                            <input
+                                    type="text"
+                                    class="form-control"
+                                    id="movieAgeRestriction"
+                                    name="movieAgeRestriction"
+                                    placeholder="age restriction"
+                            />
+                        </div>
+
+                        <div id="posterLink-group" class="form-group">
+                            <label for="posterLink">Link til film billede</label>
+                            <input
+                                    type="text"
+                                    class="form-control"
+                                    id="posterLink"
+                                    name="posterLink"
+                                    placeholder="poster link"
+                            />
+                        </div>
+
+
+                        <button type="submit" class="btn btn-success mt-2" onclick="">
+                            Tilføj
+                        </button>
+                    </form>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-secondary modal-btn" data-bs-dismiss="modal">Luk</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Container TEST-->
+
+    <div id="film-cards"></div>
+
     <!-- Container 1
 
     <div class="container">
@@ -142,7 +227,7 @@
                         <p>110 kr.</p>
                     </div>
                     <div class="col-4">
-                                 
+
                     <h4>Aldersgrænse: </h4>
                     <p>3 år</p>
                     </div>
@@ -153,7 +238,7 @@
                 </div>
             </div>
         </div>
-    
+
         <div class="row">
             <button class="accordion fw-bold" onclick="showAccordion()">Visninger</button>
             <div class="panel">
@@ -176,15 +261,15 @@
                         <th class="me-3">Onsdag d. 28-09-2022</th>
                         <th><button>15:00</button> <button>18:30</button></th>
                     </tr>
-    
+
                 </table>
             </div>
         </div>
-       
+
     </div>
 -->
-      
+
     <!-- Main content end -->
-    
+
 </body>
 </html>

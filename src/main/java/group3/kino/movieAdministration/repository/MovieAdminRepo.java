@@ -10,6 +10,4 @@ public interface MovieAdminRepo extends JpaRepository<Movie, Long> {
 
     List<Movie> findFilmByName(String name);
 
-
-
 }
