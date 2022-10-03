@@ -1,7 +1,9 @@
+var price = 100;
+
 var price2 = {
-    adult: 100 * 1,
-    child: 100 * 0.5,
-    pensioner: 100 * 0.7
+    adult: price * 1,
+    child: price * 0.5,
+    pensioner: price * 0.7
 };
 
 function addData(){
@@ -37,7 +39,6 @@ var movieName = "Filmnavn: " + "Dødets gab";
 var date = "Dato: " + "22/10/2022";
 var startTime = "Tidspunkt: " + "14:00"
 var ageRestriction = "Minimums alder: " + "13";
-var price = "Pris: " + "100" + "dkr.";
 
 
     document.getElementById('cinema_name_infobox_id').textContent = cinemaName;
@@ -50,6 +51,6 @@ var price = "Pris: " + "100" + "dkr.";
 
     document.getElementById('age_infobox_id').textContent = ageRestriction;
 
-    document.getElementById('price_infobox_id').textContent = "Pris: "+ price2.pri + " dkk";
+    document.getElementById('price_infobox_id').textContent = "Pris: "+ price + " dkk";
 
 }
