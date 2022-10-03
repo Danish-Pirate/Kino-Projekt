@@ -28,21 +28,21 @@ $(document).ready(function () {
 //Sends data from form to endpoint /// Endpoint = /bookings (POST)
 
 $(document).ready(function () {
-    $("#form-id").submit(function (event) {
+    $("#modal-film").submit(function (event) {
         let formData = {
-            title: $("#title").val(),
-            price: $("#price").val(),
-            length: $("#length").val(),
-            genre: $("#genre").val(),
-            agerestriction: $("#agerestriction").val(),
-            posterlink: $("#posterlink").val(),
+            name: $("#name").val(),
+            moviePrice: $("#moviePrice").val(),
+            movieLength: $("#movieLength").val(),
+            movieGenre: $("#movieGenre").val(),
+            movieAgeRestriction: $("#movieAgeRestriction").val(),
+            posterLink: $("#posterLink").val(),
 
 
         };
 
         $.ajax({
             type: "POST",
-            url: "/film",
+            url: "/addMovie",
             data: JSON.stringify(formData),
             dataType: "json",
             encode: true,
