@@ -78,6 +78,7 @@
 
 .registrationBox{
     
+    position: relative;
     border-color: black;
     border-width: 1px;
     border-style: solid;
@@ -109,8 +110,8 @@
     
     .flex-outer li button {
         position: absolute;
-        bottom: 80px;
-        right: 50px;
+        bottom: 10px;
+        right: 20px;
         margin : 5px;
         margin-left: auto;
         padding: 8px 16px;
