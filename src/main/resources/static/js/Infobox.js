@@ -48,6 +48,6 @@ var price = "Pris: " + "100" + "dkr.";
 
     document.getElementById('age_infobox_id').textContent = ageRestriction;
 
-    document.getElementById('price_infobox_id').textContent = price2.pri;
+    document.getElementById('price_infobox_id').textContent = "Pris: "+ price2.pri + " dkk";
 
 }

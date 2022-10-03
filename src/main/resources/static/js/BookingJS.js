@@ -48,9 +48,9 @@ function seatNumbering(){
 function handleTicket(){
 
     if($("#" + seatClickedID).css("background-color") != "rgb(230, 230, 250)"){
-        ticket = '<ticket added_ticket_id="ticket' + seatClickedID +'">' + seatClickedID + " r: " + rowClicked +" s: " +seatClickedName +
+        ticket = '<ticket added_ticket_id="ticket' + seatClickedID +'">' + " r: " + rowClicked +" s: " +seatClickedName +
         '<input class="customer_type" list="customer_type' + seatClickedID + '" name="customer_type' + seatClickedID + '"><datalist id="customer_type' + seatClickedID +
-        '"><option value="Voksen"><option value="Barn"><option value="Pensionist"></ticket><br>';
+        '"><option value="Voksen"><option value="Barn"><option value="Pensionist"></ticket>'+" Pris: "+ (price2.pri)+ " dkk"+'<br>';
 
 
         this.ticketList = this.ticketList + ticket;
@@ -59,9 +59,9 @@ function handleTicket(){
 
     if($("#" + seatClickedID).css("background-color") != "rgb(255, 0, 0)"){
 
-        removeTicket = '<ticket added_ticket_id="ticket' + seatClickedID +'">' + seatClickedID + " r: " + rowClicked +" s: " +seatClickedName +
+        removeTicket = '<ticket added_ticket_id="ticket' + seatClickedID +'">' + " r: " + rowClicked +" s: " +seatClickedName +
         '<input class="customer_type" list="customer_type' + seatClickedID + '" name="customer_type' + seatClickedID + '"><datalist id="customer_type' + seatClickedID +
-        '"><option value="Voksen"><option value="Barn"><option value="Pensionist"></ticket><br>';
+        '"><option value="Voksen"><option value="Barn"><option value="Pensionist"></ticket>'+" Pris: "+ (price2.pri)+ " dkk"+'<br>';
 
         this.ticketList = this.ticketList.replace(removeTicket, "");
 
