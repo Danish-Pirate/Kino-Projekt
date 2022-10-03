@@ -22,11 +22,11 @@ public class CalendarController {
         this.calendarService = service;
     }
 
-    @GetMapping("/booking-search")
+    @GetMapping("/booking-search/phone_number")
     public ResponseEntity<List<Booking>> getBookingsByPhoneNumber(@RequestParam String phoneNumber) {
         return new ResponseEntity<>(calendarService.findByPhoneNumber(phoneNumber), HttpStatus.OK);
     }
-    @GetMapping("/booking-search/movies_by_showing_date")
+    @GetMapping("/booking-search/showing_date")
     public ResponseEntity<Set<Movie>> getMoviesByDate (@RequestParam String showingDate) {
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.set("Access-Control-Allow-Origin", "*");
@@ -34,7 +34,7 @@ public class CalendarController {
                 .headers(responseHeaders)
                 .body(calendarService.findMovieByShowingDate(showingDate));
     }
-    @GetMapping("/booking-search/bookings_by_movie_name_and_date")
+    @GetMapping("/booking-search/showing_date/movie_name")
     public ResponseEntity<List<Booking>> getBookingsByDateAndMovieName(@RequestParam String date, @RequestParam String name) {
         HttpHeaders responseHeaders = new HttpHeaders();
         responseHeaders.set("Access-Control-Allow-Origin", "*");

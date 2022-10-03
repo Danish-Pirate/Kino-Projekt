@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
@@ -33,13 +34,7 @@ public class CalendarService implements ICalendarService {
     }
     @Override
     public List<Booking> findBookingByShowingDateAndMovieName(String date, String name) {
-        Date parsedDate= null;
-        try {
-            parsedDate = new SimpleDateFormat("yyyy-MM-dd").parse(date);
-        } catch (ParseException e) {
-            throw new RuntimeException(e);
-        }
-        return calendarRepository.findBookingByShowingDateAndMovieName(parsedDate, name);
+        return calendarRepository.findBookingByDateAndMovieName(name, date);
     }
 
     @Override

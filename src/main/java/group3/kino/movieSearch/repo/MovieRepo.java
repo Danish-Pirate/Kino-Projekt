@@ -9,5 +9,6 @@ public interface MovieRepo extends JpaRepository<Movie, Long> {
     Set<Movie> findByNameContainsOrderByDate(String name);
     Set<Movie> findByMovieGenreOrderByDate(String movieGenre);
     Set<Movie> findMovieByDate(String date);
+    Set<Movie> findMovieByName(String name);
     Movie findMovieByMovieId(Long id);
 }

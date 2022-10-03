@@ -8,4 +8,5 @@ import java.util.Set;
 
 public interface ShowRepository extends JpaRepository<CinemaShow, Long> {
     Set<CinemaShow> findCinemaShowByDate(Date date);
+    Set<CinemaShow> findCinemaShowByDateAndMovieMovieId(String showingDate,Long id);
 }
