@@ -26,7 +26,7 @@ function seatNumbering(){
         }else{
             seat_id++;
             seats = seats + '<seats class="cinema_one_seat_class" id="seat_id_' + seat_id +
-            '"  " onclick="getSeatIDFromClick(this.id);seatColorChange();getSeatnameFromClick('+ seatNum +');getSeatRowFromClick('+ rowNum +');handleTicket()">' +
+            '"  " onclick="getDataFromClick(this.id,'+ seatNum +','+ rowNum +');seatColorChange();handleTicket()">' +
             "sæde: " + seatNum+ '</seats>';
             seatID.push("seat_id_" + seat_id);
             if(seatNum==12){
@@ -95,6 +95,15 @@ function getSeatnameFromClick(clicked_name){
 }
 
 function getSeatRowFromClick(clicked_row){
+
+    rowClicked = clicked_row;
+}
+
+function getDataFromClick(clicked_id, clicked_name, clicked_row){
+
+    seatClickedID = clicked_id;
+
+    seatClickedName = clicked_name;
 
     rowClicked = clicked_row;
 }
