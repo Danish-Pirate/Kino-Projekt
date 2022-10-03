@@ -1,6 +1,13 @@
-var price = 100;
+var currentMovieShow = {
+  price : 100,
+  cinemaName : 'Bio1',
+  movieName : 'Dødets Gab 7',
+  date : '22/10/20220',
+  startTime : '14:15',
+  ageRestriction : 13
+};
 
-var price2 = {
+var calculatedPrice = {
     adult: price * 1,
     child: price * 0.5,
     pensioner: price * 0.7
@@ -28,29 +35,19 @@ function addData(){
             
         }
 
-
-
-
     }
 
 
-var cinemaName = "Biograf: "+ "Bio1";
-var movieName = "Filmnavn: " + "Dødets gab";
-var date = "Dato: " + "22/10/2022";
-var startTime = "Tidspunkt: " + "14:00"
-var ageRestriction = "Minimums alder: " + "13";
+    document.getElementById('cinema_name_infobox_id').textContent = "Sal : " + currentMovieShow.cinemaName;
 
+    document.getElementById('movie_name_infobox_id').textContent = "Film : " + currentMovieShow.movieName;
 
-    document.getElementById('cinema_name_infobox_id').textContent = cinemaName;
+    document.getElementById('date_infobox_id').textContent = "Dato : " +  currentMovieShow.date;
 
-    document.getElementById('movie_name_infobox_id').textContent = movieName;
+    document.getElementById('start_time_infobox_id').textContent = "Start kl : " + currentMovieShow.startTime;
 
-    document.getElementById('date_infobox_id').textContent = date;
+    document.getElementById('age_infobox_id').textContent = "Min. alder : " + currentMovieShow.ageRestriction + " år.";
 
-    document.getElementById('start_time_infobox_id').textContent = startTime;
-
-    document.getElementById('age_infobox_id').textContent = ageRestriction;
-
-    document.getElementById('price_infobox_id').textContent = "Pris: "+ price + " dkk";
+    document.getElementById('price_infobox_id').textContent = "Pris : "+ currentMovieShow.price + " dkk";
 
 }

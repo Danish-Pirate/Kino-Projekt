@@ -4,6 +4,7 @@ var seatClickedID;
 var seatClickedName;
 var rowClicked;
 var ticketList = "";
+var currentTotalPrice = 0;
 
 // Laver gridden til sæderne.
 function seatNumbering(){
@@ -26,7 +27,7 @@ function seatNumbering(){
         }else{
             seat_id++;
             seats = seats + '<seats class="cinema_one_seat_class" id="seat_id_' + seat_id +
-            '"  " onclick="getDataFromClick(this.id,'+ seatNum +','+ rowNum +');seatColorChange();handleTicket()">' +
+            '"  " onclick="getDataFromClick(this.id,'+ seatNum +','+ rowNum +');seatColorChange();handleTicket();updateTotalTicketPrice();">' +
             "sæde: " + seatNum+ '</seats>';
             seatID.push("seat_id_" + seat_id);
             if(seatNum==12){
@@ -50,7 +51,7 @@ function handleTicket(){
     if($("#" + seatClickedID).css("background-color") != "rgb(230, 230, 250)"){
         ticket = '<ticket added_ticket_id="ticket' + seatClickedID +'">' + " r: " + rowClicked +" s: " +seatClickedName +
         '<input class="customer_type" list="customer_type' + seatClickedID + '" name="customer_type' + seatClickedID + '"><datalist id="customer_type' + seatClickedID +
-        '"><option value="Voksen"><option value="Barn"><option value="Pensionist"></ticket>'+" Pris: "+ (price2.child)+ " dkk"+'<br>';
+        '"><option value="Voksen"><option value="Barn"><option value="Pensionist"></ticket>'+" Pris: "+ (currentMovieShow.price)+ " dkk"+'<br>';
 
 
         this.ticketList = this.ticketList + ticket;
@@ -61,9 +62,11 @@ function handleTicket(){
 
         removeTicket = '<ticket added_ticket_id="ticket' + seatClickedID +'">' + " r: " + rowClicked +" s: " +seatClickedName +
         '<input class="customer_type" list="customer_type' + seatClickedID + '" name="customer_type' + seatClickedID + '"><datalist id="customer_type' + seatClickedID +
-        '"><option value="Voksen"><option value="Barn"><option value="Pensionist"></ticket>'+" Pris: "+ (price2.child)+ " dkk"+'<br>';
+        '"><option value="Voksen"><option value="Barn"><option value="Pensionist"></ticket>'+" Pris: "+ (currentMovieShow.price)+ " dkk"+'<br>';
 
         this.ticketList = this.ticketList.replace(removeTicket, "");
+
+        
 
     }
 
@@ -107,5 +110,26 @@ function getDataFromClick(clicked_id, clicked_name, clicked_row){
     seatClickedName = clicked_name;
 
     rowClicked = clicked_row;
+}
+
+function updateTotalTicketPrice(){
+
+    
+    if($("#" + seatClickedID).css("background-color") != "rgb(230, 230, 250)"){
+        
+        this.currentTotalPrice = this.currentTotalPrice + currentMovieShow.price;
+        
+}
+    
+if($("#" + seatClickedID).css("background-color") != "rgb(255, 0, 0)"){
+
+    this.currentTotalPrice = this.currentTotalPrice - currentMovieShow.price;
+
+}
+    $("#total_ticket_price").text(this.currentTotalPrice);
+
+    console.log(this.currentTotalPrice);
+
+
 }
 
