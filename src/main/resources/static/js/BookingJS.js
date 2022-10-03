@@ -1,6 +1,8 @@
 const seatID = [];
 const seatColors = ['bookedColor'];
 var seatClickedID;
+var seatClickedName;
+var rowClicked;
 var ticketList = "";
 
 // Laver gridden til sæderne.
@@ -13,6 +15,7 @@ function seatNumbering(){
     const seatNumberIDs = [];
     var gridcount = 1;
     var seat_id = 0;
+    var name;
 
 
     for(let i = 0; i < 260; i++){
@@ -22,7 +25,9 @@ function seatNumbering(){
             seats = seats + '<row class="row_class">' + "række: " + rowNum + '</row>';
         }else{
             seat_id++;
-            seats = seats + '<seats class="cinema_one_seat_class" id="seat_id_' + seat_id +'"  onclick="getSeatIDFromClick(this.id);seatColorChange();handleTicket()">' +"sæde: " + seatNum+ '</seats>';
+            seats = seats + '<seats class="cinema_one_seat_class" id="seat_id_' + seat_id +
+            '"  " onclick="getSeatIDFromClick(this.id);seatColorChange();getSeatnameFromClick('+ seatNum +');getSeatRowFromClick('+ rowNum +');handleTicket()">' +
+            "sæde: " + seatNum+ '</seats>';
             seatID.push("seat_id_" + seat_id);
             if(seatNum==12){
                 seatNum = 1;
@@ -43,7 +48,7 @@ function seatNumbering(){
 function handleTicket(){
 
     if($("#" + seatClickedID).css("background-color") != "rgb(230, 230, 250)"){
-        ticket = '<ticket added_ticket_id="ticket' + seatClickedID +'">' + seatClickedID + '</ticket><br>';
+        ticket = '<ticket added_ticket_id="ticket' + seatClickedID +'">' + seatClickedID + " r: "+ rowClicked+" s: " +seatClickedName +'</ticket><br>';
 
         this.ticketList = this.ticketList + ticket;
 
@@ -51,7 +56,7 @@ function handleTicket(){
 
     if($("#" + seatClickedID).css("background-color") != "rgb(255, 0, 0)"){
 
-        removeTicket = "" + '<ticket added_ticket_id="ticket' + seatClickedID +'">' + seatClickedID + '</ticket><br>';
+        removeTicket = "" + '<ticket added_ticket_id="ticket' + seatClickedID +'">' + seatClickedID + " r: " + rowClicked +" s: " +seatClickedName +'</ticket><br>';
 
         this.ticketList = this.ticketList.replace(removeTicket, "");
 
@@ -80,6 +85,16 @@ function seatColorChange(){
 function getSeatIDFromClick(clicked_id){
 
     seatClickedID = clicked_id;
+}
+
+function getSeatnameFromClick(clicked_name){
+
+    seatClickedName = clicked_name;
+}
+
+function getSeatRowFromClick(clicked_row){
+
+    rowClicked = clicked_row;
 }
 
 
