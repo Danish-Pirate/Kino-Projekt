@@ -127,5 +127,10 @@
         text-align: end;
 
       }
-
+      .customer_type{
+        width: 100px;
+        height: 20px;
+        position: absolute;
+        right: 10px;
+      }
       
