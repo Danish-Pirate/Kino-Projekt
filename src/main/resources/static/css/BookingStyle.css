@@ -1,7 +1,7 @@
 .cinema_one_grid{
     display: grid;
     grid-template-columns: auto auto auto auto auto auto auto auto auto auto auto auto auto;
-    background-color: aliceblue;
+    background-color: rgb(229, 182, 182);
     gap: 5px;
     padding : 20px;
     margin: 5px;
@@ -45,10 +45,11 @@
     height: 200px;
     display: grid;
     grid-template-columns: auto auto;
-    gap: 5px;    
+      
     background-color: aliceblue;
     border: 1px solid black;
     margin : 5px;
+    justify-content:space-around;
 }
 
 .infobox_grid_square{
@@ -56,7 +57,7 @@
     height: 50px;
     background-color: rgb(38, 128, 231);
     border: 1px solid rgb(0, 0, 0);
-    margin: 5px;
+    margin: auto;
 }
 
 .main_container{
