@@ -24,6 +24,62 @@ $(document).ready(function () {
 
 */
 
+
+//Sends data from form to endpoint /// Endpoint = /bookings (POST)
+
+$(document).ready(function () {
+    $("#form-id").submit(function (event) {
+        let formData = {
+            title: $("#title").val(),
+            price: $("#price").val(),
+            length: $("#length").val(),
+            genre: $("#genre").val(),
+            agerestriction: $("#agerestriction").val(),
+            posterlink: $("#posterlink").val(),
+
+
+        };
+
+        $.ajax({
+            type: "POST",
+            url: "/film",
+            data: JSON.stringify(formData),
+            dataType: "json",
+            encode: true,
+            headers:{"Content-Type":"application/json;charset=UTF-8"},
+        }).done(function (data) {
+            console.log(data);
+        });
+
+        event.preventDefault();
+    });
+});
+
+
+function addFilm() {
+
+}
+
+
+function deleteFilm(id) {
+    $.ajax({
+        type: "DELETE",
+        url: "/deleteFilmById",
+        data: JSON.stringify(id),
+        dataType: "json",
+        encode: true,
+        headers:{"Content-Type":"application/json;charset=UTF-8"},
+
+    }).done(function (data) {
+        console.log(data);
+    });
+}
+
+
+function updateFilm(id) {
+    console.log(id);
+}
+
 //Pop up
 
 function gallModal(element) {
@@ -53,7 +109,7 @@ function showAccordion() {
 
 class FilmRenderer {
 
-    endpointUrlFilms = "/json/films.json";
+    endpointUrlFilms = "/getAllMovie";
 
     constructor() {
         this.dataFilm = null;
@@ -95,40 +151,47 @@ class FilmRenderer {
 
             //First part of Film-Card
             var cards = `<div class="container my-3">
-                <div class="row border border-solid bg-light">
-                    <div class="col-3 p-0">
-                        <img src="${entryFilm.posterLink}" alt="Film poster" class="film-poster-img">
-                    </div>
-                    <div class="col-9 p-5">
-                        <div class="row d-flex justify-content-space">
-                            <div class="col-4">
-                                <h4>Titel: </h4>
-                                <p>${entryFilm.name}</p>
+                      <div class="row border border-solid bg-light">
+                          <div class="col-3 p-0">
+                              <img src="${entryFilm.posterLink}" alt="Film poster" class="film-poster-img">
+                          </div>
+                          <div class="col-9 p-5">
+                              <div class="row d-flex justify-content-space">
+                                  <div class="col-4">
+                                      <h4>Titel: </h4>
+                                      <p>${entryFilm.name}</p>
+                                  </div>
+                                  <div class="col-4">
+                                      <h4>Pris: </h4>
+                                      <p>${entryFilm.moviePrice} kr.</p>
+                                  </div>
+                                  <div class="col-4">      
+                                  <h4>Aldersgrænse: </h4>
+                                  <p>${entryFilm.movieAgeRestriction} år</p>
+                                  </div>
+                              </div>
+                              <div class="row d-flex justify-content-space">
+                                <div class="col-4">
+                                    <h4>Genre: </h4>
+                                    <p>${entryFilm.movieGenre}</p>
+                                    </div>
+                                <div class="col-4">
+                                <button class="btn btn-primary" onclick="updateFilm(${entryFilm.id})">Rediger</button>
                             </div>
                             <div class="col-4">
-                                <h4>Pris: </h4>
-                                <p>${entryFilm.moviePrice} kr.</p>
+                                <button class="btn btn-primary" onclick="deleteFilm(${entryFilm.id})">Slet</button>
                             </div>
-                            <div class="col-4">
-                                        
-                            <h4>Aldersgrænse: </h4>
-                            <p>${entryFilm.movieAgeRestriction} år</p>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <h4>Genre: </h4>
-                            <p>${entryFilm.movieGenre}</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-            <button class="accordion fw-bold" onclick="showAccordion()">Visninger</button>
-                <div class="panel">
-                    <table class="d-flex justify-content-center">
-                        <tr>
-                            <th>Dato</th>
-                            <th>Visninger</th>
-                        </tr>`;
+                          </div>
+                      </div>
+                      </div>
+                      <div class="row">
+                  <button class="accordion fw-bold" onclick="showAccordion()">Visninger</button>
+                      <div class="panel">
+                          <table class="d-flex justify-content-center">
+                              <tr>
+                                  <th>Dato</th>
+                                  <th>Visninger</th>
+                              </tr>`;
 
             //Loop for adding show times to dates for each film
             for (let i = 0; i < sortedDateList.length; i++) {
@@ -167,7 +230,7 @@ class FilmRenderer {
 
             }
             //Closing HTML
-            cards += `</table></div></div>`;
+            cards += `</table></div></div></div>`;
             //Adds film-cards to HTML
             target.append(cards);
         }
