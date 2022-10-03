@@ -8,9 +8,9 @@ var currentMovieShow = {
 };
 
 var calculatedPrice = {
-    adult: price * 1,
-    child: price * 0.5,
-    pensioner: price * 0.7
+    adult: currentMovieShow.price * 1,
+    child: currentMovieShow.price * 0.5,
+    pensioner: currentMovieShow.price * 0.7
 };
 
 function addData(){
