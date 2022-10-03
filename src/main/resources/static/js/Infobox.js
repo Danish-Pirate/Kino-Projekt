@@ -1,3 +1,7 @@
+var price2 = {
+    pri: "100"
+};
+
 function addData(){
 
     class movieShow{
@@ -33,6 +37,7 @@ var startTime = "Tidspunkt: " + "14:00"
 var ageRestriction = "Minimums alder: " + "13";
 var price = "Pris: " + "100" + "dkr.";
 
+
     document.getElementById('cinema_name_infobox_id').textContent = cinemaName;
 
     document.getElementById('movie_name_infobox_id').textContent = movieName;
@@ -43,6 +48,6 @@ var price = "Pris: " + "100" + "dkr.";
 
     document.getElementById('age_infobox_id').textContent = ageRestriction;
 
-    document.getElementById('price_infobox_id').textContent = price;
+    document.getElementById('price_infobox_id').textContent = price2.pri;
 
 }
