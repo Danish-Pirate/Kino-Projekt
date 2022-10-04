@@ -14,12 +14,13 @@ import java.util.Set;
 public class MovieAdminController {
 
     private MovieAdminService movieAdminService;
-@Autowired
+
+    @Autowired
     public MovieAdminController(MovieAdminService movieAdminService) {
         this.movieAdminService = movieAdminService;
     }
 
-   @PostMapping("/addMovie")
+    @PostMapping("/addMovie")
     public ResponseEntity<Movie> addMovie(@RequestBody Movie movie) {
         movieAdminService.save(movie);
         return new ResponseEntity<>(movie, HttpStatus.OK);
@@ -29,10 +30,11 @@ public class MovieAdminController {
     public ResponseEntity<Set<Movie>> getAllMovie() {
         return new ResponseEntity<>(movieAdminService.findAll(), HttpStatus.OK);
     }
+
     @PutMapping("/editMovie")
-    public ResponseEntity<Movie> editFilm(@RequestBody Movie newMovie, @RequestParam String movieName){
+    public ResponseEntity<Movie> editFilm(@RequestBody Movie newMovie, @RequestParam String movieName) {
         Optional<Movie> oldMovie = movieAdminService.findByName(movieName);
-        if (oldMovie.isPresent()){
+        if (oldMovie.isPresent()) {
             movieAdminService.save(newMovie);
 
             return new ResponseEntity<>(newMovie, HttpStatus.OK);
@@ -40,10 +42,11 @@ public class MovieAdminController {
             return new ResponseEntity<>(newMovie, HttpStatus.BAD_REQUEST);
         }
     }
+
     @PostMapping("/deleteMovie")
-    public ResponseEntity<Movie> deleteFilm(String name){
+    public ResponseEntity<Movie> deleteFilm(String name) {
         Optional<Movie> movie = movieAdminService.findByName(name);
-        if (movie.isPresent()){
+        if (movie.isPresent()) {
             Movie movie_ = movie.get();
             movieAdminService.delete(movie);
 
@@ -52,14 +55,8 @@ public class MovieAdminController {
         return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
     }
 
-    @DeleteMapping("/deleteMovie")
-    public ResponseEntity<Movie> deleteFilmByID(@RequestParam Long filmId){
-        Optional<Movie> movie = movieAdminService.findById(filmId);
-        if (movie.isPresent()){
-            Movie movie_ = movie.get();
-            movieAdminService.delete(movie);
-            return new ResponseEntity<>(movie_, HttpStatus.OK);
-        }
-        return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+    @DeleteMapping("/deleteFilm/{movieId}")
+    public void deleteFilmByID(@PathVariable("movieId") Long movieId) {
+            movieAdminService.deleteById(movieId);
     }
 }

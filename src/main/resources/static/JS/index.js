@@ -37,7 +37,6 @@ $(document).ready(function () {
             movieAgeRestriction: $("#movieAgeRestriction").val(),
             posterLink: $("#posterLink").val(),
 
-
         };
 
         $.ajax({
@@ -46,33 +45,24 @@ $(document).ready(function () {
             data: JSON.stringify(formData),
             dataType: "json",
             encode: true,
-            headers:{"Content-Type":"application/json;charset=UTF-8"},
+            headers:{"Content-Type":"application/json;charset=UTF-8"}
         }).done(function (data) {
             console.log(data);
         });
-
         event.preventDefault();
     });
+
 });
 
-
-function addFilm() {
-
+async function deleteFilm(movieId) {
+    await fetch('/deleteFilm/' + movieId, {
+        method: 'DELETE'
+    })
+    refreshPage();
 }
 
-
-function deleteFilm(id) {
-    $.ajax({
-        type: "DELETE",
-        url: "/deleteFilmById",
-        data: JSON.stringify(id),
-        dataType: "json",
-        encode: true,
-        headers:{"Content-Type":"application/json;charset=UTF-8"},
-
-    }).done(function (data) {
-        console.log(data);
-    });
+function refreshPage(){
+    window.location.reload();
 }
 
 
@@ -120,6 +110,7 @@ class FilmRenderer {
     async fetchDataFromFilms() {
         let responseFilms = await fetch(this.endpointUrlFilms);
         this.dataFilm = await responseFilms.json();
+        console.log(this.dataFilm);
         this.updateUI();
     }
 
@@ -131,6 +122,11 @@ class FilmRenderer {
 
             //sets target for JS
             let target = $("#film-cards");
+
+            /***
+             *
+
+            KUN TAGET UD IMENS MAN IKKE KAN OPRETTE VISNINGER. MÅ IKKE SLETTES!
 
             //Array for show dates
             let dateList = new Array();
@@ -147,6 +143,7 @@ class FilmRenderer {
                 return new Date(a) - new Date(b)
             });
 
+             */
 
 
             //First part of Film-Card
@@ -176,10 +173,10 @@ class FilmRenderer {
                                     <p>${entryFilm.movieGenre}</p>
                                     </div>
                                 <div class="col-4">
-                                <button class="btn btn-primary" onclick="updateFilm(${entryFilm.id})">Rediger</button>
+                                <button class="btn btn-primary" onclick="updateFilm(${entryFilm.movieId})">Rediger</button>
                             </div>
                             <div class="col-4">
-                                <button class="btn btn-primary" onclick="deleteFilm(${entryFilm.id})">Slet</button>
+                                <button id="film-delete-btn" class="btn btn-primary" onclick="deleteFilm( ${entryFilm.movieId} )">Slet</button>
                             </div>
                           </div>
                       </div>
@@ -192,6 +189,11 @@ class FilmRenderer {
                                   <th>Dato</th>
                                   <th>Visninger</th>
                               </tr>`;
+
+
+            /**
+             * KUN TAGET UD IMENS MAN IKKE KAN OPRETTE VISNINGER. MÅ IKKE SLETTES!
+
 
             //Loop for adding show times to dates for each film
             for (let i = 0; i < sortedDateList.length; i++) {
@@ -229,6 +231,8 @@ class FilmRenderer {
                 cards += "</tr>";
 
             }
+             */
+
             //Closing HTML
             cards += `</table></div></div></div>`;
             //Adds film-cards to HTML

@@ -39,7 +39,8 @@ public class MovieAdminService implements IMovieAdminService {
     }
 
     @Override
-    public void deleteById(Long Id) {
+    public void deleteById(Long id) {
+        movieAdminRepo.deleteById(id);
     }
 
     @Override
