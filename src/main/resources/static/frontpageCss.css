@@ -1,0 +1,25 @@
+.main_box{
+    display:flex;
+    position: relative;
+    justify-content: space-around;
+    
+}
+.button_img{
+    height: 400px;
+    width: 100%;
+}
+
+.snacks{
+    text-align: center;
+    background-color: white;
+}
+
+.cinema{
+    text-align: center;
+    background-color: white;
+}
+
+.duty_schedule{
+    text-align: center;
+    background-color: white;
+}
