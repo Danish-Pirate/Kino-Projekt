@@ -20,6 +20,12 @@ public class MovieAdminController {
         this.movieAdminService = movieAdminService;
     }
 
+    @GetMapping("/getMovie/{id}")
+    public ResponseEntity<Movie> getMovieById(@PathVariable("id") Long id) {
+        movieAdminService.findById(id);
+        return new ResponseEntity<>(movieAdminService.findById(id).get(), HttpStatus.OK);
+    }
+
     @PostMapping("/addMovie")
     public ResponseEntity<Movie> addMovie(@RequestBody Movie movie) {
         movieAdminService.save(movie);
@@ -31,6 +37,7 @@ public class MovieAdminController {
         return new ResponseEntity<>(movieAdminService.findAll(), HttpStatus.OK);
     }
 
+    /*
     @PutMapping("/editMovie")
     public ResponseEntity<Movie> editFilm(@RequestBody Movie newMovie, @RequestParam String movieName) {
         Optional<Movie> oldMovie = movieAdminService.findByName(movieName);
@@ -42,6 +49,20 @@ public class MovieAdminController {
             return new ResponseEntity<>(newMovie, HttpStatus.BAD_REQUEST);
         }
     }
+    */
+
+    @PutMapping("/editMovie")
+    public ResponseEntity<Movie> editFilm(@RequestBody Movie newMovie) {
+        Optional<Movie> oldMovie = movieAdminService.findByName(newMovie.getName());
+        if (oldMovie.isPresent()) {
+            movieAdminService.save(newMovie);
+
+            return new ResponseEntity<>(newMovie, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(newMovie, HttpStatus.BAD_REQUEST);
+        }
+    }
+
 
     @PostMapping("/deleteMovie")
     public ResponseEntity<Movie> deleteFilm(String name) {

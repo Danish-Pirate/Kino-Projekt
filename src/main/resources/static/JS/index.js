@@ -24,7 +24,6 @@ $(document).ready(function () {
 
 */
 
-
 //Sends data from form to endpoint /// Endpoint = /bookings (POST)
 
 $(document).ready(function () {
@@ -66,16 +65,48 @@ function refreshPage(){
 }
 
 
-function updateFilm(id) {
-    console.log(id);
+async function GetFilm(id) {
+
+    let endpointGetFilmById = '/getMovie/' + id
+    let responseFilm = await fetch(endpointGetFilmById);
+    let dataFilmFromId = await responseFilm.json();
+
+    let targetForEditFilm = $("#edit-film-card");
+
+    let modalCardForEditFilm =
+        `
+        <h1>HELLO FROM JAVASCRIPT</h1>
+        `;
+
+    targetForEditFilm.append(modalCardForEditFilm);
+
+
+    console.log(dataFilmFromId);
+/*
+    $.ajax({
+        type: "PUT",
+        url: "/editMovie",
+        data: JSON.stringify(formData),
+        dataType: "json",
+        encode: true,
+        headers:{"Content-Type":"application/json;charset=UTF-8"}
+    }).done(function (data) {
+        console.log(data);
+    });
+    event.preventDefault();
+*/
+
 }
 
+
+async function UpdateFilm(){
+
+}
 //Pop up
 
 function gallModal(element) {
     document.getElementById("modal-bookning").src = element.src;
 }
-
 
 
 //Accordion
@@ -110,7 +141,6 @@ class FilmRenderer {
     async fetchDataFromFilms() {
         let responseFilms = await fetch(this.endpointUrlFilms);
         this.dataFilm = await responseFilms.json();
-        console.log(this.dataFilm);
         this.updateUI();
     }
 
@@ -173,7 +203,8 @@ class FilmRenderer {
                                     <p>${entryFilm.movieGenre}</p>
                                     </div>
                                 <div class="col-4">
-                                <button class="btn btn-primary" onclick="updateFilm(${entryFilm.movieId})">Rediger</button>
+
+                                <button class="btn btn-primary" onclick="GetFilm(${entryFilm.movieId})">Rediger</button>
                             </div>
                             <div class="col-4">
                                 <button id="film-delete-btn" class="btn btn-primary" onclick="deleteFilm( ${entryFilm.movieId} )">Slet</button>
@@ -242,3 +273,5 @@ class FilmRenderer {
 }
 
 var filmRenderer = new FilmRenderer();
+
+

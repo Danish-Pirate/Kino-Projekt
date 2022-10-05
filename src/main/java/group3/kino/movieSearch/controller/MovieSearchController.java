@@ -16,9 +16,11 @@ public class MovieSearchController implements iMovieController{
     public MovieSearchController(iMovieService iMovieService) {
         this.iMovieService = iMovieService;
     }
+
     @Override
-    @GetMapping("/search-movie/name")
-    public ResponseEntity<Set<Movie>> findByName(@RequestParam String name) {
+    @GetMapping("/search-movie-by-name/{name}")
+    public ResponseEntity<Set<Movie>> findByName(@PathVariable("name") String name) {
+        System.out.println(name);
         return new ResponseEntity<>(iMovieService.findByName(name), HttpStatus.OK);
     }
 

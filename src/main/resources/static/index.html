@@ -34,6 +34,7 @@
     <link rel="stylesheet" href="/css/style.css">
     <!-- Custom JS -->
     <script type="text/javascript" src="/JS/index.js"></script>
+    <script type="text/javascript" src="/JS/SearchFilm.js"></script>
 
 
     <title>Listing</title>
@@ -59,63 +60,88 @@
       </nav>
 	<!-- navbar end -->
 
+    <div id="edit-film-card"></div>
 
     <!-- Main content -->
 
+    <!--
     <div class="navbar navbar-dark">
 
         <h1>Liste af Film</h1>
 
-        <form action="index.html">
+        <form action="">
         <ul class="navbar nav ml-auto">
-            <!-- Dropdown list -->
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle"
-                   data-toggle="dropdown" href="#"
-                   role="button" aria-haspopup="true"
-                   aria-expanded="false"
-                   style="color:black;">
-                    Genre
-                </a>
 
-                <div class="dropdown-menu">
-                    <a class="dropdown-item"
-                       href="#">Drama
-                    </a>
+            Dropdown list
+           <li class="nav-item dropdown">
+               <a class="nav-link dropdown-toggle"
+                  data-toggle="dropdown" href="#"
+                  role="button" aria-haspopup="true"
+                  aria-expanded="false"
+                  style="color:black;">
+                   Genre
+               </a>
 
-                    <a class="dropdown-item"
-                       href="#">Gyser
-                    </a>
+               <div class="dropdown-menu">
+                   <a class="dropdown-item"
+                      href="#">Drama
+                   </a>
 
-                    <a class="dropdown-item"
-                       href="#">Børnefilm
-                    </a>
+                   <a class="dropdown-item"
+                      href="#">Gyser
+                   </a>
 
-                    <a class="dropdown-item"
-                       href="#">Action
-                    </a>
+                   <a class="dropdown-item"
+                      href="#">Børnefilm
+                   </a>
 
-                    <a class="dropdown-item"
-                       href="#">Romantiker
-                    </a>
-                </div>
+                   <a class="dropdown-item"
+                      href="#">Action
+                   </a>
+
+                   <a class="dropdown-item"
+                      href="#">Romantiker
+                   </a>
+               </div>
+           </li>
+
+            <li>
+                <label for="filmName">Søg på film titel:</label><br>
+                <input type="text" id="filmName" name="filmName">
+                <button type="" value="search" onclick="searchFilmByName(filmName)"> </button>
+                Search Box
             </li>
             <li>
-                <!-- Search Box -->
-                <input type="text" placeholder="Search.." class="w-100 p-1">
-            </li>
-            <li>
-                <button class="btn bg-white" style="border: solid; margin-left: 5px">Search</button>
+
             </li>
         </ul>
         </form>
     </div>
+-->
+<!--
+    <form id="search-film" action="/search-movie-by-name" method="GET">
+        <div id="" class="form-group">
+            <label for="">Titel</label>
+            <input
+                    type="text"
+                    class="form-control"
+                    id="name"
+                    name="name"
+                    placeholder="Film name"
+            />
+        </div>
+        <button type="submit" class="btn btn-success mt-2" data-bs-dismiss="modal" onclick="refreshPage()">
+            Tilføj
+        </button>
+    </form>
 
-    <!-- Container TEST-->
+-->
+
     <div class="container p-5">
         <div class="row justify-content-center">
             <div class="col-sm-8 col-md-10 col-lg-4 item img-cards" data-bs-toggle="modal" data-bs-target="#modal-1">
-                <div class="d-flex justify-content-center mt-5"><button onclick="gallModal(this)" class="btn btn-primary">Tilføj film</button></div>
+                <div class="d-flex justify-content-center mt-5"><button onclick="gallModal(this)" class="btn btn-primary">Tilføj film</button>
+                </div>
             </div>
         </div>
     </div>
@@ -191,8 +217,6 @@
                                     placeholder="poster link"
                             />
                         </div>
-
-
                         <button type="submit" class="btn btn-success mt-2" data-bs-dismiss="modal" onclick="refreshPage()">
                             Tilføj
                         </button>
@@ -207,7 +231,12 @@
 
     <!-- Container TEST-->
 
+
+
+    <!-- Container TEST-->
+
     <div id="film-cards"></div>
+
 
     <!-- Container 1
 
