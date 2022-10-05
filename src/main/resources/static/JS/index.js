@@ -75,7 +75,7 @@ async function GetFilm(id) {
 
     let modalCardForEditFilm =
         `
-        <h1>HELLO FROM JAVASCRIPT</h1>
+       
         `;
 
     targetForEditFilm.append(modalCardForEditFilm);
@@ -172,7 +172,6 @@ class FilmRenderer {
             let sortedDateList = dateList.sort((a, b) => {
                 return new Date(a) - new Date(b)
             });
-
              */
 
 
@@ -203,8 +202,62 @@ class FilmRenderer {
                                     <p>${entryFilm.movieGenre}</p>
                                     </div>
                                 <div class="col-4">
+                                
+                                 <!-- START AF -->
+                                    <div class="modal fade" id="modalEditFilmForm${dataFilmIndex}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                                      <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                          <div class="modal-header text-center">
+                                            <h4 class="modal-title w-100 font-weight-bold">Film information</h4>
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                              <span aria-hidden="true">&times;</span>
+                                            </button>
+                                          </div>
+                                          
+                                          <div class="modal-body mx-3">
+                                          
+                                            <div class="md-form mb-1">
+                                               <label data-error="wrong" data-success="right" for="editfilm-name">Titel</label>
+                                              <input type="text" id="editfilm-name" class="form-control validate" value="${entryFilm.name}">
+                                            </div>
+                                            
+                                              <div class="md-form mb-1">
+                                               <label data-error="wrong" data-success="right" for="editfilm-price">Pris</label>
+                                              <input type="number" id="editfilm-price" class="form-control validate" value="${entryFilm.moviePrice}">
+                                            </div>
+                                            
+                                            <div class="md-form mb-1">
+                                               <label data-error="wrong" data-success="right" for="editfilm--length">Længde</label>
+                                              <input type="number" id="editfilm-length" class="form-control validate" value="${entryFilm.movieLength}">
+                                            </div>
+                                            
+                                            <div class="md-form mb-1">
+                                               <label data-error="wrong" data-success="right" for="editfilm-genre">Genre</label>
+                                              <input type="text" id="editfilm-genre" class="form-control validate" value="${entryFilm.movieGenre}">
+                                            </div>
+                                            
+                                            <div class="md-form mb-1">
+                                               <label data-error="wrong" data-success="right" for="editfilm-ageLimit">Alders grænse</label>
+                                              <input type="number" id="editfilm-ageLimit" class="form-control validate" value="${entryFilm.movieAgeRestriction}">
+                                            </div>
+                                            
+                                            <div class="md-form mb-1">
+                                               <label data-error="wrong" data-success="right" for="editfilm-posterLink">Filmplakat link</label>
+                                              <input type="text" id="editfilm-posterLink" class="form-control validate" value="${entryFilm.posterLink}">
+                                            </div>
 
-                                <button class="btn btn-primary" onclick="GetFilm(${entryFilm.movieId})">Rediger</button>
+                                          </div>
+                                          <div class="modal-footer d-flex justify-content-center">
+                                            <button class="btn btn-primary" onclick="refreshPage()">Opdater</button>
+                                          </div>
+                                        </div>
+                                      </div>
+                                    </div>
+                                    
+                                    <div class="text-center">
+                                      <a href="" class="btn btn-primary" data-toggle="modal" data-target="#modalEditFilmForm${dataFilmIndex}">Rediger</a>
+                                    </div>
+                                    <!-- SLUT AF -->
                             </div>
                             <div class="col-4">
                                 <button id="film-delete-btn" class="btn btn-primary" onclick="deleteFilm( ${entryFilm.movieId} )">Slet</button>
