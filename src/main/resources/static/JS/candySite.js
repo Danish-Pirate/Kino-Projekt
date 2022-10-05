@@ -31,10 +31,9 @@ $(document).ready(function () {
     $("#modal-candy").submit(function (event) {
         let formData = {
             candyName: $("#candyName").val(),
+            candySize: $("#candySize").val(),
+            candyAmount: $("#candyAmount").val(),
             candyPrice: $("#candyPrice").val(),
-            candyLength: $("#candyAmount").val(),
-            candyGenre: $("#candySize").val(),
-            candyAgeRestriction: $("#candyAgeRestriction").val(),
             productLink: $("#productLink").val(),
 
         };
@@ -54,7 +53,7 @@ $(document).ready(function () {
 
 });
 
-async function deleteCandy(movieId) {
+async function deleteCandy(candyId) {
     await fetch('/deleteCandy/' + candyId, {
         method: 'DELETE'
     })
@@ -78,28 +77,12 @@ function gallModal(element) {
 
 
 
-//Accordion
-function showAccordion() {
-    var acc = document.getElementsByClassName("accordion");
-    var i;
 
-    for (i = 0; i < acc.length; i++) {
-        acc[i].addEventListener("click", function () {
-            this.classList.toggle("active");
-            var panel = this.nextElementSibling;
-            if (panel.style.display === "block") {
-                panel.style.display = "none";
-            } else {
-                panel.style.display = "block";
-            }
-        });
-    }
-}
 
 
 class CandyRenderer {
 
-    endpointUrlCandy = "/json/candy.json";
+    endpointUrlCandy = "/getAllCandy";
 
     constructor() {
         this.dataCandy = null;

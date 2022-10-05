@@ -22,7 +22,7 @@ public class CandyAdminController {
     }
 
     @PostMapping("/addCandy")
-    public ResponseEntity<Candy> addCandy(Candy candy){
+    public ResponseEntity<Candy> addCandy(@RequestBody Candy candy){
         candyAdminService.save(candy);
         return new ResponseEntity<>(candy, HttpStatus.OK);
     }
