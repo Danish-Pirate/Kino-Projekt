@@ -23,7 +23,7 @@ function seatNumbering(){
 
 
         if (gridcount == 1){
-            seats = seats + '<row class="row_class">' + "række: " + rowNum + '</row>';
+            seats = seats + '<row class="row_class">' + "R" + rowNum + '</row>';
         }else{
             seat_id++;
             seats = seats + '<seats class="cinema_one_seat_class" id="seat_id_' + seat_id +

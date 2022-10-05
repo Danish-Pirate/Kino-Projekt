@@ -29,14 +29,13 @@ function addData(){
 
             if(response.status == 200){
                 this.data = await response.json();
-                
 
             }
             
         }
 
     }
-
+    document.getElementById('movie_name_head').textContent = currentMovieShow.movieName;
 
     document.getElementById('cinema_name_infobox_id').textContent = "Sal : " + currentMovieShow.cinemaName;
 
