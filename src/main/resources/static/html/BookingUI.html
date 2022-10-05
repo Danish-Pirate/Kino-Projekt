@@ -44,22 +44,27 @@
 
         <section class="registrationBox">
             <div>
-                <form>
+                <form action="/createBooking" method="post">
                     <ul class="flex-outer">
                       <li>
                         <label for="customer-name">Kunde navn :</label>
-                        <input type="text" id="customer-name" placeholder="Navn">
+                        <input type="text" id="customer-name" name="customerName" placeholder="Navn" required>
                       </li>
                       <li>
                         <label for="phone">Tlf. nummer :</label>
-                        <input type="tel" id="phone" placeholder="Kundens tlf. nummer">
+                        <input type="text" id="phone" name="phoneNumber" placeholder="Kundens tlf. nummer" required>
                       </li>
                       <div class="ticket" id="ticket_id"><!--kode tilhørende billetter-->
 
                       </div>
-                      <div class="total_ticket_price" id="total_ticket_price" >0 dkk</div>
+                      <div class="total_ticket_price" id="total_ticket_price">0 dkk</div>
+                      <input id="total_price_input_id" type="number" name="totalPrice" hidden>
+                      <input id="movie_name_input" type ="text" hidden>
+                      <input id="time_slot_input" type ="text" hidden>
+                      <input id="date_input" type ="text" hidden>
+                      <input id="cinema_name_input" type ="text" hidden>
                       <li>
-                        <button id="submit_button" type="submit">Accepter!</button>
+                        <button id="submit_button" type="submit">Accepter!</button> 
                       </li>
                     </ul>
                   </form>

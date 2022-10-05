@@ -64,7 +64,7 @@ function handleTicket(){
         '"><option value="Voksen"><option value="Barn"><option value="Pensionist"></ticket>'+" Pris: "+ (currentMovieShow.price)+ " dkk"+'<br>';
 
         this.ticketList = this.ticketList.replace(removeTicket, "");
-
+        
         
 
     }
@@ -117,6 +117,7 @@ function updateTotalTicketPrice(){
     if($("#" + seatClickedID).css("background-color") != "rgb(230, 230, 250)"){
         
         this.currentTotalPrice = this.currentTotalPrice + currentMovieShow.price;
+    
         
 }
     
@@ -127,7 +128,10 @@ if($("#" + seatClickedID).css("background-color") != "rgb(255, 0, 0)"){
 }
     $("#total_ticket_price").text(this.currentTotalPrice + " dkk");
 
-    console.log(this.currentTotalPrice);
+    document.getElementById("total_price_input_id").value = currentTotalPrice;
+
+    console.log(document.getElementById("total_price_input_id").value);
+    
 
 
 }
