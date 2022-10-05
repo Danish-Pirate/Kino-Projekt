@@ -49,4 +49,9 @@ function addData(){
 
     document.getElementById('price_infobox_id').textContent = "Pris : "+ currentMovieShow.price + " dkk";
 
+    document.getElementById('movie_name_input_id').textContent = currentMovieShow.movieName;
+    document.getElementById('time_slot_input_id').textContent = currentMovieShow.startTime; 
+    document.getElementById('date_input_id').textContent = currentMovieShow.date;
+    document.getElementById('cinema_name_input_id').textContent = currentMovieShow.cinemaName;
+
 }
