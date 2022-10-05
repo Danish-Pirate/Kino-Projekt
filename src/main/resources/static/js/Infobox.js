@@ -35,7 +35,7 @@ function addData(){
         }
 
     }
-    document.getElementById('movie_name_head').textContent = currentMovieShow.movieName;
+    document.getElementById('movie_name_head').textContent = "" + currentMovieShow.movieName;
 
     document.getElementById('cinema_name_infobox_id').textContent = "Sal : " + currentMovieShow.cinemaName;
 
