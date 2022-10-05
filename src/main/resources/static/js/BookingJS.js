@@ -130,9 +130,5 @@ if($("#" + seatClickedID).css("background-color") != "rgb(255, 0, 0)"){
 
     document.getElementById("total_price_input_id").value = currentTotalPrice;
 
-    console.log(document.getElementById("total_price_input_id").value);
-    
-
-
 }
 
