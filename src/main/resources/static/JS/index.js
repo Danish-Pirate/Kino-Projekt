@@ -18,7 +18,7 @@ $(document).ready(function () {
             data: JSON.stringify(formData),
             dataType: "json",
             encode: true,
-            headers:{"Content-Type":"application/json;charset=UTF-8"}
+            headers: { "Content-Type": "application/json;charset=UTF-8" }
         }).done(function (data) {
             console.log(data);
         });
@@ -36,38 +36,38 @@ async function deleteFilm(movieId) {
 
 }
 
-async function updateFilm(id){
+async function updateFilm(id) {
 
-        let formDataEdit = {
-            name: $("#editfilm-name"+id).val(),
-            moviePrice: $("#editfilm-price"+id).val(),
-            movieLength: $("#editfilm-length"+id).val(),
-            movieGenre: $("#editfilm-genre"+id).val(),
-            movieAgeRestriction: $("#editfilm-ageRestriction"+id).val(),
-            posterLink: $("#editfilm-posterLink"+id).val(),
-            movieId: $("#editfilm-movieId"+id).val(),
-        };
+    let formDataEdit = {
+        name: $("#editfilm-name" + id).val(),
+        moviePrice: $("#editfilm-price" + id).val(),
+        movieLength: $("#editfilm-length" + id).val(),
+        movieGenre: $("#editfilm-genre" + id).val(),
+        movieAgeRestriction: $("#editfilm-ageRestriction" + id).val(),
+        posterLink: $("#editfilm-posterLink" + id).val(),
+        movieId: $("#editfilm-movieId" + id).val(),
+    };
 
-        $.ajax({
-            type: "PUT",
-            url: "/editMovie/"+formDataEdit.movieId,
-            data: JSON.stringify(formDataEdit),
-            dataType: "json",
-            encode: true,
-            headers:{"Content-Type":"application/json;charset=UTF-8"}
-        }).done(function (data) {
-            console.log(data);
-        });
-        event.preventDefault();
+    $.ajax({
+        type: "PUT",
+        url: "/editMovie/" + formDataEdit.movieId,
+        data: JSON.stringify(formDataEdit),
+        dataType: "json",
+        encode: true,
+        headers: { "Content-Type": "application/json;charset=UTF-8" }
+    }).done(function (data) {
+        console.log(data);
+    });
+    event.preventDefault();
 
     refreshPage();
 }
 
 
 
-function refreshPage(){
+function refreshPage() {
 
-    setTimeout(()=> window.location.reload(), 500)
+    setTimeout(() => window.location.reload(), 500)
 
 }
 

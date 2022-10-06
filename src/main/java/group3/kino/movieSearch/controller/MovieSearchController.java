@@ -3,6 +3,7 @@ package group3.kino.movieSearch.controller;
 import group3.kino.movieAdministration.model.Movie;
 import group3.kino.movieSearch.service.iMovieService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -18,16 +19,23 @@ public class MovieSearchController implements iMovieController{
     }
 
     @Override
-    @GetMapping("/search-movie-by-name/{name}")
-    public ResponseEntity<Set<Movie>> findByName(@PathVariable("name") String name) {
-        System.out.println(name);
-        return new ResponseEntity<>(iMovieService.findByName(name), HttpStatus.OK);
+    @GetMapping("/search-movie/name")
+    public ResponseEntity<Set<Movie>> findByName(@RequestParam String name) {
+        HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.set("Access-Control-Allow-Origin", "*");
+        return ResponseEntity.ok()
+                .headers(responseHeaders)
+                .body(iMovieService.findByName(name));
     }
 
     @Override
     @GetMapping("/search-movie/genre")
-    public ResponseEntity<Set<Movie>> findByGenre(@RequestParam String movieGenre) {
-        return new ResponseEntity<>(iMovieService.findByMovieGenre(movieGenre), HttpStatus.OK);
+    public ResponseEntity<Set<Movie>> findByGenre(@RequestParam String genre) {
+        HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.set("Access-Control-Allow-Origin", "*");
+        return ResponseEntity.ok()
+                .headers(responseHeaders)
+                .body(iMovieService.findByMovieGenre(genre));
     }
 
     @Override

@@ -66,7 +66,18 @@
     <div id="edit-film-card"></div>
 
     <!-- Main content -->
-
+    <div id="searchBar" class="w-25 ml-1">
+        <form onsubmit="searchMovieByParam()">
+            <div class="form-group">
+              <label for="inputSearchBar">Søg efter film</label>
+              <input type="text" id="searchBarValue" class="form-control" id="inputSearchBar" placeholder="Input navn/genre">
+            </div>
+            <input id="searchBarHiddenValue" type="hidden" value="name">
+            <button type="submit" class="btn btn-primary">Søg</button>
+            <button type="button" onclick="changeSearchToGenre()" class="btn btn-primary">Genre</button>
+            <button type="button" onclick="changeSearchToTitle()" class="btn btn-primary">Title</button>
+          </form>
+    </div>
     <!--
     <div class="navbar navbar-dark">
 
