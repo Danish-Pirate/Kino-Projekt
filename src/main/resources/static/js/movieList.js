@@ -140,12 +140,13 @@ class FilmRenderer {
                                   <h4>Genre: </h4>
                                   <p>${entryFilm.movieGenre}</p>
                                   </div>
+                                  
+                                <div class="col-4">
+                                    <button id="film-delete-btn" class="btn btn-primary" onclick="deleteFilm( ${entryFilm.movieId} )">Slet</button>
+                                </div>
+                                
                               <div class="col-4">
-                              
-                              <!-- ANDET FORSØG -->
-               
-                           
-                                  <div  data-bs-toggle="modal" data-bs-target="#modal${entryFilm.movieId}">
+                                  <div class="" data-bs-toggle="modal" data-bs-target="#modal${entryFilm.movieId}">
                                        <button class="btn btn-primary">Opdater</button>
                                       
                                   </div>
@@ -239,9 +240,6 @@ class FilmRenderer {
                                       </div>
                                   </div>
                              </div>         
-                          </div>
-                          <div class="col-4">
-                              <button id="film-delete-btn" class="btn btn-primary" onclick="deleteFilm( ${entryFilm.movieId} )">Slet</button>
                           </div>
                         </div>
                     </div>
