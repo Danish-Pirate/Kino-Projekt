@@ -1,8 +1,7 @@
-package group3.kino.bookingManager.controller;
+package group3.kino.administrationManager.controller;
 
-import group3.kino.bookingManager.model.WorkSchedule;
-import group3.kino.bookingManager.service.IWorkScheduleService;
-import group3.kino.bookingManager.service.WorkScheduleService;
+import group3.kino.administrationManager.model.WorkSchedule;
+import group3.kino.administrationManager.service.WorkScheduleService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

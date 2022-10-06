@@ -1,6 +1,6 @@
-package group3.kino.bookingManager.repository;
+package group3.kino.administrationManager.repository;
 
-import group3.kino.bookingManager.model.WorkSchedule;
+import group3.kino.administrationManager.model.WorkSchedule;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface WorkScheduleRepository extends JpaRepository<WorkSchedule, Long> {

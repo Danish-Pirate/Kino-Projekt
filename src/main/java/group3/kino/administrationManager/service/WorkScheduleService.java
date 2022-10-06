@@ -1,7 +1,8 @@
-package group3.kino.bookingManager.service;
+package group3.kino.administrationManager.service;
 
-import group3.kino.bookingManager.model.WorkSchedule;
-import group3.kino.bookingManager.repository.WorkScheduleRepository;
+import group3.kino.administrationManager.model.WorkSchedule;
+import group3.kino.administrationManager.repository.WorkScheduleRepository;
+import group3.kino.administrationManager.service.IWorkScheduleService;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;

@@ -1,4 +1,4 @@
-package group3.kino.bookingManager.model;
+package group3.kino.administrationManager.model;
 
 import lombok.Getter;
 import lombok.Setter;
