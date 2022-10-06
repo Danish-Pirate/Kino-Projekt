@@ -4,6 +4,7 @@ import group3.kino.bookingManager.model.Booking;
 import group3.kino.bookingManager.model.Seat;
 import group3.kino.bookingManager.service.BookingService;
 import group3.kino.bookingManager.service.SeatService;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,18 +24,28 @@ public class BookingController {
     }
 
     @PostMapping ("/createBooking")
-    public ResponseEntity<String> createBooking(@RequestBody Booking booking)  {
+    public   ResponseEntity<String> createBooking(@RequestParam("customerName") String customerName, @RequestParam("phoneNumber") String phoneNumber,
+            @RequestParam("date") String date, @RequestParam("timeSlot") String timeSlot, @RequestParam("cinemaName") String cinemaName,
+                                                  @RequestParam("movieName") String movieName, @RequestParam("totalPrice") double totalPrice)  {
+        Booking booking = new Booking(customerName, phoneNumber, date, timeSlot, cinemaName, movieName, totalPrice);
         bookingService.save(booking);
-        String msg="";
+        /* String msg="";
         if(bookingService.save(booking)!=null)  {
             msg="Oprettet booking: " + booking.getMovieName();
         }else {
             msg="fejl i oprettelsen af " + booking.getMovieName();
         }
         return new ResponseEntity<>(msg, HttpStatus.OK);
+        */
+
+        HttpHeaders responseHeaders = new HttpHeaders();
+        responseHeaders.set("Access-Control-Allow-Origin", "*");
+        return ResponseEntity.ok()
+                .headers(responseHeaders)
+                .body("test");
     }
 
-    @GetMapping ("/getAll")
+    @GetMapping ("/getAllBooking")
     public ResponseEntity<Set<Booking>> getAllBookings()  {
         return new ResponseEntity<>(bookingService.findAll(), HttpStatus.OK);
     }
@@ -49,9 +60,7 @@ public class BookingController {
         }else{
             return new ResponseEntity<>(newBooking, HttpStatus.BAD_REQUEST);
         }
-
     }
-
     @DeleteMapping("/deleteBooking")
     public ResponseEntity<Booking> deleteBooking(Long id) {
         Optional<Booking> booking_ = bookingService.findById(id);
@@ -66,8 +75,6 @@ public class BookingController {
     @GetMapping("/showAvailableSeats")
     public ResponseEntity<Set<Seat>> showAvailable()  {
         return new ResponseEntity<>(seatService.findAllAvailable(), HttpStatus.OK);
-
-
     }
 
 }

@@ -17,7 +17,7 @@ function addData(){
 
     class movieShow{
 
-        endPointUrl = "http://";
+        endPointUrl = "localhost:8080/";
 
         constructor(data){
             this.data = data;
@@ -35,7 +35,7 @@ function addData(){
         }
 
     }
-    document.getElementById('movie_name_head').textContent = currentMovieShow.movieName;
+    document.getElementById('movie_name_head').textContent = "" + currentMovieShow.movieName;
 
     document.getElementById('cinema_name_infobox_id').textContent = "Sal : " + currentMovieShow.cinemaName;
 
@@ -49,4 +49,14 @@ function addData(){
 
     document.getElementById('price_infobox_id').textContent = "Pris : "+ currentMovieShow.price + " dkk";
 
-}
+    document.getElementById('movie_name_input').textContent = currentMovieShow.movieName;
+    document.getElementById('time_slot_input').textContent = currentMovieShow.startTime; 
+    document.getElementById('date_input').textContent = currentMovieShow.date;
+    document.getElementById('cinema_name_input').textContent = currentMovieShow.cinemaName;
+
+    document.getElementById('movie_name_input').value = currentMovieShow.movieName;
+    document.getElementById('time_slot_input').value = currentMovieShow.startTime; 
+    document.getElementById('date_input').value = currentMovieShow.date;
+    document.getElementById('cinema_name_input').value = currentMovieShow.cinemaName;
+
+    }
