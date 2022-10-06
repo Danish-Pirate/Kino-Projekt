@@ -1,32 +1,7 @@
 //Sends data from form to endpoint /// Endpoint = /bookings (POST)
-/*
-$(document).ready(function () {
-  $("#form-id").submit(function (event) {
-      let formData = {
-          title: $("#title").val(),
-          price: $("#price").val(),
-      };
-
-      $.ajax({
-          type: "POST",
-          url: "/film",
-          data: JSON.stringify(formData),
-          dataType: "json",
-          encode: true,
-          headers:{"Content-Type":"application/json;charset=UTF-8"},
-      }).done(function (data) {
-          console.log(data);
-      });
-
-      event.preventDefault();
-  });
-});
-
-*/
-
-//Sends data from form to endpoint /// Endpoint = /bookings (POST)
 
 $(document).ready(function () {
+
     $("#modal-film").submit(function (event) {
         let formData = {
             name: $("#name").val(),
@@ -35,7 +10,6 @@ $(document).ready(function () {
             movieGenre: $("#movieGenre").val(),
             movieAgeRestriction: $("#movieAgeRestriction").val(),
             posterLink: $("#posterLink").val(),
-
         };
 
         $.ajax({
@@ -53,62 +27,54 @@ $(document).ready(function () {
 
 });
 
+
 async function deleteFilm(movieId) {
     await fetch('/deleteFilm/' + movieId, {
         method: 'DELETE'
     })
     refreshPage();
+
 }
+
+async function updateFilm(id){
+
+        let formDataEdit = {
+            name: $("#editfilm-name"+id).val(),
+            moviePrice: $("#editfilm-price"+id).val(),
+            movieLength: $("#editfilm-length"+id).val(),
+            movieGenre: $("#editfilm-genre"+id).val(),
+            movieAgeRestriction: $("#editfilm-ageRestriction"+id).val(),
+            posterLink: $("#editfilm-posterLink"+id).val(),
+            movieId: $("#editfilm-movieId"+id).val(),
+        };
+
+        $.ajax({
+            type: "PUT",
+            url: "/editMovie/"+formDataEdit.movieId,
+            data: JSON.stringify(formDataEdit),
+            dataType: "json",
+            encode: true,
+            headers:{"Content-Type":"application/json;charset=UTF-8"}
+        }).done(function (data) {
+            console.log(data);
+        });
+        event.preventDefault();
+
+    refreshPage();
+}
+
+
 
 function refreshPage(){
-    window.location.reload();
-}
 
-
-async function GetFilm(id) {
-
-    let endpointGetFilmById = '/getMovie/' + id
-    let responseFilm = await fetch(endpointGetFilmById);
-    let dataFilmFromId = await responseFilm.json();
-
-    let targetForEditFilm = $("#edit-film-card");
-
-    let modalCardForEditFilm =
-        `
-       
-        `;
-
-    targetForEditFilm.append(modalCardForEditFilm);
-
-
-    console.log(dataFilmFromId);
-/*
-    $.ajax({
-        type: "PUT",
-        url: "/editMovie",
-        data: JSON.stringify(formData),
-        dataType: "json",
-        encode: true,
-        headers:{"Content-Type":"application/json;charset=UTF-8"}
-    }).done(function (data) {
-        console.log(data);
-    });
-    event.preventDefault();
-*/
+    setTimeout(()=> window.location.reload(), 500)
 
 }
 
-
-async function UpdateFilm(){
-
-}
 //Pop up
-
 function gallModal(element) {
     document.getElementById("modal-bookning").src = element.src;
 }
-
-
 //Accordion
 function showAccordion() {
     var acc = document.getElementsByClassName("accordion");
@@ -176,7 +142,7 @@ class FilmRenderer {
 
 
             //First part of Film-Card
-            var cards = `<div class="container my-3">
+            var cards = `<div class="container mt-0 pt-0">
                       <div class="row border border-solid bg-light">
                           <div class="col-3 p-0">
                               <img src="${entryFilm.posterLink}" alt="Film poster" class="film-poster-img">
@@ -203,61 +169,103 @@ class FilmRenderer {
                                     </div>
                                 <div class="col-4">
                                 
-                                 <!-- START AF -->
-                                    <div class="modal fade" id="modalEditFilmForm${dataFilmIndex}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-                                      <div class="modal-dialog" role="document">
-                                        <div class="modal-content">
-                                          <div class="modal-header text-center">
-                                            <h4 class="modal-title w-100 font-weight-bold">Film information</h4>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                              <span aria-hidden="true">&times;</span>
-                                            </button>
-                                          </div>
-                                          
-                                          <div class="modal-body mx-3">
-                                          
-                                            <div class="md-form mb-1">
-                                               <label data-error="wrong" data-success="right" for="editfilm-name">Titel</label>
-                                              <input type="text" id="editfilm-name" class="form-control validate" value="${entryFilm.name}">
-                                            </div>
-                                            
-                                              <div class="md-form mb-1">
-                                               <label data-error="wrong" data-success="right" for="editfilm-price">Pris</label>
-                                              <input type="number" id="editfilm-price" class="form-control validate" value="${entryFilm.moviePrice}">
-                                            </div>
-                                            
-                                            <div class="md-form mb-1">
-                                               <label data-error="wrong" data-success="right" for="editfilm--length">Længde</label>
-                                              <input type="number" id="editfilm-length" class="form-control validate" value="${entryFilm.movieLength}">
-                                            </div>
-                                            
-                                            <div class="md-form mb-1">
-                                               <label data-error="wrong" data-success="right" for="editfilm-genre">Genre</label>
-                                              <input type="text" id="editfilm-genre" class="form-control validate" value="${entryFilm.movieGenre}">
-                                            </div>
-                                            
-                                            <div class="md-form mb-1">
-                                               <label data-error="wrong" data-success="right" for="editfilm-ageLimit">Alders grænse</label>
-                                              <input type="number" id="editfilm-ageLimit" class="form-control validate" value="${entryFilm.movieAgeRestriction}">
-                                            </div>
-                                            
-                                            <div class="md-form mb-1">
-                                               <label data-error="wrong" data-success="right" for="editfilm-posterLink">Filmplakat link</label>
-                                              <input type="text" id="editfilm-posterLink" class="form-control validate" value="${entryFilm.posterLink}">
-                                            </div>
-
-                                          </div>
-                                          <div class="modal-footer d-flex justify-content-center">
-                                            <button class="btn btn-primary" onclick="refreshPage()">Opdater</button>
-                                          </div>
+                                <!-- ANDET FORSØG -->
+                 
+                             
+                                    <div  data-bs-toggle="modal" data-bs-target="#modal${entryFilm.movieId}">
+                                         <button class="btn btn-primary">Opdater</button>
+                                        
+                                    </div>
+                                </div>
+                            </div>
+                        
+                            <div class="modal bg-dark bg-opacity-75 fade" tabindex="-1" role="dialog" id="modal${entryFilm.movieId}">
+                                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                        
+                                            <form id="modal-film-edit" method="PUT">
+                        
+                                                <div id="editfilm-name-group" class="form-group">
+                                                    <label for="editfilm-name${entryFilm.movieId}">Name</label>
+                                                    <input
+                                                            type="text"
+                                                            class="form-control"
+                                                            id="editfilm-name${entryFilm.movieId}"
+                                                            name="editfilm-name"
+                                                            value="${entryFilm.name}"
+                                                    />
+                                                </div>
+                        
+                                                <div id="editfilm-price-group" class="form-group">
+                                                    <label for="editfilm-price${entryFilm.movieId}">Price</label>
+                                                    <input
+                                                            type="number"
+                                                            class="form-control"
+                                                            id="editfilm-price${entryFilm.movieId}"
+                                                            name="editfilm-price"
+                                                              value="${entryFilm.moviePrice}"
+                                                    />
+                                                </div>
+                        
+                                                <div id="editfilm-length-group" class="form-group">
+                                                    <label for="editfilm-length${entryFilm.movieId}">Length</label>
+                                                    <input
+                                                            type="number"
+                                                            class="form-control"
+                                                            id="editfilm-length${entryFilm.movieId}"
+                                                            name="editfilm-length"
+                                                             value="${entryFilm.movieLength}"
+                                                    />
+                                                </div>
+                        
+                                                <div id="editfilm-genre-group" class="form-group">
+                                                    <label for="editfilm-genre${entryFilm.movieId}">Genre</label>
+                                                    <input
+                                                            type="text"
+                                                            class="form-control"
+                                                            id="editfilm-genre${entryFilm.movieId}"
+                                                            name="editfilm-genre"
+                                                            value="${entryFilm.movieGenre}"
+                                                    />
+                                                </div>
+                        
+                                                <div id="editfilm-ageRestriction-group" class="form-group">
+                                                    <label for="editfilm-ageRestriction${entryFilm.movieId}">Age Restriction</label>
+                                                    <input
+                                                            type="text"
+                                                            class="form-control"
+                                                            id="editfilm-ageRestriction${entryFilm.movieId}"
+                                                            name="editfilm-ageRestriction"
+                                                              value="${entryFilm.movieAgeRestriction}"
+                                                    />
+                                                </div>
+                        
+                                                <div id="editfilm-posterLink-group" class="form-group">
+                                                    <label for="editfilm-posterLink${entryFilm.movieId}">Link til film billede</label>
+                                                    <input
+                                                            type="text"
+                                                            class="form-control"
+                                                            id="editfilm-posterLink${entryFilm.movieId}"
+                                                            name="editfilm-posterLink"
+                                                              value="${entryFilm.posterLink}"
+                                                    />
+                                                </div>
+                                                <input
+                                                            type="number"
+                                                            id="editfilm-movieId${entryFilm.movieId}"
+                                                            name="editfilm-movieId"
+                                                            value="${entryFilm.movieId}"
+                                                            hidden
+                                                    />
+                                                <button class="btn btn-success mt-2" data-bs-dismiss="modal" onclick="updateFilm(${entryFilm.movieId})">Opdater</button>
+                                            </form>
                                         </div>
-                                      </div>
+                                        <div class="modal-footer justify-content-center">
+                                            <button type="button" class="btn btn-secondary modal-btn" data-bs-dismiss="modal" onclick="refreshPage()">Luk</button>
+                                        </div>
                                     </div>
-                                    
-                                    <div class="text-center">
-                                      <a href="" class="btn btn-primary" data-toggle="modal" data-target="#modalEditFilmForm${dataFilmIndex}">Rediger</a>
-                                    </div>
-                                    <!-- SLUT AF -->
+                               </div>         
                             </div>
                             <div class="col-4">
                                 <button id="film-delete-btn" class="btn btn-primary" onclick="deleteFilm( ${entryFilm.movieId} )">Slet</button>
@@ -265,6 +273,7 @@ class FilmRenderer {
                           </div>
                       </div>
                       </div>
+                      <div class="container mt-0 pt-0 mb-3">
                       <div class="row">
                   <button class="accordion fw-bold" onclick="showAccordion()">Visninger</button>
                       <div class="panel">
@@ -272,7 +281,7 @@ class FilmRenderer {
                               <tr>
                                   <th>Dato</th>
                                   <th>Visninger</th>
-                              </tr>`;
+                              </tr></div>`;
 
 
             /**
