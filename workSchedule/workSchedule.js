@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     $('#save').click(function(){                
                         $.ajax({
                             cache: false,
-                            url: 'test.php',
+                            url: 'http://localhost:8080/creatSchedule',
                             method: 'POST',
                             data: $('#eventData').serialize(),
                             datatype: 'json',
@@ -77,12 +77,12 @@ document.addEventListener('DOMContentLoaded', function () {
 
        
         // event-data fra url der producerer json med events i (dokumentation: https://fullcalendar.io/docs/events-json-feed)
-        events: 'http://localhost:8080/test',
+        events: 'http://localhost:8080/showSchedule',
         // Modtager et objekt eller et array af objekter, der består af:
-        //String title;
-        // String start;
+        //String title; (medarbejders navn)
+        //String start;
         //String end;
-        //ExtendedProps extendedProps;
+        //String type;
       
 
         // Handling når der klikkes på en event
@@ -94,16 +94,17 @@ document.addEventListener('DOMContentLoaded', function () {
             const modal = new bootstrap.Modal('#editModal', {});
             modal.show();
             
+            //indlæser nuværende værdier i et opbjekt, så det lettere kan redigeres
             $('#eventData input[name=title]').val(info.event.title);
             $('#eventData input[name=start]').val(getDateValue(info.event.start));
             $('#eventData input[name=end]').val(getDateValue(info.event.end));
-            $('#eventData select[name=type]').val(info.event.extendedProps.type);
+            $('#eventData select[name=type]').val(info.event.type);
 
 
             $('#save').click(function(){                
                 $.ajax({
                     cache: false,
-                    url: 'test.php',
+                    url: 'http://localhost:8080/editSchedules',
                     method: 'POST',
                     data: $('#eventData').serialize(),
                     datatype: 'json',
@@ -141,6 +142,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     title: nameWorker,
                     start: info.start,
                     end: info.end,
+                    type: "normal"
                     
                 }
 
