@@ -34,7 +34,7 @@ public class BookingController {
         return new ResponseEntity<>(msg, HttpStatus.OK);
     }
 
-    @GetMapping ("/getAll")
+    @GetMapping ("/getAllBooking")
     public ResponseEntity<Set<Booking>> getAllBookings()  {
         return new ResponseEntity<>(bookingService.findAll(), HttpStatus.OK);
     }
@@ -49,9 +49,7 @@ public class BookingController {
         }else{
             return new ResponseEntity<>(newBooking, HttpStatus.BAD_REQUEST);
         }
-
     }
-
     @DeleteMapping("/deleteBooking")
     public ResponseEntity<Booking> deleteBooking(Long id) {
         Optional<Booking> booking_ = bookingService.findById(id);
@@ -66,8 +64,6 @@ public class BookingController {
     @GetMapping("/showAvailableSeats")
     public ResponseEntity<Set<Seat>> showAvailable()  {
         return new ResponseEntity<>(seatService.findAllAvailable(), HttpStatus.OK);
-
-
     }
 
 }
