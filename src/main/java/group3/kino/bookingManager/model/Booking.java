@@ -35,5 +35,15 @@ public class Booking {
     private CinemaShow showing;
     ;
 
+    Booking(){}
 
+    public Booking(String customerName, String phoneNumber, String date, String timeSlot, String cinemaName, String movieName, double totalPrice) {
+        this.customerName = customerName;
+        this.phoneNumber = phoneNumber;
+        this.date = date;
+        this.timeSlot = timeSlot;
+        this.cinemaName = cinemaName;
+        this.movieName = movieName;
+        this.totalPrice = totalPrice;
+    }
 }

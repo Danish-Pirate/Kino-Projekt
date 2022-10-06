@@ -17,7 +17,7 @@ function addData(){
 
     class movieShow{
 
-        endPointUrl = "http://";
+        endPointUrl = "localhost:8080/";
 
         constructor(data){
             this.data = data;
