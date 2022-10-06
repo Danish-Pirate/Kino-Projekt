@@ -1,31 +1,4 @@
 //Sends data from form to endpoint /// Endpoint = /bookings (POST)
-/*
-$(document).ready(function () {
-  $("#form-id").submit(function (event) {
-      let formData = {
-          title: $("#title").val(),
-          price: $("#price").val(),
-      };
-
-      $.ajax({
-          type: "POST",
-          url: "/film",
-          data: JSON.stringify(formData),
-          dataType: "json",
-          encode: true,
-          headers:{"Content-Type":"application/json;charset=UTF-8"},
-      }).done(function (data) {
-          console.log(data);
-      });
-
-      event.preventDefault();
-  });
-});
-
-*/
-
-
-//Sends data from form to endpoint /// Endpoint = /bookings (POST)
 
 $(document).ready(function () {
     $("#modal-candy").submit(function (event) {
@@ -60,25 +33,44 @@ async function deleteCandy(candyId) {
     refreshPage();
 }
 
+async function updateCandy(id){
+
+    let formDataEdit = {
+        candyName: $("#editcandy-name"+id).val(),
+        candySize: $("#editcandy-size"+id).val(),
+        candyAmount: $("#editcandy-amount"+id).val(),
+        candyPrice: $("#editcandy-price"+id).val(),
+        productLink: $("#editcandy-productLink"+id).val(),
+        candyId: $("#editcandy-candyId"+id).val(),
+    };
+
+    $.ajax({
+        type: "PUT",
+        url: "/editCandy/"+formDataEdit.candyId,
+        data: JSON.stringify(formDataEdit),
+        dataType: "json",
+        encode: true,
+        headers:{"Content-Type":"application/json;charset=UTF-8"}
+    }).done(function (data) {
+        console.log(data);
+    });
+    event.preventDefault();
+
+    refreshPage();
+}
+
 function refreshPage(){
-    window.location.reload();
+
+    setTimeout(()=> window.location.reload(), 500)
 }
 
 
-function updateCandy(id) {
-    console.log(id);
-}
 
 //Pop up
 
 function gallModal(element) {
     document.getElementById("modal-candy").src = element.src;
 }
-
-
-
-
-
 
 class CandyRenderer {
 
@@ -89,16 +81,15 @@ class CandyRenderer {
         this.fetchDataFromCandy();
     }
 
-    //Fetch data from Film
+    //Fetch data from Candy
     async fetchDataFromCandy() {
         let responseCandy = await fetch(this.endpointUrlCandy);
         this.dataCandy = await responseCandy.json();
-        console.log(this.dataCandy);
         this.updateUI();
     }
 
     updateUI() {
-        //Loops over all Film entries
+        //Loops over all Candy entries
         for (let dataCandyIndex in this.dataCandy) {
 
             var entryCandy = this.dataCandy[dataCandyIndex];
@@ -106,30 +97,7 @@ class CandyRenderer {
             //sets target for JS
             let target = $("#candy-cards");
 
-            /***
-             *
-
-             KUN TAGET UD IMENS MAN IKKE KAN OPRETTE VISNINGER. MÅ IKKE SLETTES!
-
-             //Array for show dates
-             let dateList = new Array();
-
-             //Populates show dates array, discards duplicate dates
-             entryFilm.showList.forEach((showList) => {
-                if (!dateList.includes(showList.date)) {
-                    dateList.push(showList.date);
-                }
-            });
-
-             //Sorts Array in ascending order by date
-             let sortedDateList = dateList.sort((a, b) => {
-                return new Date(a) - new Date(b)
-            });
-
-             */
-
-
-                //First part of Film-Card
+                //First part of candy-Card
             var cards = `<div class="container my-3">
                       <div class="row border border-solid bg-light">
                           <div class="col-3 p-0">
@@ -155,63 +123,109 @@ class CandyRenderer {
                                     <h4>Størrelse: </h4>
                                     <p>${entryCandy.candySize}</p>
                                     </div>
-                                <div class="col-4">
-                                <button class="btn btn-primary" onclick="updateCandy(${entryCandy.candyId})">Rediger</button>
-                            </div>
-                            <div class="col-4">
+                                    
+                                    
+                                    <div class="col-4">
+                                     <div  data-bs-toggle="modal" data-bs-target="#modal${entryCandy.candyId}">
+                                         <button class="btn btn-primary">Opdater</button>
+                                        
+                                    </div>
+                                     <div >
                                 <button id="candy-delete-btn" class="btn btn-primary" onclick="deleteCandy( ${entryCandy.candyId} )">Slet</button>
                             </div>
+                            </div>
+                                </div>
+                            </div>
+                            
+                          
+                                <!--JS for opstater vinduet-->
+                            <div class="modal bg-dark bg-opacity-75 fade" tabindex="-1" role="dialog" id="modal${entryCandy.candyId}">
+                                <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-body">
+                        
+                                            <form id="modal-candy-edit" method="PUT">
+                        
+                                                <div id="editcandy-name-group" class="form-group">
+                                                    <label for="editcandy-name${entryCandy.candyId}">candyName</label>
+                                                    <input
+                                                            type="text"
+                                                            class="form-control"
+                                                            id="editcandy-name${entryCandy.candyId}"
+                                                            name="editcandy-name"
+                                                            value="${entryCandy.candyName}"
+                                                    />
+                                                </div>
+                        
+                                                <div id="editcandy-price-group" class="form-group">
+                                                    <label for="editcandy-price${entryCandy.candyId}">Price</label>
+                                                    <input
+                                                            type="number"
+                                                            class="form-control"
+                                                            id="editcandy-price${entryCandy.candyId}"
+                                                            name="editcandy-price"
+                                                              value="${entryCandy.candyPrice}"
+                                                    />
+                                                </div>
+                        
+                                                <div id="editcandy-size-group" class="form-group">
+                                                    <label for="editcandy-size${entryCandy.candyId}">candySize</label>
+                                                    <input
+                                                            type="text"
+                                                            class="form-control"
+                                                            id="editcandy-size${entryCandy.candyId}"
+                                                            name="editcandy-size"
+                                                             value="${entryCandy.candySize}"
+                                                    />
+                                                </div>
+                        
+                                                <div id="editcandy-amount-group" class="form-group">
+                                                    <label for="editcandy-amount${entryCandy.candyId}">candyAmount</label>
+                                                    <input
+                                                            type="text"
+                                                            class="form-control"
+                                                            id="editcandy-amount${entryCandy.candyId}"
+                                                            name="editCandy-amount"
+                                                            value="${entryCandy.candyAmount}"
+                                                    />
+                                                </div>
+                        
+                                                <div id="editcandy-productLink-group" class="form-group">
+                                                    <label for="editcandy-productLink${entryCandy.candyId}">Link til slik billede</label>
+                                                    <input
+                                                            type="text"
+                                                            class="form-control"
+                                                            id="editcandy-productLink${entryCandy.candyId}"
+                                                            name="editcandy-productLink"
+                                                              value="${entryCandy.productLink}"
+                                                    />
+                                                </div>
+                                                <input
+                                                            type="number"
+                                                            id="editcandy-candyId${entryCandy.candyId}"
+                                                            name="editcandy-candyId"
+                                                            value="${entryCandy.candyId}"
+                                                            hidden
+                                                    />
+                                                <button class="btn btn-success mt-2" data-bs-dismiss="modal" onclick="updateCandy(${entryCandy.candyId})">Opdater</button>
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer justify-content-center">
+                                            <button type="button" class="btn btn-secondary modal-btn" data-bs-dismiss="modal" onclick="refreshPage()">Luk</button>
+                                        </div>
+                                    </div>
+                               </div>         
+                            </div>
+                           
                           </div>
                       </div>
-                      </div>
-                      <div class="row">`;
+                      </div>`;
 
 
-            /**
-             * KUN TAGET UD IMENS MAN IKKE KAN OPRETTE VISNINGER. MÅ IKKE SLETTES!
-
-
-             //Loop for adding show times to dates for each film
-             for (let i = 0; i < sortedDateList.length; i++) {
-                //Finds week day from date
-                let dateForweekDate = new Date(sortedDateList[i]);
-                const options = { weekday: 'long'};
-                let weekDayDone = new Intl.DateTimeFormat('dk-DK', options).format(dateForweekDate);
-                //Makes first letter upper case
-                weekDayDone = weekDayDone.charAt(0).toUpperCase() + weekDayDone.slice(1);
-
-                cards += `<tr><th>${weekDayDone} d. ${sortedDateList[i]}</th>`;
-
-                //Sorts time
-                let timeArray = new Array();
-                entryFilm.showList.forEach((show) => {
-                    if (sortedDateList[i] == show.date) {
-                        timeArray.push(show.time);
-                    }
-                });
-
-                timeArray = timeArray.sort();
-
-
-                //Adds time under date, if dates are identical
-                //x keeps track of timeArray index
-                let x = 0;
-                entryFilm.showList.forEach((showList) => {
-                    if (sortedDateList[i] == showList.date) {
-                        cards += `<th class="px-4"><button>${timeArray[x]}</button></th>`;
-                        x += 1;
-                    }
-
-                });
-
-                cards += "</tr>";
-
-            }
-             */
 
             //Closing HTML
             cards += `</table></div></div></div>`;
-            //Adds film-cards to HTML
+            //Adds candy-cards to HTML
             target.append(cards);
         }
     }

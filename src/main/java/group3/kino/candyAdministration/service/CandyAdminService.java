@@ -43,6 +43,6 @@ public class CandyAdminService implements ICandyAdminService{
 
     @Override
     public Optional<Candy> findById(Long Id) {
-        return Optional.empty();
+        return candyAdminRepo.findById(Id);
     }
 }
