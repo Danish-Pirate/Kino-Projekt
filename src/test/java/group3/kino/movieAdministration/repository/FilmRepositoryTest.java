@@ -4,15 +4,15 @@ import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 
-@DataJpaTest
-@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
+//@DataJpaTest
+//@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class FilmRepositoryTest {
 
-    @Autowired
+    //@Autowired
     private MovieAdminRepo movieAdminRepo;
 
-    @Test
-    @Order(1)
+    //@Test
+    //@Order(1)
 
     public void saveFilmTest(){
 
