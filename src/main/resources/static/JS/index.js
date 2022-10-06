@@ -71,10 +71,6 @@ function refreshPage(){
 
 }
 
-//Pop up
-function gallModal(element) {
-    document.getElementById("modal-bookning").src = element.src;
-}
 //Accordion
 function showAccordion() {
     var acc = document.getElementsByClassName("accordion");
