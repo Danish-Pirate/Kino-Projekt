@@ -15,6 +15,8 @@ var rowClicked;
 var ticketList = "";
 var ticketPrice = 0 + currentMovieShow.price;
 var currentTotalPrice = 0;
+var radioId;
+var firstP;
 
 console.log("nannas linje");
 // Laver gridden til sæderne.
@@ -55,23 +57,27 @@ function seatNumbering(){
 
     document.getElementById('cinema_one_grid_id').innerHTML = seats;
 }
-function calculateIndividualTicketPrice(id, seatClickedID){
+
+function calculateIndividualTicketPrice(id){
     ticketPrice = currentMovieShow.price;
 
     var firstLetter = id.charAt(0);
     console.log(firstLetter);
+    
     if(firstLetter == "a"){
         this.ticketPrice = this.ticketPrice;
-
-        document.getElementById('pricetag_id').textContent = 'Pris '+ ticketPrice;
+        console.log(this.radioId);
+        document.getElementById(this.radioId).innerHTML = this.ticketPrice;
     }
     if(firstLetter == "c"){
         this.ticketPrice = this.ticketPrice * 0.5; 
-        document.getElementById('pricetag_id').textContent = 'Pris '+ ticketPrice;
+        console.log(this.radioId);
+        document.getElementById(this.radioId).innerHTML = this.ticketPrice;
     }
     if(firstLetter == "p"){
         this.ticketPrice= this.ticketPrice * 0.7;
-        document.getElementById('pricetag_id').textContent = 'Pris '+ ticketPrice;
+        console.log(this.radioId);
+        document.getElementById(this.radioId).innerHTML = this.ticketPrice;
     }
 }
 
@@ -81,10 +87,10 @@ function handleTicket(){
 
     if($("#" + seatClickedID).css("background-color") != "rgb(230, 230, 250)"){
         ticket = '<ticket added_ticket_id="ticket' + seatClickedID +'">' + " r: " + rowClicked +" s: " +seatClickedName +
-        '<label class="radio-inline"><input type="radio" onclick="calculateIndividualTicketPrice(this.id)" name="optradio' + seatClickedID +'" id="adult' + seatClickedID +'" checked>V</label>' +
-        '<label class="radio-inline"><input type="radio" onclick="calculateIndividualTicketPrice(this.id)" name="optradio' + seatClickedID +'" id="child' + seatClickedID +'">B</label><label class="radio-inline">' +
-        '<input type="radio" onclick="calculateIndividualTicketPrice(this.id)" name="optradio' + seatClickedID +'" id="pensioner' + seatClickedID +'">P</label>'+ 
-        '</ticket>'+ '<pricetag id="pricetag_id"' + seatClickedID +'"> Pris: '+ (ticketPrice)+ " dkk"+'</pricetag><br>';
+        '<label class="radio-inline"><input type="radio" onclick="setPriceTagId(this.id);calculateIndividualTicketPrice(this.id)" name="optradio' + seatClickedID +'" id="adult' + seatClickedID +'" checked>V</label>' +
+        '<label class="radio-inline"><input type="radio" onclick="setPriceTagId(this.id);calculateIndividualTicketPrice(this.id)" name="optradio' + seatClickedID +'" id="child' + seatClickedID +'">B</label><label class="radio-inline">' +
+        '<input type="radio" onclick="setPriceTagId(this.id);calculateIndividualTicketPrice(this.id)" name="optradio' + seatClickedID +'" id="pensioner' + seatClickedID +'">P</label>'+ 
+        '</ticket>'+ '<pricetag id="pricetag_id"> Pris: '+ (ticketPrice)+ " dkk"+'</pricetag><br>';
 
         this.ticketList = this.ticketList + ticket;
 
@@ -93,10 +99,10 @@ function handleTicket(){
     if($("#" + seatClickedID).css("background-color") != "rgb(255, 0, 0)"){
 
         removeTicket = '<ticket added_ticket_id="ticket' + seatClickedID +'">' + " r: " + rowClicked +" s: " +seatClickedName +
-        '<label class="radio-inline"><input type="radio" onclick="calculateIndividualTicketPrice(this.id)" name="optradio' + seatClickedID +'" id="adult' + seatClickedID +'" checked>V</label>' +
-        '<label class="radio-inline"><input type="radio" onclick="calculateIndividualTicketPrice(this.id)" name="optradio' + seatClickedID +'" id="child' + seatClickedID +'">B</label><label class="radio-inline">' +
-        '<input type="radio" onclick="calculateIndividualTicketPrice(this.id)" name="optradio' + seatClickedID +'" id="pensioner' + seatClickedID +'">P</label>'+ 
-        '</ticket>'+ '<pricetag id="pricetag_id"' + seatClickedID +'"> Pris: '+ (ticketPrice)+ " dkk"+'</pricetag><br>';
+        '<label class="radio-inline"><input type="radio" onclick="calculateIndividualTicketPrice(this.id)" name="optradio' + seatClickedID +'" id="adult/' + seatClickedID +'" checked>V</label>' +
+        '<label class="radio-inline"><input type="radio" onclick="calculateIndividualTicketPrice(this.id)" name="optradio' + seatClickedID +'" id="child/' + seatClickedID +'">B</label><label class="radio-inline">' +
+        '<input type="radio" onclick="calculateIndividualTicketPrice(this.id)" name="optradio' + seatClickedID +'" id="pensioner/' + seatClickedID +'">P</label>'+ 
+        '</ticket>'+ '<pricetag id="pricetag_id"> Pris: '+ (ticketPrice)+ " dkk"+'</pricetag><br>';
 
 
         this.ticketList = this.ticketList.replace(removeTicket, "");
@@ -109,6 +115,22 @@ function handleTicket(){
 
 }
 
+function setPriceTagId(id){
+
+    this.radioId = id.split("/").pop();
+
+    this.radioId = "/" + radioId;
+    
+    if(firstP == null){
+    firstP = document.getElementById("pricetag_id");
+    firstP.setAttribute("id", this.radioId)
+    }
+    
+    if(firstP != null){        
+    firstP.setAttribute("id", this.radioId);
+    }
+    this.radioId = radioId;
+}
  
 
 
