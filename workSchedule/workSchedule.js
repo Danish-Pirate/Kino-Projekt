@@ -70,59 +70,19 @@ document.addEventListener('DOMContentLoaded', function () {
                             }
                           });                  
                     });          
-                    // var nameWorker = prompt('Enter name')
-                    // var dateStr = prompt('Enter a date in YYYY-MM-DD format');
-                    // var date = new Date(dateStr + 'T00:00:00'); // will be in local time
-                    // var duration = ('')
-
-                    // if (!isNaN(date.valueOf())) { // valid?
-                    //     calendar.addEvent({
-                    //         title: nameWorker,
-                    //         start: date,
-                    //         end: date + duration
-                    //     });
-                    //     alert('Great. Now, update your database...');
-                    // } else {
-                    //     alert('Invalid date.');
-                    // }
                 },
             },
 
         },
 
-        // Mulighed 1: event-data direkte i JS
-        // events: [
-        //     {
-        //         title: 'Anna',
-        //         start: '2022-10-01T10:30:00',
-        //         end: '2022-10-01T21:30:00',
-        //         // Vores "egne" felter
-        //         extendedProps: {
-        //             type: 'syg',
-        //         }
-        //     },
-        //     {
-        //         title: 'Sofie',
-        //         start: '2022-10-01T11:30:00',
-        //         end: '2022-10-01T22:00:00',
-        //         extendedProps: {
-        //             type: 'normal',
-        //         }
-
-
-        //     },
-        //     {
-        //         title: 'Thea',
-        //         start: '2022-10-01T11:30:00',
-        //         end: '2022-10-01T22:00:00',
-        //         extendedProps: {
-        //             type: 'normal',
-        //         }
-        //     },
-        // ],
-
+       
         // event-data fra url der producerer json med events i (dokumentation: https://fullcalendar.io/docs/events-json-feed)
         events: 'http://localhost:8080/test',
+        // Modtager et objekt eller et array af objekter, der består af:
+        //String title;
+        // String start;
+        //String end;
+        //ExtendedProps extendedProps;
       
 
         // Handling når der klikkes på en event
@@ -155,7 +115,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
         },
 
-        // Indsæt linjeskift mellem event title og event description
         // https://fullcalendar.io/docs/content-injection
         eventContent: function (arg) {
             return { 
@@ -166,16 +125,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 };
         },
 
-        // resources: function (fetchInfo, successCallback, failureCallback) {
-        //     somethingAsynchonous({
-        //         start: fetchInfo.start,
-        //         end: fetchInfo.end,
-        //         timeZone: fetchInfo.timeZone
-        //     }, function (resources) {
-        //         successCallback(resources);
-        //     });
-        // },
-
+        
         dateClick: function (info) {
             alert('clicked ' + info.date);
 
@@ -183,7 +133,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         select: function (info) {
             var nameWorker = prompt('Enter name')
-            // var periode = (info.startStr + ' - ' + info.endStr)
+
 
 
             calendar.addEvent(
@@ -192,13 +142,9 @@ document.addEventListener('DOMContentLoaded', function () {
                     start: info.start,
                     end: info.end,
                     
-
                 }
 
             );
-
-
-            // alert('Great. Now, update your database...');
 
         },
 
@@ -209,8 +155,6 @@ document.addEventListener('DOMContentLoaded', function () {
                 return ['normal']
             }
         }
-
-
     });
 
     calendar.render();

@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function () {
         //ExtendedProps extendedProps;
 
 
-        // Sætter baggrundsfarve på alle events
+        // Sætter baggrundsfarve på alle events, kan ændres til forskellige farver for forskellige events 
         eventDisplay: 'block',
         eventBackgroundColor: 'blue',
 
@@ -47,12 +47,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
         },
 
-        // Indsæt linjeskift mellem event title og event description
+        // Indsæter linjeskift mellem event title og event description
         // https://fullcalendar.io/docs/content-injection
         eventContent: function (arg) {
             return { html: '<b>' + arg.event.title + '<br>Antal solgte billetter: ' + arg.event.extendedProps.ticketsSold };
         },
-
 
     });
 
