@@ -29,12 +29,19 @@ public class CinemaShow {
     private Cinema cinemaHall;
 
     @OneToMany(mappedBy = "showing")
-    private Set<Booking> bookings=new HashSet<>();
+    private Set<Booking> bookings = new HashSet<>();
 
+    /*
     @ManyToOne
     @JsonBackReference("movies")
     @EqualsAndHashCode.Exclude
     private Movie movie;
+    */
+
+    @ManyToOne
+    @JsonBackReference // pga. cirkulær reference i @Restcontroller
+    private Movie movie;
+
 
 
 }

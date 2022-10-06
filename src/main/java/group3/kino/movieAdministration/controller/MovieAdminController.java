@@ -19,6 +19,12 @@ public class MovieAdminController {
         this.movieAdminService = movieAdminService;
     }
 
+    @GetMapping("/getMovie/{id}")
+    public ResponseEntity<Movie> getMovieById(@PathVariable("id") Long id) {
+        movieAdminService.findById(id);
+        return new ResponseEntity<>(movieAdminService.findById(id).get(), HttpStatus.OK);
+    }
+
    @PostMapping("/addMovie")
     public ResponseEntity<Movie> addMovie(@RequestBody Movie movie) {
         movieAdminService.save(movie);
@@ -29,26 +35,23 @@ public class MovieAdminController {
     public ResponseEntity<Set<Movie>> getAllMovie() {
         return new ResponseEntity<>(movieAdminService.findAll(), HttpStatus.OK);
     }
-    @PutMapping("/editMovie")
-    public ResponseEntity<Movie> editFilm(@RequestBody Movie newMovie, @RequestParam String movieName){
-        Optional<Movie> oldMovie = movieAdminService.findByName(movieName);
-        if (oldMovie.isPresent()){
-            movieAdminService.save(newMovie);
 
+    @PutMapping("/editMovie/{movieId}")
+    public ResponseEntity<Movie> editFilm(@RequestBody Movie newMovie, @PathVariable() Long movieId) {
+        System.out.println("Film: "+newMovie.getName() + " \tId: " + movieId);
+        Optional<Movie> oldMovie = movieAdminService.findById(movieId);
+        if (oldMovie.isPresent()) {
+            movieAdminService.save(newMovie);
             return new ResponseEntity<>(newMovie, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(newMovie, HttpStatus.BAD_REQUEST);
         }
     }
-    @PostMapping("/deleteMovie")
-    public ResponseEntity<Movie> deleteFilm(String name){
-        Optional<Movie> movie = movieAdminService.findByName(name);
-        if (movie.isPresent()){
-            Movie movie_ = movie.get();
-            movieAdminService.delete(movie);
 
-            return new ResponseEntity<>(movie_, HttpStatus.OK);
-        }
-        return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+
+    @DeleteMapping("/deleteFilm/{movieId}")
+    public void deleteFilmByID(@PathVariable("movieId") Long movieId) {
+        movieAdminService.deleteById(movieId);
     }
+
 }

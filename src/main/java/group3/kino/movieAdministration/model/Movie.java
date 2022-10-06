@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -21,19 +22,14 @@ public class Movie {
     private String movieGenre;
     private int movieAgeRestriction;
     private double moviePrice;
+    private String posterLink;
 
-    public Movie(Long movieId, String name, String date, double movieLength, String movieGenre, int movieAgeRestriction, double moviePrice) {
-        this.movieId = movieId;
-        this.name = name;
-        this.date = date;
-        this.movieLength = movieLength;
-        this.movieGenre = movieGenre;
-        this.movieAgeRestriction = movieAgeRestriction;
-        this.moviePrice = moviePrice;
-    }
+    @OneToMany(mappedBy = "movie")
+    private Set<CinemaShow> cinemaShows = new HashSet<>();
 
-    public Movie() {
 
+    public void addCinemaShow(CinemaShow cinemaShow){
+        this.cinemaShows.add(cinemaShow);
     }
 
 }

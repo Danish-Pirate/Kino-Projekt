@@ -39,17 +39,18 @@ public class MovieAdminService implements IMovieAdminService {
     }
 
     @Override
-    public void deleteById(Long Id) {
-
+    public void deleteById(Long id) {
+        movieAdminRepo.deleteById(id);
     }
 
     @Override
-    public Optional<Movie> findById(Long Id) {
-        return Optional.empty();
+    public Optional<Movie> findById(Long id) {
+        return movieAdminRepo.findById(id);
     }
 
     public Optional<Movie> findByName(String name) {
         return Optional.empty();
     }
+
 }
 
