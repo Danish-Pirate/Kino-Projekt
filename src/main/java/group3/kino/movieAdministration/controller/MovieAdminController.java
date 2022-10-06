@@ -48,15 +48,10 @@ public class MovieAdminController {
         }
     }
 
-    @PostMapping("/deleteMovie")
-    public ResponseEntity<Movie> deleteFilm(String name){
-        Optional<Movie> movie = movieAdminService.findByName(name);
-        if (movie.isPresent()){
-            Movie movie_ = movie.get();
-            movieAdminService.delete(movie);
 
-            return new ResponseEntity<>(movie_, HttpStatus.OK);
-        }
-        return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
+    @DeleteMapping("/deleteFilm/{movieId}")
+    public void deleteFilmByID(@PathVariable("movieId") Long movieId) {
+        movieAdminService.deleteById(movieId);
     }
+
 }
