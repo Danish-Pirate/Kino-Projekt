@@ -32,17 +32,6 @@ public class CandyAdminController {
         return new ResponseEntity<>(candyAdminService.findAll(), HttpStatus.OK);
     }
 
-    @PutMapping("/editCandy")
-    public ResponseEntity<Candy> editCandy(@RequestBody Candy newCandy){
-        Optional<Candy> oldCandy = candyAdminService.findById(newCandy.getCandyId());
-        if (oldCandy.isPresent()){
-            candyAdminService.save(newCandy);
-
-            return new ResponseEntity<>(newCandy, HttpStatus.OK);
-        }else{
-            return new ResponseEntity<>(newCandy, HttpStatus.BAD_REQUEST);
-        }
-    }
 
     @PostMapping("/deleteCandy")
     public ResponseEntity<Candy> deleteCandy(Long id){
@@ -59,6 +48,18 @@ public class CandyAdminController {
     @DeleteMapping("/deleteCandy/{candyId}")
     public void deleteCandyByID(@PathVariable("candyId") Long candyId){
         candyAdminService.deleteById(candyId);
+    }
+
+    @PutMapping("/editCandy/{candyId}")
+    public ResponseEntity<Candy> editCandy(@RequestBody Candy newCandy, @PathVariable() Long candyId) {
+        System.out.println("Candy: "+newCandy.getCandyName() + " \tId: " + candyId);
+        Optional<Candy> oldCandy = candyAdminService.findById(candyId);
+        if (oldCandy.isPresent()) {
+            candyAdminService.save(newCandy);
+            return new ResponseEntity<>(newCandy, HttpStatus.OK);
+        } else {
+            return new ResponseEntity<>(newCandy, HttpStatus.BAD_REQUEST);
+        }
     }
 
 
