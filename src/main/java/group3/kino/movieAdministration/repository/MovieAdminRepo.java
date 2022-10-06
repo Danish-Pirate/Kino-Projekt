@@ -4,11 +4,12 @@ import group3.kino.movieAdministration.model.Movie;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
+import java.util.Set;
 
 
 public interface MovieAdminRepo extends JpaRepository<Movie, Long> {
 
-    List<Movie> findFilmByName(String name);
+    Set<Movie> findFilmByName(String name);
 
 
 

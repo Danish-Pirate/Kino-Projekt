@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -48,8 +49,8 @@ public class MovieAdminService implements IMovieAdminService {
         return movieAdminRepo.findById(id);
     }
 
-    public Optional<Movie> findByName(String name) {
-        return Optional.empty();
+    public Set<Movie> findByName(String name) {
+        return movieAdminRepo.findFilmByName(name);
     }
 
 }

@@ -25,21 +25,10 @@ public class CinemaShowController {
 
     @PostMapping("addShowToMovie/{movieId}")
     public ResponseEntity<String> addShowToMovie(@RequestBody CinemaShow cinemaShow, @PathVariable("movieId") Long movieId){
-
-        Optional<Movie>  movie_ = movieService.findById(movieId);
-
-        if(movie_.isPresent()){
-            Movie movie = movie_.get();
-            movie.addCinemaShow(cinemaShow);
-
-        }
-
-
+        Movie movie = movieService.findById(movieId).get();
+        movie.addCinemaShow(cinemaShow);
+        movieService.save(movie);
         return new ResponseEntity<>(HttpStatus.OK);
-
     }
-
-
-
 
 }
