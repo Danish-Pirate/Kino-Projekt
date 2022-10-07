@@ -24,7 +24,7 @@ public class BookingController {
     }
 
     @PostMapping ("/createBooking")
-    public   ResponseEntity<String> createBooking(@RequestParam("customerName") String customerName, @RequestParam("phoneNumber") String phoneNumber,
+    public   ResponseEntity<Booking> createBooking(@RequestParam("customerName") String customerName, @RequestParam("phoneNumber") String phoneNumber,
                                                   @RequestParam("timeSlot") String timeSlot, @RequestParam("date") String date, @RequestParam("cinemaName") String cinemaName,
                                                   @RequestParam("movieName") String movieName, @RequestParam("totalPrice") double totalPrice)  {
         Booking booking = new Booking(customerName, phoneNumber, date, timeSlot, cinemaName, movieName, totalPrice);
@@ -42,7 +42,7 @@ public class BookingController {
         responseHeaders.set("Access-Control-Allow-Origin", "*");
         return ResponseEntity.ok()
                 .headers(responseHeaders)
-                .body("test");
+                .body(booking);
     }
 
     @GetMapping ("/getAllBooking")
