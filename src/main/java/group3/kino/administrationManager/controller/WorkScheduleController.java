@@ -2,6 +2,7 @@ package group3.kino.administrationManager.controller;
 
 import group3.kino.administrationManager.model.WorkSchedule;
 import group3.kino.administrationManager.service.WorkScheduleService;
+import group3.kino.util.TokenAuthenticator;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,13 +23,19 @@ public class WorkScheduleController {
     }
 
     @GetMapping("/showSchedule")
-    public ResponseEntity<Set<WorkSchedule>> getShowSchedule(){
+    public ResponseEntity<Set<WorkSchedule>> getShowSchedule(@RequestHeader("token") int key){
+        if (!TokenAuthenticator.isTokenAuthenticated(key))
+            return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
+
         return new ResponseEntity<>(workScheduleServices.findAll(), HttpStatus.OK);
     }
 
 
     @PostMapping("/createSchedule")
-    public ResponseEntity<String> createSchedule(@RequestBody WorkSchedule workSchedule){
+    public ResponseEntity<String> createSchedule(@RequestBody WorkSchedule workSchedule, @RequestHeader("token") int key){
+        if (!TokenAuthenticator.isTokenAuthenticated(key))
+            return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
+
         workScheduleServices.save(workSchedule);
 
         if (workScheduleServices.save(workSchedule)!= null){
@@ -39,7 +46,13 @@ public class WorkScheduleController {
     }
 
     @PostMapping("/editSchedule")
-    public ResponseEntity<WorkSchedule> editSchedule(@RequestBody  WorkSchedule newSchedule, @RequestParam Long id){
+    public ResponseEntity<WorkSchedule> editSchedule(
+            @RequestBody  WorkSchedule newSchedule,
+            @RequestParam Long id,
+            @RequestHeader("token") int key){
+        if (!TokenAuthenticator.isTokenAuthenticated(key))
+            return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
+
         Optional<WorkSchedule> workSchedule_ = workScheduleServices.findById(id);
         if (workSchedule_.isPresent()){
             newSchedule.setId(id);
@@ -51,7 +64,10 @@ public class WorkScheduleController {
     }
 
     @PostMapping("/deleteSchedule")
-    public ResponseEntity<WorkSchedule> deleteSchedule(@RequestParam Long id){
+    public ResponseEntity<WorkSchedule> deleteSchedule(@RequestParam Long id, @RequestHeader("token") int key){
+        if (!TokenAuthenticator.isTokenAuthenticated(key))
+            return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
+
         Optional<WorkSchedule> workSchedule_ = workScheduleServices.findById(id);
         if (workSchedule_.isPresent()){
             WorkSchedule workSchedule = workSchedule_.get();

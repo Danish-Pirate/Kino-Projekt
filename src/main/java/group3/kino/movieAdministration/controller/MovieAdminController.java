@@ -2,6 +2,7 @@ package group3.kino.movieAdministration.controller;
 
 import group3.kino.movieAdministration.model.Movie;
 import group3.kino.movieAdministration.service.MovieAdminService;
+import group3.kino.util.TokenAuthenticator;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,24 +21,31 @@ public class MovieAdminController {
     }
 
     @GetMapping("/getMovie/{id}")
-    public ResponseEntity<Movie> getMovieById(@PathVariable("id") Long id) {
-        movieAdminService.findById(id);
+    public ResponseEntity<Movie> getMovieById(@PathVariable("id") Long id, @RequestHeader("token") int key) {
+        if (!TokenAuthenticator.isTokenAuthenticated(key))
+            return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
         return new ResponseEntity<>(movieAdminService.findById(id).get(), HttpStatus.OK);
     }
 
    @PostMapping("/addMovie")
-    public ResponseEntity<Movie> addMovie(@RequestBody Movie movie) {
-        movieAdminService.save(movie);
-        return new ResponseEntity<>(movie, HttpStatus.OK);
+    public ResponseEntity<Movie> addMovie(@RequestBody Movie movie, @RequestHeader("token") int key) {
+       if (!TokenAuthenticator.isTokenAuthenticated(key))
+           return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
+       return new ResponseEntity<>(movieAdminService.save(movie), HttpStatus.OK);
     }
 
     @GetMapping("/getAllMovie")
-    public ResponseEntity<Set<Movie>> getAllMovie() {
+    public ResponseEntity<Set<Movie>> getAllMovie(@RequestHeader("token") int key) {
+        if (!TokenAuthenticator.isTokenAuthenticated(key))
+            return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
         return new ResponseEntity<>(movieAdminService.findAll(), HttpStatus.OK);
     }
 
     @PutMapping("/editMovie/{movieId}")
-    public ResponseEntity<Movie> editFilm(@RequestBody Movie newMovie, @PathVariable() Long movieId) {
+    public ResponseEntity<Movie> editFilm(@RequestBody Movie newMovie, @PathVariable() Long movieId, @RequestHeader("token") int key) {
+        if (!TokenAuthenticator.isTokenAuthenticated(key))
+            return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
+
         System.out.println("Film: "+newMovie.getName() + " \tId: " + movieId);
         Optional<Movie> oldMovie = movieAdminService.findById(movieId);
         if (oldMovie.isPresent()) {
@@ -50,8 +58,11 @@ public class MovieAdminController {
 
 
     @DeleteMapping("/deleteFilm/{movieId}")
-    public void deleteFilmByID(@PathVariable("movieId") Long movieId) {
-        movieAdminService.deleteById(movieId);
-    }
+    public ResponseEntity<HttpStatus> deleteFilmByID(@PathVariable("movieId") Long movieId, @RequestHeader("token") int key) {
+        if (!TokenAuthenticator.isTokenAuthenticated(key))
+            return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
 
+        movieAdminService.deleteById(movieId);
+        return new ResponseEntity<>(null, HttpStatus.OK);
+    }
 }
