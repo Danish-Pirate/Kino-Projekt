@@ -34,7 +34,8 @@ public class CinemaShowController {
 
         Movie movie = movieService.findById(movieId).get();
         movie.addCinemaShow(cinemaShow);
-        movieService.save(movie);
+        cinemaShow.setMovie(movie);
+        showService.save(cinemaShow);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
