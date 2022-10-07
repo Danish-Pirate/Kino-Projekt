@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import java.util.Set;
 
 public interface iMovieController {
-    public ResponseEntity<Set<Movie>> findByName(String name);
-    public ResponseEntity<Set<Movie>> findByGenre(String genre);
-    public ResponseEntity<Set<Movie>> findByDate(String date);
+    public ResponseEntity<Set<Movie>> findByName(String name, int key);
+    public ResponseEntity<Set<Movie>> findByGenre(String genre, int key);
+    public ResponseEntity<Set<Movie>> findByDate(String date, int key);
 }
