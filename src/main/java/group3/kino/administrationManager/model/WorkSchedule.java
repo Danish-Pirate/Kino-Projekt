@@ -1,10 +1,12 @@
 package group3.kino.administrationManager.model;
 
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.time.LocalDateTime;
+
 
 @Entity
 @Getter
@@ -14,10 +16,17 @@ public class WorkSchedule {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String title;
-    private String start;
-    private String end;
-    private String type;
 
+    @JsonSerialize
+    private String title;
+
+    @JsonSerialize
+    private LocalDateTime start;
+
+    @JsonSerialize
+    private LocalDateTime end;
+
+    @JsonSerialize
+    private String type;
 
 }

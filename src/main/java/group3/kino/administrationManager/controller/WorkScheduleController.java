@@ -6,6 +6,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
@@ -23,14 +26,15 @@ public class WorkScheduleController {
         return new ResponseEntity<>(workScheduleServices.findAll(), HttpStatus.OK);
     }
 
+
     @PostMapping("/createSchedule")
     public ResponseEntity<String> createSchedule(@RequestBody WorkSchedule workSchedule){
         workScheduleServices.save(workSchedule);
 
         if (workScheduleServices.save(workSchedule)!= null){
-            return new ResponseEntity<>("Ny vagtplan oprettet", HttpStatus.CREATED);
+            return new ResponseEntity<>("Ny vagt oprettet", HttpStatus.CREATED);
         }else {
-            return new ResponseEntity<>("Kunne ikke oprette ny vagtplan", HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Kunne ikke oprette ny vagt", HttpStatus.BAD_REQUEST);
         }
     }
 
@@ -47,7 +51,7 @@ public class WorkScheduleController {
     }
 
     @PostMapping("/deleteSchedule")
-    public ResponseEntity<WorkSchedule> deleteSchedule(Long id){
+    public ResponseEntity<WorkSchedule> deleteSchedule(@RequestParam Long id){
         Optional<WorkSchedule> workSchedule_ = workScheduleServices.findById(id);
         if (workSchedule_.isPresent()){
             WorkSchedule workSchedule = workSchedule_.get();
