@@ -1,6 +1,5 @@
 package group3.kino.bookingManager.model;
 
-
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.EqualsAndHashCode;
@@ -8,7 +7,6 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
-
 
 @Getter
 @Setter
@@ -33,9 +31,8 @@ public class Booking {
     @JsonBackReference("booking")
     @EqualsAndHashCode.Exclude
     private CinemaShow showing;
-    ;
 
-    Booking(){}
+    public Booking(){}
 
     public Booking(String customerName, String phoneNumber, String date, String timeSlot, String cinemaName, String movieName, double totalPrice) {
         this.customerName = customerName;
@@ -46,4 +43,5 @@ public class Booking {
         this.movieName = movieName;
         this.totalPrice = totalPrice;
     }
+
 }
